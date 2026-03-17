@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DnD_Index_App.MainPage"
+             x:Class="DnD_Index_App.Pages.MainPage"
+             xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              Shell.NavBarIsVisible="False"
              MaximumWidthRequest="403"
-             MaximumHeightRequest="850"
+             MaximumHeightRequest="914"
              Title="Home Page">
 
     <Border StrokeThickness="0"
@@ -21,15 +22,20 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ImageButton 
+                <Image 
                     Margin="25 10 0"
                     Grid.Row="0"
                     x:Name="SettingsBtn"
                     Source="settings_icon.png"
-                    Clicked="SettingsBtnClicked"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
-                    BackgroundColor="#582929"/>
+                    BackgroundColor="#582929">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="SettingsBtnTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Image
                     Grid.Row="0"
                     Source="logo_placeholder.png"

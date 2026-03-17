@@ -1,8 +1,11 @@
-﻿namespace DnD_Index_App
+﻿using System.Threading.Tasks;
+using DnD_Index_App.Pages;
+using System.Collections.ObjectModel;
+
+namespace DnD_Index_App.Pages
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
@@ -14,9 +17,10 @@
             return;
         }
 
-        private void SettingsBtnClicked(object? sender, EventArgs e)
+        private async void SettingsBtnTapped(object? sender, EventArgs e)
         {
-            return;
+            //await Navigation.PushModalAsync(new SettingsPage());
+            await Shell.Current.GoToAsync("SettingsPage");
         }
     }
 }
