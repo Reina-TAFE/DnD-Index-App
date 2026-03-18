@@ -302,7 +302,7 @@
                                    TextColor="White"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Start"
-                                   Padding="8 8 8 14"/>
+                                   Padding="0 0 0 14"/>
                         <Picker Grid.Column="1"
                                 Grid.Row="0"
                                 x:Name="LanguagePicker"
