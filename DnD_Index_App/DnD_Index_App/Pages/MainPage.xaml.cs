@@ -22,5 +22,12 @@ namespace DnD_Index_App.Pages
             //await Navigation.PushModalAsync(new SettingsPage());
             await Shell.Current.GoToAsync("SettingsPage");
         }
+
+        private async void SpellsBtn_Tapped(object sender, TappedEventArgs e)
+        {
+
+            Dictionary<string, object> queryOptions = App.PageQueryOptions["SpellSearchPage"];
+            await Shell.Current.GoToAsync("SearchPage", queryOptions);
+        }
     }
 }

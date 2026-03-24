@@ -9,6 +9,7 @@ namespace DnD_Index_App
         {
             InitializeComponent();
             Routing.RegisterRoute("SettingsPage", typeof(Pages.SettingsPage));
+            Routing.RegisterRoute("SearchPage", typeof(Pages.SearchPage));
         }
     }
 }

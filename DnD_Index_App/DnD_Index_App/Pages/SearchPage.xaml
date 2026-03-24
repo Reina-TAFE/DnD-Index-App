@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnD_Index_App.Pages.SearchPage"
+             Title="NewPage1">
+    <ScrollView BackgroundColor="#582929">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <FlexLayout Grid.Row="0"
+                        Direction="Row"
+                        JustifyContent="SpaceBetween">
+                <Image 
+                    FlexLayout.Basis="40"
+                    Margin="25 10 0"
+                    x:Name="SettingsBtn"
+                    Source="arrow_left.png"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    BackgroundColor="#582929">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    Tapped="BackBtnTapped"
+                                    NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    FlexLayout.Basis="Auto"
+                    FlexLayout.AlignSelf="Center"
+                    Source="cleric_symbol.png"
+                    HeightRequest="126"
+                    WidthRequest="126"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Placeholder image for app icon" 
+                    Margin="55 0 20"/>
+                <Image 
+                    FlexLayout.Basis="40"
+                    Margin="25 10 0"
+                    x:Name="SettingsBtn"
+                    Source="settings_icon.png"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    BackgroundColor="#582929">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                    Tapped="SettingsBtnTapped"
+                                    NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </FlexLayout>
+        
+            <SearchBar Grid.Row="1"
+                       HorizontalOptions="Fill"
+                       Margin="10 25"/>
+            <VerticalStackLayout Grid.Row="2">
+                <Label Text="Levels"/>
+                <CollectionView >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Text="{Binding Name}"
+                                    FontSize="32"
+                                    BackgroundColor="#D9D9D9"
+                                    TextColor="#3C3C3C"
+                                    HorizontalOptions="Fill"
+                                    HeightRequest="65"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            <Grid
+                Grid.Row="3"
+                BackgroundColor="#000000"
+                HeightRequest="91"
+                VerticalOptions="End"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<Border
+            Grid.Column="0"
+            VerticalOptions="End"                    
+            HeightRequest="90"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 0,0,0,1"
+            Stroke="#000000"
+            BackgroundColor="#000000"
+            Padding="0 0 1 0"> -->
+                <ImageButton
+    
+            x:Name="NavSpellsBtn"
+            Source="cleric_symbol.png"
+            BackgroundColor="#8F8D8D"
+    
+            Padding="10"
+            Opacity="65"                    
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="OnCounterClicked"
+            HorizontalOptions="Fill"
+            VerticalOptions="End"                    
+            HeightRequest="90"
+            WidthRequest="100"/>
+                <!--</Border> -->
+                <!--<Border
+            Grid.Column="1"
+            VerticalOptions="End"                    
+            HeightRequest="90"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 0,0,0,1"
+            Stroke="#000000"
+            BackgroundColor="#000000"> -->
+                <ImageButton
+            Grid.Column="1"
+            x:Name="NavClassesBtn"
+            Source="paladin.png"
+            BackgroundColor="#8F8D8D"                    
+            Padding="10"
+            Opacity="65"                    
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="OnCounterClicked"
+            HorizontalOptions="Fill"
+            VerticalOptions="End"
+            HeightRequest="90" 
+            WidthRequest="100"/>
+                <!--</Border>-->
+                <!--<Border
+    
+            VerticalOptions="End"                    
+            HeightRequest="90"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 0,0,0,1"
+            Stroke="#000000"
+            BackgroundColor="#000000"> -->
+
+                <ImageButton
+            Grid.Column="2"
+            x:Name="NavEquipmentBtn"
+            Source="fighter_symbol.png"
+            BackgroundColor="#8F8D8D"
+            Padding="10"
+            Opacity="65"
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="OnCounterClicked"
+            HorizontalOptions="Fill"
+            HeightRequest="90"
+            WidthRequest="100"/>
+                <!--</Border>-->
+
+                <!--<Border
+    
+            VerticalOptions="End"                    
+            HeightRequest="90"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 0,0,0,1"
+            Stroke="#000000"
+            BackgroundColor="#000000">-->
+                <ImageButton
+            Grid.Column="3"
+            x:Name="NaveRulesBtn"
+            Source="scroll.png"
+            BackgroundColor="#8F8D8D"
+            Padding="15"
+            Opacity="65"                    
+            SemanticProperties.Hint="Counts the number of times you click"
+            Clicked="OnCounterClicked"
+            HorizontalOptions="Fill"
+            HeightRequest="90"
+            WidthRequest="100"
+            />
+                <!--</Border>-->
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>
