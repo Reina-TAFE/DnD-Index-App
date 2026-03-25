@@ -59,7 +59,13 @@
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill"
-                    HeightRequest="90"/>
+                    HeightRequest="90">
+                    <Button.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="SpellsBtn_Tapped"
+                            NumberOfTapsRequired="1"/>
+                    </Button.GestureRecognizers>
+                </Button>
 
                 <Button
                     Grid.Row="3"

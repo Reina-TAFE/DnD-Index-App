@@ -26,7 +26,7 @@ namespace DnD_Index_App.Pages
         private async void SpellsBtn_Tapped(object sender, TappedEventArgs e)
         {
 
-            Dictionary<string, object> queryOptions = App.PageQueryOptions["SpellSearchPage"];
+            IDictionary<string, object> queryOptions = App.PageQueryOptions["SpellSearchPage"];
             await Shell.Current.GoToAsync("SearchPage", queryOptions);
         }
     }

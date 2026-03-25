@@ -1,19 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using DnD_Index_App.Models;
 
 namespace DnD_Index_App
 {
     public partial class App : Application
     {
-        private static List<string> spellLevelList = default!;
+        private static List<SearchCatagory> _spellLevelList = default!;
 
-        public static List<string> SpellLevelList
+        public static List<SearchCatagory> SpellLevelList
         {
             get
             {
-                var levelList = from number in Enumerable.Range(1, 21) select $"Level {number}";
-                List<string> SpellLevels = levelList.ToList();
-                SpellLevels.Insert(0, "Cantrips");
-                spellLevelList = SpellLevels;
+                var levelList = from number in Enumerable.Range(1, 20) select new SearchCatagory($"Level {number}", "level", number.ToString());
+                List<SearchCatagory> SpellLevels = levelList.ToList();
+                SpellLevels.Insert(0, new SearchCatagory("Cantrips", "level", "0"));
+                _spellLevelList = SpellLevels;
                 return SpellLevels;
             }
         }
@@ -22,6 +23,7 @@ namespace DnD_Index_App
         {
             {"SpellSearchPage", new Dictionary<string, object> {
                 {"PageName", "Spells" },
+                {"CatagoryType", "Levels" },
                 {"CatagoryOptions", SpellLevelList },
             }
             }
