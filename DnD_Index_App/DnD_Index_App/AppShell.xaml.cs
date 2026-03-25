@@ -8,6 +8,8 @@ namespace DnD_Index_App
         public AppShell()
         {
             InitializeComponent();
+            
+            Routing.RegisterRoute("MainPage", typeof(Pages.MainPage));
             Routing.RegisterRoute("SettingsPage", typeof(Pages.SettingsPage));
             Routing.RegisterRoute("SearchPage", typeof(Pages.SearchPage));
         }

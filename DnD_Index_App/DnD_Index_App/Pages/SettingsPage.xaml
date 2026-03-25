@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              x:Class="DnD_Index_App.Pages.SettingsPage"
              Shell.NavBarIsVisible="False"
              IsVisible="True"
@@ -33,7 +34,13 @@
                     BackgroundColor="#582929"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
-                />
+                >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="BackBtn_Tapped"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label 
                     Grid.Row="0"
                     TextColor="White"

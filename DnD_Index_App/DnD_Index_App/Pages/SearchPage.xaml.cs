@@ -1,4 +1,5 @@
 using DnD_Index_App.Models;
+using DnD_Index_App.Pages;
 
 namespace DnD_Index_App.Pages;
 
@@ -29,5 +30,16 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 			CatagoryType = catagoryType as String;
 			CatagoryTypeLabel.Text = CatagoryType;
 		}
+    }
+
+    private async void SettingsBtn_Tapped(object? sender, EventArgs e)
+    {
+        //await Navigation.PushModalAsync(new SettingsPage());
+        await Shell.Current.GoToAsync("SettingsPage");
+    }
+
+    private async void BackBtn_Tapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
     }
 }

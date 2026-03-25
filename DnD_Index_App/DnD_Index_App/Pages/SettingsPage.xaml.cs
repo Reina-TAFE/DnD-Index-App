@@ -1,3 +1,5 @@
+using DnD_Index_App.Pages;
+
 namespace DnD_Index_App.Pages;
 
 public partial class SettingsPage : ContentPage
@@ -7,9 +9,9 @@ public partial class SettingsPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void BackBtn_Clicked(object sender, EventArgs e)
+    private async void BackBtn_Tapped(object sender, TappedEventArgs e)
     {
-
+        await Shell.Current.GoToAsync("//MainPage");
     }
 
     private void DarkModeSwitch_Toggled(object sender, ToggledEventArgs e)
