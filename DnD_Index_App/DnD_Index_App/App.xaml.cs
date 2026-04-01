@@ -11,7 +11,7 @@ namespace DnD_Index_App
         {
             get
             {
-                var levelList = from number in Enumerable.Range(1, 20) select new SearchCatagory($"Level {number}", "level", number.ToString());
+                var levelList = from number in Enumerable.Range(1, 9) select new SearchCatagory($"Level {number}", "level", number.ToString());
                 List<SearchCatagory> SpellLevels = levelList.ToList();
                 SpellLevels.Insert(0, new SearchCatagory("Cantrips", "level", "0"));
                 _spellLevelList = SpellLevels;
