@@ -1,14 +1,16 @@
 using DnD_Index_App.Models;
 using DnD_Index_App.Pages;
+using DnD_Index_App.Services;
 
 namespace DnD_Index_App.Pages;
 
 public partial class SearchPage : ContentPage, IQueryAttributable
 {
 	public String PageName { get; set; } = default!;
-	public List<SearchCatagory> CatagoryOptions { get; set; } = default!;
+	public List<ApiObjectInfo> CatagoryOptions { get; set; } = default!;
 	public String CatagoryType { get; set; } = default!;
-	public SearchPage()
+    public static ApiService Api = new ApiService();
+    public SearchPage()
 	{
 		InitializeComponent();
 	}
@@ -22,7 +24,7 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 		}
         if (query.TryGetValue("CatagoryOptions", out var catagoryOptions))
         {
-            CatagoryOptions = catagoryOptions as List<SearchCatagory>;
+            CatagoryOptions = catagoryOptions as List<ApiObjectInfo>;
 			SearchCatagoriesCollection.ItemsSource = CatagoryOptions;
         }
 		if(query.TryGetValue("CatagoryType", out var catagoryType))
@@ -41,5 +43,16 @@ public partial class SearchPage : ContentPage, IQueryAttributable
     private async void BackBtn_Tapped(object sender, TappedEventArgs e)
     {
         await Shell.Current.GoToAsync("//MainPage");
+    }
+
+    private async void SearchOption_Tapped(object sender, TappedEventArgs e)
+    {
+		Button button = sender as Button;
+		ApiObjectInfo searchOption = button.BindingContext as ApiObjectInfo;
+		if (searchOption != null)
+        {
+            List<ApiObjectInfo> newSearchOptions = await ApiService.GetResourcesForEndpointAsync($"https://www.dnd5eapi.co{searchOption.Url}");
+
+        }
     }
 }

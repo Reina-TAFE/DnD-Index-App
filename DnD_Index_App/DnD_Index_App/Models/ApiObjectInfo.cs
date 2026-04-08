@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace DnD_Index_App.Models
 {
     public class ApiObjectInfo
     {
+        [JsonPropertyName("index")]
         public string? Index {  get; set; }
+
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
+
+        [JsonPropertyName("url")]
         public string? Url { get; set; }
+
         public ApiObjectInfo(string? index, string? name, string? url) 
         { 
             Index = index;

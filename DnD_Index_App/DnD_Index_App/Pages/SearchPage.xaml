@@ -92,14 +92,20 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Button Text="{Binding CatagoryName}"
+                            <Button Text="{Binding Name}"
                                     FontSize="32"
                                     BackgroundColor="#D9D9D9"
                                     TextColor="#3C3C3C"
                                     HorizontalOptions="Fill"
                                     HeightRequest="65"
                                     Padding="5 0"
-                                    Margin="5 0"/>
+                                    Margin="5 0">
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="SearchOption_Tapped"
+                                        NumberOfTapsRequired="1"/>
+                                </Button.GestureRecognizers>
+                            </Button>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

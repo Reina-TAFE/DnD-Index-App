@@ -1,4 +1,5 @@
 ﻿using DnD_Index_App.Models;
+using DnD_Index_App.Models.EquipmentModels;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 
 namespace DnD_Index_App.Services
 {
@@ -37,10 +39,44 @@ namespace DnD_Index_App.Services
             return await response.Content.ReadFromJsonAsync<ClassModel>();
         }
 
-        public static async Task<EquipmentModel> GetEquipmentAsync(string index)
+        public static async Task<EquipmentModel>? GetEquipmentAsync(string index)
         {
             HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/equipment/{index}");
-            return await response.Content.ReadFromJsonAsync<EquipmentModel>();
+            response.EnsureSuccessStatusCode();
+            string JsonString = await response.Content.ReadAsStringAsync();
+            JsonDocument json = JsonDocument.Parse(JsonString);
+            JsonElement root = json.RootElement;
+            if (root.TryGetProperty("equipment_category", out JsonElement category))
+            {
+                if (category.TryGetProperty("name", out JsonElement categoryName))
+                {
+                    if (categoryName.ToString() == "Weapon")
+                    {
+                        return await response.Content.ReadFromJsonAsync<WeaponModel>();
+                    }
+                    else if (categoryName.ToString() == "Armor")
+                    {
+                        return await response.Content.ReadFromJsonAsync<ArmourModel>();
+                    }
+                    else if (categoryName.ToString() == "Mounts and Vehicles")
+                    {
+                        return await response.Content.ReadFromJsonAsync<VehicleModel>();
+                    }
+                    else
+                    {
+                        return await response.Content.ReadFromJsonAsync<EquipmentModel>();
+                    }
+                }
+            }
+            return null;
         }
+
+        public static async Task<List<ApiObjectInfo>> GetResourcesForEndpointAsync(string endpoint) 
+        { 
+            HttpResponseMessage response = await client.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<List<ApiObjectInfo>>();
+        }
+
     }
 }
