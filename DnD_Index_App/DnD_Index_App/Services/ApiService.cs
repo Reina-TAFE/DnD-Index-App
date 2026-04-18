@@ -21,9 +21,10 @@ namespace DnD_Index_App.Services
         public static HttpClient client = new HttpClient();
         public ApiService() { }
 
-        public async Task<object?> GetApiResponse(string endpoint)
+        public async Task<object?> GetApiResponse(SearchCatagory searchItem)
         {
-            HttpResponseMessage response = await client.GetAsync($"{BaseUrl + endpoint}");
+            HttpResponseMessage response = await client.GetAsync(searchItem.Url);
+
             return await response.Content.ReadFromJsonAsync<object?>();
         }
 
@@ -71,11 +72,23 @@ namespace DnD_Index_App.Services
             return null;
         }
 
-        public static async Task<List<ApiObjectInfo>> GetResourcesForEndpointAsync(string endpoint) 
-        { 
-            HttpResponseMessage response = await client.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<List<ApiObjectInfo>>();
+        public static async Task<object> GetResourcesForEndpointAsync(SearchCatagory endpoint) 
+        {
+            HttpResponseMessage response = await client.GetAsync(endpoint.Url);
+            if (endpoint.ResultType == "category")
+            {
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<ApiObjectInfo>>();
+            }
+            else if (endpoint.ResultType == "result")
+            {
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<ApiObjectInfo>();
+            }
+            else 
+            { 
+                throw new NotImplementedException();
+            }
         }
 
     }
