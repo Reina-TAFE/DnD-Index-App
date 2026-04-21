@@ -2,43 +2,56 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using Android.Service.Settings.Preferences;
+
 
 namespace DnD_Index_App.Models
 {
-    public class SearchCatagory // possibly make subclass of ApiObjectInfo class
+    public class SearchCatagory : ApiObjectInfo // possibly make subclass of ApiObjectInfo class
     {
         public string CatagoryName { get; set; }
         public string CatagoryType { get; set; }
         public string ApiValue { get; set; }
-        public string Url { get; set; }
-        public string ResultType { get; set; }
+        public string Url { get { return $"https://www.dnd5eapi.co{Url}"; } set; }
+        public ResultType ResultTypeInfo { get; set; }
 
-        public SearchCatagory(string catagoryName, string catagoryType, string apiValue, string url) 
+        public SearchCatagory(string catagoryName, string catagoryType, string apiValue, string url)
+            : base(apiValue, catagoryName, url) // Pass required parameters to base constructor
         {
             CatagoryName = catagoryName;
             CatagoryType = catagoryType;
             ApiValue = apiValue;
             Url = $"https://www.dnd5eapi.co{url}";
-            ResultType = GetResultType(Url);
+            ResultTypeInfo = GetResultType(Url);
         }
 
-        public string GetResultType(string url)
+        public ResultType GetResultType(string url)
         {
-            string type = string.Empty;
+            ResultType type = new ResultType();
             if (url.Count(s => s == '/') == 6) 
             {
-               type = "result";
+               type.TypeName = "result";
+                if (url.Contains("/spells/")) { type.ResultClass = "spell"; }
+                else if (url.Contains("/classes/")) { type.ResultClass = "class"; }
+                else if (url.Contains("/equipment/")) { type.ResultClass = "equipment"; }
+                else if (url.Contains("/rules/")) { type.ResultClass = "rule"; }
             }
             else if (url.Count(s => s == '/') == 5)
             {
-                type = "catagory";
+                type.TypeName = "catagory";
+                type.ResultClass = "SearchCategory";
             }
             else
             {
-                type = "unknown";
+                type.TypeName = "unknown";
+                type.ResultClass = "unknown";
             }
             return type;
         }
+    }
+
+    public class ResultType
+    {
+        public string TypeName { get; set;  }
+        public string ResultClass { get; set; }
     }
 }

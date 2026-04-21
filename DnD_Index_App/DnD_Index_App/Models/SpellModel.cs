@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnD_Index_App.Models
 {
-    public class SpellModel
+    public class SpellModel : ApiObjectInfo
     {
         public string? Index { get; set; }
         public string? Name { get; set; }
@@ -27,7 +27,8 @@ namespace DnD_Index_App.Models
         public List<object>? Classes { get; set; }
         public List<object>? Subclasses { get; set; }
 
-        public SpellModel(Task<object> spellproperties)
+        public SpellModel(string index, string name, string url, Task<object> spellproperties)
+            : base(index, name, url)
         {
 
         }

@@ -72,23 +72,36 @@ namespace DnD_Index_App.Services
             return null;
         }
 
-        public static async Task<object> GetResourcesForEndpointAsync(SearchCatagory endpoint) 
+        public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCatagory endpoint) where T : ApiObjectInfo
         {
-            HttpResponseMessage response = await client.GetAsync(endpoint.Url);
-            if (endpoint.ResultType == "category")
-            {
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<List<ApiObjectInfo>>();
+            try{
+                HttpResponseMessage response = await client.GetAsync(endpoint.Url);
+                if (endpoint.ResultTypeInfo.TypeName == "result")
+                {
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadFromJsonAsync<T>();
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
-            else if (endpoint.ResultType == "result")
-            {
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<ApiObjectInfo>();
+            catch { throw new NotImplementedException(); }
+        }
+
+        public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCatagory endpoint)
+        {
+            try{ 
+                HttpResponseMessage response = await client.GetAsync(endpoint.Url);
+                if (endpoint.ResultTypeInfo.TypeName == "category")
+                {
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadFromJsonAsync<CategoryList>();
+                }
+
+                else { return null; }
             }
-            else 
-            { 
-                throw new NotImplementedException();
-            }
+            catch { throw new NotImplementedException(); }
         }
 
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnD_Index_App.Models
 {
-    public class ClassModel
+    public class ClassModel : ApiObjectInfo
     {
         public string? Index { get; set; }
         public string? Name { get; set; }
@@ -22,7 +22,8 @@ namespace DnD_Index_App.Models
         public List<object>? SavingThrows { get; set; }
         public List<object>? Subclasses { get; set; }
 
-        public ClassModel(Task<object> classProperties) 
+        public ClassModel(string index, string name, string url, Task<object> classProperties) 
+            : base(index, name, url)
         {
             
         }

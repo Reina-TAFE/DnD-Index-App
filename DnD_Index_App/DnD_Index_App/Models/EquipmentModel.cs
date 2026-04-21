@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace DnD_Index_App.Models
 {
-    public class EquipmentModel
+    public class EquipmentModel : ApiObjectInfo
     {
         [JsonPropertyName("index")]
         public string? Index { get; set; }
@@ -47,6 +47,7 @@ namespace DnD_Index_App.Models
             ApiObjectInfo? gearCategory,List<string>? desc, string? url, Cost? cost, 
             int? weight, string? updatedAt, List<(ApiObjectInfo, int)>? contents, 
             List<ApiObjectInfo>? properties) 
+            : base(index, name, url)
         { 
             Index = index;
             Name = name;
