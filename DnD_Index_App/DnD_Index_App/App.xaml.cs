@@ -31,9 +31,12 @@ namespace DnD_Index_App
             }
         };
 
+
+
         public App()
         {
             InitializeComponent();
+
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
