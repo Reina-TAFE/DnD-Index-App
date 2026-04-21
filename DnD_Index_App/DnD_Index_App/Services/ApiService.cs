@@ -40,9 +40,9 @@ namespace DnD_Index_App.Services
             return await response.Content.ReadFromJsonAsync<ClassModel>();
         }
 
-        public static async Task<EquipmentModel>? GetEquipmentAsync(string index)
+        public static async Task<EquipmentModel>? GetEquipmentAsync(SearchCatagory searchOption)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/equipment/{index}");
+            HttpResponseMessage response = await client.GetAsync(searchOption.Url);
             response.EnsureSuccessStatusCode();
             string JsonString = await response.Content.ReadAsStringAsync();
             JsonDocument json = JsonDocument.Parse(JsonString);
@@ -76,33 +76,20 @@ namespace DnD_Index_App.Services
         {
             try{
                 HttpResponseMessage response = await client.GetAsync(endpoint.Url);
-                if (endpoint.ResultTypeInfo.TypeName == "result")
-                {
-                    response.EnsureSuccessStatusCode();
-                    return await response.Content.ReadFromJsonAsync<T>();
-                }
-                else
-                {
-                    throw new NotImplementedException();
-                }
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<T>();
             }
             catch { throw new NotImplementedException(); }
         }
 
-        public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCatagory endpoint)
-        {
-            try{ 
-                HttpResponseMessage response = await client.GetAsync(endpoint.Url);
-                if (endpoint.ResultTypeInfo.TypeName == "category")
-                {
-                    response.EnsureSuccessStatusCode();
-                    return await response.Content.ReadFromJsonAsync<CategoryList>();
-                }
+        //public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCatagory endpoint)
+        //{
+        //    try{ 
+        //        HttpResponseMessage response = await client.GetAsync(endpoint.Url);
 
-                else { return null; }
-            }
-            catch { throw new NotImplementedException(); }
-        }
+        //    }
+        //    catch { throw new NotImplementedException(); }
+        //}
 
     }
 }

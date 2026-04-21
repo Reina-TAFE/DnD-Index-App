@@ -53,13 +53,21 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         {
             if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 
             {
-                CategoryList newSearchOptions = await ApiService.GetCategoryListForEndpoint(searchOption);
+                CategoryList newSearchOptions = await ApiService.GetResourcesForEndpointAsync<CategoryList>(searchOption);
             }
             else if(searchOption.ResultTypeInfo.TypeName == "result")
             {
                 if (searchOption.ResultTypeInfo.ResultClass == "spell")
                 {
                     SpellModel result = await ApiService.GetResourcesForEndpointAsync<SpellModel>(searchOption);
+                }
+                else if (searchOption.ResultTypeInfo.ResultClass == "class")
+                {
+                    ClassModel result = await ApiService.GetResourcesForEndpointAsync<ClassModel>(searchOption);
+                }
+                else if (searchOption.ResultTypeInfo.ResultClass == "equipment")
+                {
+                    EquipmentModel? result = await ApiService.GetEquipmentAsync(searchOption);
                 }
             }
 

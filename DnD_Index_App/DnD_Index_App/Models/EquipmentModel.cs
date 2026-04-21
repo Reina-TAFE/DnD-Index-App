@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DnD_Index_App.Models;
+using DnD_Index_App.Models.EquipmentModels;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -61,7 +62,38 @@ namespace DnD_Index_App.Models
             Contents = contents;
             Properties = properties;
         }
-    }
+
+    //    public static Type GetEquipmentModelFromResponse(HttpResponseMessage response)
+    //    {
+    //        string jsonString = response.Content.ReadAsStringAsync().Result;
+    //        var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonString);
+    //        if (dictionary != null && dictionary.TryGetValue("equipment_category", out object? categoryObj))
+    //        {
+    //            var categoryDict = categoryObj as JsonElement?;
+    //            if (categoryDict.HasValue && categoryDict.Value.TryGetProperty("index", out JsonElement indexElement))
+    //            {
+    //                string categoryIndex = indexElement.GetString() ?? "";
+    //                if (categoryIndex == "weapon")
+    //                {
+    //                    return typeof(WeaponModel);
+    //                }
+    //                else if (categoryIndex == "armor")
+    //                {
+    //                    return typeof(ArmourModel);
+    //                }
+    //                else if (categoryIndex == "mounts-and-vehicles")
+    //                {
+    //                    return typeof(VehicleModel);
+    //                }
+    //                else 
+    //                {
+    //                    return typeof(EquipmentModel);
+    //                }
+    //            }
+    //        }
+    //        return typeof(EquipmentModel);
+    //    }
+    //}
 
     public class Cost
     {
