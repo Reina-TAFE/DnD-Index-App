@@ -7,7 +7,7 @@ namespace DnD_Index_App.Pages;
 public partial class SearchPage : ContentPage, IQueryAttributable
 {
 	public String PageName { get; set; } = default!;
-	public List<ApiObjectInfo> CatagoryOptions { get; set; } = default!;
+	public List<SearchCatagory> CatagoryOptions { get; set; } = default!;
 	public String CatagoryType { get; set; } = default!;
     public static ApiService Api = new ApiService();
     public SearchPage()
@@ -24,7 +24,7 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 		}
         if (query.TryGetValue("CatagoryOptions", out var catagoryOptions))
         {
-            CatagoryOptions = catagoryOptions as List<ApiObjectInfo>;
+            CatagoryOptions = catagoryOptions as List<SearchCatagory>;
 			SearchCatagoriesCollection.ItemsSource = CatagoryOptions;
         }
 		if(query.TryGetValue("CatagoryType", out var catagoryType))
@@ -48,10 +48,20 @@ public partial class SearchPage : ContentPage, IQueryAttributable
     private async void SearchOption_Tapped(object sender, TappedEventArgs e)
     {
 		Button button = sender as Button;
-		ApiObjectInfo searchOption = button.BindingContext as ApiObjectInfo;
+		SearchCatagory searchOption = button.BindingContext as SearchCatagory;
 		if (searchOption != null)
         {
-            List<ApiObjectInfo> newSearchOptions = await ApiService.GetResourcesForEndpointAsync($"https://www.dnd5eapi.co{searchOption.Url}");
+            if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 
+            {
+                CategoryList newSearchOptions = await ApiService.GetCategoryListForEndpoint(searchOption);
+            }
+            else if(searchOption.ResultTypeInfo.TypeName == "result")
+            {
+                if (searchOption.ResultTypeInfo.ResultClass == "spell")
+                {
+                    SpellModel result = await ApiService.GetResourcesForEndpointAsync<SpellModel>(searchOption);
+                }
+            }
 
         }
     }
