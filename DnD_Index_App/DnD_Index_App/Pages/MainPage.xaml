@@ -6,12 +6,13 @@
              Shell.NavBarIsVisible="False"
              MaximumWidthRequest="403"
              MaximumHeightRequest="914"
-             Title="Home Page">
+             Title="Home Page"
+             BackgroundColor="{DynamicResource CurrentBackgroundColour}">
 
     <Border StrokeThickness="0"
             StrokeShape="RoundRectangle 15">
         <ScrollView
-            BackgroundColor="#582929">
+            BackgroundColor="{DynamicResource CurrentBackgroundColour}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
@@ -29,7 +30,7 @@
                     Source="settings_icon.png"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
-                    BackgroundColor="#582929">
+                    BackgroundColor="{DynamicResource CurrentBackgroundColour}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="SettingsBtnTapped"
@@ -53,9 +54,9 @@
                     Text="Spells"
                     FontSize="32"
                     BorderWidth="2"
-                    TextColor="#3C3C3C"                
+                    TextColor="{DynamicResource CurrentButtonTextColour}"                
                     BorderColor="#000000"
-                    BackgroundColor="#D9D9D9"
+                    BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill"
@@ -74,9 +75,9 @@
                     Text="Classes" 
                     FontSize="32"
                     BorderWidth="2"
-                    TextColor="#3C3C3C"                
+                    TextColor="{DynamicResource CurrentButtonTextColour}"                
                     BorderColor="#000000"
-                    BackgroundColor="#D9D9D9"
+                    BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill"
@@ -89,9 +90,9 @@
                     Text="Equipment"
                     FontSize="32"
                     BorderWidth="2"
-                    TextColor="#3C3C3C"                
+                    TextColor="{DynamicResource CurrentButtonTextColour}"                
                     BorderColor="#000000"
-                    BackgroundColor="#D9D9D9"
+                    BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill"
@@ -104,9 +105,9 @@
                     Text="Rules" 
                     FontSize="32"    
                     BorderWidth="2"
-                    TextColor="#3C3C3C"                
+                    TextColor="{DynamicResource CurrentButtonTextColour}"                
                     BorderColor="#000000"
-                    BackgroundColor="#D9D9D9"
+                    BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill"
@@ -142,7 +143,7 @@
                     
                         x:Name="NavSpellsBtn"
                         Source="cleric_symbol.png"
-                        BackgroundColor="#8F8D8D"
+                        BackgroundColor="{DynamicResource CurrentNavColour}"
                     
                         Padding="10"
                         Opacity="65"                    
@@ -165,7 +166,7 @@
                         Grid.Column="1"
                         x:Name="NavClassesBtn"
                         Source="paladin.png"
-                        BackgroundColor="#8F8D8D"                    
+                        BackgroundColor="{DynamicResource CurrentNavColour}"                   
                         Padding="10"
                         Opacity="65"                    
                         SemanticProperties.Hint="Counts the number of times you click"
@@ -188,7 +189,7 @@
                         Grid.Column="2"
                         x:Name="NavEquipmentBtn"
                         Source="fighter_symbol.png"
-                        BackgroundColor="#8F8D8D"
+                        BackgroundColor="{DynamicResource CurrentNavColour}"
                         Padding="10"
                         Opacity="65"
                         SemanticProperties.Hint="Counts the number of times you click"
@@ -210,7 +211,7 @@
                         Grid.Column="3"
                         x:Name="NaveRulesBtn"
                         Source="scroll.png"
-                        BackgroundColor="#8F8D8D"
+                        BackgroundColor="{DynamicResource CurrentNavColour}"
                         Padding="15"
                         Opacity="65"                    
                         SemanticProperties.Hint="Counts the number of times you click"

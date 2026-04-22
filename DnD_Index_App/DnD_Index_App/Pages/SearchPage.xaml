@@ -3,18 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              x:Class="DnD_Index_App.Pages.SearchPage"
-             Title="Search">
-    <ScrollView BackgroundColor="#582929">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="0.2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <FlexLayout Grid.Row="0"
+             Title="Search"
+             MaximumWidthRequest="403"
+             MaximumHeightRequest="914">
+
+    <Grid
+        RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0"
+                BackgroundColor="{DynamicResource CurrentBackgroundColour}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <FlexLayout Grid.Row="0"
                         Direction="Row"
                         JustifyContent="SpaceBetween"
+                        AlignItems="Start"
                         HeightRequest="210"
                         VerticalOptions="Fill"
                         Margin="5">
@@ -26,7 +32,7 @@
                     Source="arrow_left.png"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
-                    BackgroundColor="#582929">
+                    BackgroundColor="{DynamicResource CurrentBackgroundColour}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                                     Tapped="BackBtn_Tapped"
@@ -60,7 +66,7 @@
                     Source="settings_icon.png"
                     VerticalOptions="Start"
                     HorizontalOptions="Start"
-                    BackgroundColor="#582929">
+                    BackgroundColor="{DynamicResource CurrentBackgroundColour}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                                     Tapped="SettingsBtn_Tapped"
@@ -81,9 +87,10 @@
                            />
             </Border>
             <VerticalStackLayout Grid.Row="2"
-                                 Padding="15">
+                                 Padding="5 15"
+                                 MinimumHeightRequest="575">
                 <Label x:Name="CatagoryTypeLabel"
-                       TextColor="White"
+                       TextColor="{DynamicResource CurrentTextColour}"
                        FontSize="20"
                        FontAttributes="Bold"/>
                 <CollectionView x:Name="SearchCatagoriesCollection">
@@ -94,8 +101,8 @@
                         <DataTemplate>
                             <Button Text="{Binding Name}"
                                     FontSize="32"
-                                    BackgroundColor="#D9D9D9"
-                                    TextColor="#3C3C3C"
+                                    BackgroundColor="{DynamicResource CurrentButtonColour}"
+                                    TextColor="{DynamicResource CurrentButtonTextColour}"
                                     HorizontalOptions="Fill"
                                     HeightRequest="65"
                                     Padding="5 0"
@@ -110,114 +117,115 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </VerticalStackLayout>
-            <Grid
-                Grid.Row="3"
+            </Grid>
+        </ScrollView>
+
+        <Grid   Grid.Row="1"
                 BackgroundColor="#000000"
                 HeightRequest="91"
                 VerticalOptions="End"
                 >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!--<Border
-            Grid.Column="0"
-            VerticalOptions="End"                    
-            HeightRequest="90"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 0,0,0,1"
-            Stroke="#000000"
-            BackgroundColor="#000000"
-            Padding="0 0 1 0"> -->
-                <ImageButton
+            <!--<Border
+                Grid.Column="0"
+                VerticalOptions="End"                    
+                HeightRequest="90"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 0,0,0,1"
+                Stroke="#000000"
+                BackgroundColor="#000000"
+                Padding="0 0 1 0"> -->
+            <ImageButton
     
-            x:Name="NavSpellsBtn"
-            Source="cleric_symbol.png"
-            BackgroundColor="#8F8D8D"
+                x:Name="NavSpellsBtn"
+                Source="cleric_symbol.png"
+                BackgroundColor="{DynamicResource CurrentNavColour}"
     
-            Padding="10"
-            Opacity="65"                    
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill"
-            VerticalOptions="End"                    
-            HeightRequest="90"
-            WidthRequest="100"/>
-                <!--</Border> -->
-                <!--<Border
-            Grid.Column="1"
-            VerticalOptions="End"                    
-            HeightRequest="90"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 0,0,0,1"
-            Stroke="#000000"
-            BackgroundColor="#000000"> -->
-                <ImageButton
-            Grid.Column="1"
-            x:Name="NavClassesBtn"
-            Source="paladin.png"
-            BackgroundColor="#8F8D8D"                    
-            Padding="10"
-            Opacity="65"                    
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill"
-            VerticalOptions="End"
-            HeightRequest="90" 
-            WidthRequest="100"/>
-                <!--</Border>-->
-                <!--<Border
+                Padding="10"
+                Opacity="65"                    
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"                    
+                HeightRequest="90"
+                WidthRequest="100"/>
+            <!--</Border> -->
+            <!--<Border
+                Grid.Column="1"
+                VerticalOptions="End"                    
+                HeightRequest="90"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 0,0,0,1"
+                Stroke="#000000"
+                BackgroundColor="#000000"> -->
+            <ImageButton
+                Grid.Column="1"
+                x:Name="NavClassesBtn"
+                Source="paladin.png"
+                BackgroundColor="{DynamicResource CurrentNavColour}"                    
+                Padding="10"
+                Opacity="65"                    
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                HeightRequest="90" 
+                WidthRequest="100"/>
+            <!--</Border>-->
+            <!--<Border
     
-            VerticalOptions="End"                    
-            HeightRequest="90"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 0,0,0,1"
-            Stroke="#000000"
-            BackgroundColor="#000000"> -->
+                VerticalOptions="End"                    
+                HeightRequest="90"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 0,0,0,1"
+                Stroke="#000000"
+                BackgroundColor="#000000"> -->
 
-                <ImageButton
-            Grid.Column="2"
-            x:Name="NavEquipmentBtn"
-            Source="fighter_symbol.png"
-            BackgroundColor="#8F8D8D"
-            Padding="10"
-            Opacity="65"
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill"
-            HeightRequest="90"
-            WidthRequest="100"/>
-                <!--</Border>-->
+            <ImageButton
+                Grid.Column="2"
+                x:Name="NavEquipmentBtn"
+                Source="fighter_symbol.png"
+                BackgroundColor="{DynamicResource CurrentNavColour}"
+                Padding="10"
+                Opacity="65"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                HeightRequest="90"
+                WidthRequest="100"/>
+            <!--</Border>-->
 
-                <!--<Border
+            <!--<Border
     
-            VerticalOptions="End"                    
-            HeightRequest="90"
-            StrokeThickness="1"
-            StrokeShape="RoundRectangle 0,0,0,1"
-            Stroke="#000000"
-            BackgroundColor="#000000">-->
-                <ImageButton
-            Grid.Column="3"
-            x:Name="NaveRulesBtn"
-            Source="scroll.png"
-            BackgroundColor="#8F8D8D"
-            Padding="15"
-            Opacity="65"                    
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill"
-            HeightRequest="90"
-            WidthRequest="100"
-            />
-                <!--</Border>-->
-            </Grid>
+                VerticalOptions="End"                    
+                HeightRequest="90"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 0,0,0,1"
+                Stroke="#000000"
+                BackgroundColor="#000000">-->
+            <ImageButton
+                Grid.Column="3"
+                x:Name="NaveRulesBtn"
+                Source="scroll.png"
+                BackgroundColor="{DynamicResource CurrentNavColour}"
+                Padding="15"
+                Opacity="65"                    
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                HeightRequest="90"
+                WidthRequest="100"
+                />
+            <!--</Border>-->
         </Grid>
-    </ScrollView>
+    </Grid>
 </ContentPage>
