@@ -11,7 +11,7 @@ namespace DnD_Index_App.Models
         public string CatagoryName { get; set; }
         public string CatagoryType { get; set; }
         public string ApiValue { get; set; }
-        public string Url { get { return $"https://www.dnd5eapi.co{Url}"; } set; }
+        //public string Url { get { return $"https://www.dnd5eapi.co{Url}"; } set; }
         public ResultType ResultTypeInfo { get; set; }
 
         public SearchCatagory(string catagoryName, string catagoryType, string apiValue, string url)
