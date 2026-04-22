@@ -18,6 +18,7 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
         PreferenceManager.UpdateResourceColours();
+        LoadCurrentSettings();
     }
 
     private async void BackBtn_Tapped(object sender, TappedEventArgs e)
@@ -36,5 +37,10 @@ public partial class SettingsPage : ContentPage
             PreferenceManager.SetCurrentTheme("Light Mode");
         }
 
+    }
+
+    public void LoadCurrentSettings()
+    {
+        DarkModeSwitch.IsToggled = (PreferenceManager.GetCurrentTheme() == "Dark Mode") ? true : false;
     }
 }

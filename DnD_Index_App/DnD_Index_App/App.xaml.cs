@@ -6,16 +6,16 @@ namespace DnD_Index_App
 {
     public partial class App : Application
     {
-        private static List<ApiObjectInfo> _spellLevelList = default!;
+        private static List<SearchCatagory> _spellLevelList = default!;
 
 
-        public static List<ApiObjectInfo> SpellLevelList
+        public static List<SearchCatagory> SpellLevelList
         {
             get
             {
-                var levelList = from number in Enumerable.Range(1, 9) select new ApiObjectInfo($"level={number}", $"Level {number}", $"/api/2014/spells?level={number}");
-                List<ApiObjectInfo> SpellLevels = levelList.ToList();
-                SpellLevels.Insert(0, new ApiObjectInfo("level=0", "Cantrips", $"/api/2014/spells?level=0"));
+                var levelList = from number in Enumerable.Range(1, 9) select new SearchCatagory($"Level {number}", $"Spells", $"level={number}", $"/api/2014/spells?level={number}");
+                List<SearchCatagory> SpellLevels = levelList.ToList();
+                SpellLevels.Insert(0, new SearchCatagory("Cantrips", "Spells", "level=0", $"/api/2014/spells?level=0"));
                 _spellLevelList = SpellLevels;
                 return SpellLevels;
             }
@@ -35,8 +35,8 @@ namespace DnD_Index_App
 
         public App()
         {
-            
             InitializeComponent();
+            PreferenceManager.UpdateResourceColours();
 
         }
 

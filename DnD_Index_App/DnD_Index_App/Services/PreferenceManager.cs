@@ -23,6 +23,11 @@ namespace DnD_Index_App.Services
             }
         }
 
+        public static string GetCurrentTheme()
+        {
+            return Preferences.Get("CurrentTheme", "Light Mode");
+        }
+
 
         public static void UpdateResourceColours()
         {
