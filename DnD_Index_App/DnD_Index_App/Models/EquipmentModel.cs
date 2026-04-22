@@ -45,11 +45,11 @@ namespace DnD_Index_App.Models
 
 
         public EquipmentModel(string? index, string? name, ApiObjectInfo? equipmentCategory,
-            ApiObjectInfo? gearCategory,List<string>? desc, string? url, Cost? cost, 
-            int? weight, string? updatedAt, List<(ApiObjectInfo, int)>? contents, 
-            List<ApiObjectInfo>? properties) 
+            ApiObjectInfo? gearCategory, List<string>? desc, string? url, Cost? cost,
+            int? weight, string? updatedAt, List<(ApiObjectInfo, int)>? contents,
+            List<ApiObjectInfo>? properties)
             : base(index, name, url)
-        { 
+        {
             Index = index;
             Name = name;
             EquipmentCatagory = equipmentCategory;
@@ -62,6 +62,7 @@ namespace DnD_Index_App.Models
             Contents = contents;
             Properties = properties;
         }
+    }
 
     //    public static Type GetEquipmentModelFromResponse(HttpResponseMessage response)
     //    {
