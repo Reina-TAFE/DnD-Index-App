@@ -11,6 +11,9 @@ using System.Text.Json;
 
 namespace DnD_Index_App.Services
 {
+    /// <summary>
+    /// A class for handling all API interactions such as making API requests and deserializing the responses.
+    /// </summary>
     public class ApiService
     {
         private string _baseUrl = "https://www.dnd5eapi.co";
@@ -40,6 +43,12 @@ namespace DnD_Index_App.Services
             return await response.Content.ReadFromJsonAsync<ClassModel>();
         }
 
+        /// <summary>
+        /// Makes an api request and deserializes the response into the correct equipment model type based on the equipment category.
+        /// If the equipment catagory is not a weapon, armor, or vehicle, it will be deserialized into a generic equipment model object.
+        /// </summary>
+        /// <param name="searchOption"></param>
+        /// <returns></returns>
         public static async Task<EquipmentModel>? GetEquipmentAsync(SearchCatagory searchOption)
         {
             HttpResponseMessage response = await client.GetAsync(searchOption.Url);
@@ -47,9 +56,9 @@ namespace DnD_Index_App.Services
             string JsonString = await response.Content.ReadAsStringAsync();
             JsonDocument json = JsonDocument.Parse(JsonString);
             JsonElement root = json.RootElement;
-            if (root.TryGetProperty("equipment_category", out JsonElement category))
+            if (root.TryGetProperty("equipment_category", out JsonElement category)) // try to access 'equipment_category' field of the Json response
             {
-                if (category.TryGetProperty("name", out JsonElement categoryName))
+                if (category.TryGetProperty("name", out JsonElement categoryName)) // try to access 'name' property of the 'equipment_category' json object
                 {
                     if (categoryName.ToString() == "Weapon")
                     {
@@ -72,6 +81,14 @@ namespace DnD_Index_App.Services
             return null;
         }
 
+        /// <summary>
+        /// Generic method for making an api request and deserializing the response into a model object of the provided type.
+        /// Model type must be a subclass of ApiObjectInfo and the endpoint provided must return a response that can be deserialized into the provided model type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCatagory endpoint) where T : ApiObjectInfo
         {
             try{
