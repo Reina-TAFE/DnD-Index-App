@@ -35,6 +35,7 @@ namespace DnD_Index_App
 
         public App()
         {
+            
             InitializeComponent();
 
         }
@@ -43,5 +44,7 @@ namespace DnD_Index_App
         {
             return new Window(new AppShell());
         }
+
+
     }
 }

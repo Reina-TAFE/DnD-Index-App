@@ -26,6 +26,23 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+    
+    <!--Theme Colours-->
+    <Color x:Key="LightBackground">#582929</Color>
+    <Color x:Key="LightSection">#401D1D</Color>
+    <Color x:Key="LightButton">#D9D9D9</Color>
+    <Color x:Key="LightText">#FFFFFF</Color>
+    <Color x:Key="LightButtonText">#3C3C3C</Color>
+    <Color x:Key="LightTitle">#FFECB9</Color>
+    <Color x:Key="LightNav">#8F8D8D</Color>
+
+    <Color x:Key="DarkBackground">#21123B</Color>
+    <Color x:Key="DarkSection">#391B6D</Color>
+    <Color x:Key="DarkButton">#7D736F</Color>
+    <Color x:Key="DarkButtonText">#E9E9E9</Color>
+    <Color x:Key="DarkText">#FFFFFF</Color>
+    <Color x:Key="DarkTitle">#FFEE6D</Color>
+    <Color x:Key="DarkNav">#4C4948</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>

@@ -8,23 +8,45 @@ namespace DnD_Index_App.Services
 {
     public static class PreferenceManager
     {
-        public static List<UITheme> Themes = new List<UITheme>()
+        public static List<string> ValidThemeNames = new List<string>()
         {
-            new UITheme("Light Mode", "#582929", "#401D1D",
-                "#D9D9D9", "#3C3C3C", "FFECB9", "#8F8D8D"),
-            new UITheme("Dark Mode", "#21123B", "#391B6D",
-                "#7D736F", "#E9E9E9", "#FFEE6D", "#4C4948")
+            "Light Mode",
+            "Dark Mode"
         };
 
-        public static void SetTheme(UITheme theme)
+        public static void SetCurrentTheme(string themeName)
         {
-            Preferences.Set("CurrentTheme", theme.Name);
-            Preferences.Set("BackgroundColour", theme.BackgroundColour);
-            Preferences.Set("SectionColour", theme.SectionColour);
-            Preferences.Set("ButtonColour", theme.ButtonColour);
-            Preferences.Set("TextColour", theme.TextColour);
-            Preferences.Set("TitleColour", theme.TitleColour);
-            Preferences.Set("NavColour", theme.NavColour);
+            if (ValidThemeNames.Contains(themeName))
+            {
+                Preferences.Set("CurrentTheme", themeName);
+                UpdateResourceColours();
+            }
+        }
+
+
+        public static void UpdateResourceColours()
+        {
+            string currentTheme = Preferences.Get("CurrentTheme", "Light Mode");
+            if (currentTheme == "Light Mode")
+            {
+                Application.Current.Resources["CurrentBackgroundColour"] = Application.Current.Resources["LightBackground"];
+                Application.Current.Resources["CurrentSectionColour"] = Application.Current.Resources["LightSection"];
+                Application.Current.Resources["CurrentButtonColour"] = Application.Current.Resources["LightButton"];
+                Application.Current.Resources["CurrentButtonTextColour"] = Application.Current.Resources["LightButtonText"];
+                Application.Current.Resources["CurrentTextColour"] = Application.Current.Resources["LightText"];
+                Application.Current.Resources["CurrentTitleColour"] = Application.Current.Resources["LightTitle"];
+                Application.Current.Resources["CurrentNavColour"] = Application.Current.Resources["LightNav"];
+            }
+            else if (currentTheme == "Dark Mode")
+            {
+                Application.Current.Resources["CurrentBackgroundColour"] = Application.Current.Resources["DarkBackground"];
+                Application.Current.Resources["CurrentSectionColour"] = Application.Current.Resources["DarkSection"];
+                Application.Current.Resources["CurrentButtonColour"] = Application.Current.Resources["DarkButton"];
+                Application.Current.Resources["CurrentButtonTextColour"] = Application.Current.Resources["DarkButtonText"];
+                Application.Current.Resources["CurrentTextColour"] = Application.Current.Resources["DarkText"];
+                Application.Current.Resources["CurrentTitleColour"] = Application.Current.Resources["DarkTitle"];
+                Application.Current.Resources["CurrentNavColour"] = Application.Current.Resources["DarkNav"];
+            }
         }
 
 
