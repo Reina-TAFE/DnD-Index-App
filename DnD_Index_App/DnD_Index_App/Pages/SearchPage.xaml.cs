@@ -66,7 +66,8 @@ public partial class SearchPage : ContentPage, IQueryAttributable
                 }
                 else if (searchOption.ResultTypeInfo.ResultClass == "class")
                 {
-                    ClassModel result = await ApiService.GetResourcesForEndpointAsync<ClassModel>(searchOption);
+                    ClassResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<ClassResponseModel>(searchOption);
+                    ClassModel result = responseObj.ToModel();
                 }
                 else if (searchOption.ResultTypeInfo.ResultClass == "equipment")
                 {
