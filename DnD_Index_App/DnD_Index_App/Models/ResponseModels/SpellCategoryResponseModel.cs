@@ -13,7 +13,7 @@ namespace DnD_Index_App.Models.ResponseModels
 
         public CategoryList ToModel()
         {
-            List<SearchCatagory> newCategories = results.Select(r => new SearchCatagory(r.name, $"level {r.level} spells", r.index, r.url)).ToList();
+            List<SearchCategory> newCategories = results.Select(r => new SearchCategory(r.name, $"level {r.level} spells", r.index, r.url)).ToList();
             return new CategoryList(count, newCategories);
         }
     }

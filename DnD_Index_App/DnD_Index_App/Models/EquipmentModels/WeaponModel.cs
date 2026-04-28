@@ -8,13 +8,13 @@ namespace DnD_Index_App.Models.EquipmentModels
 {
     public class WeaponModel(string index, string name, ApiObjectInfo? equipmentCategory,
         ApiObjectInfo? gearCategory,List<string>? desc, string url, Cost? cost, int? weight,
-        string updatedAt, string? weaponCatagory, string? weaponRange, Damage? damage,
+        string updatedAt, string? weaponCategory, string? weaponRange, Damage? damage,
         Range? range, Range? throwRange, List<ApiObjectInfo>? properties,
         List<string>? special, List<(ApiObjectInfo, int)>? contents) : EquipmentModel(index,
         name, equipmentCategory, gearCategory, desc, url, cost, weight, updatedAt, contents, properties)
     {
         [JsonPropertyName("weapon_category")]
-        public string? WeaponCatagory { get; set; } = weaponCatagory;
+        public string? WeaponCategory { get; set; } = weaponCategory;
 
         [JsonPropertyName("weapon_range")]
         public string? WeaponRange { get; set; } = weaponRange;

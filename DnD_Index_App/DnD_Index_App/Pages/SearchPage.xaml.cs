@@ -8,8 +8,8 @@ namespace DnD_Index_App.Pages;
 public partial class SearchPage : ContentPage, IQueryAttributable
 {
 	public String PageName { get; set; } = default!;
-	public List<SearchCatagory> CatagoryOptions { get; set; } = default!;
-	public String CatagoryType { get; set; } = default!;
+	public List<SearchCategory> CategoryOptions { get; set; } = default!;
+	public String CategoryType { get; set; } = default!;
     public static ApiService Api = new ApiService();
     public SearchPage()
 	{
@@ -23,15 +23,15 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 			PageName = pageName as String;
 			PageNameLabel.Text = PageName;
 		}
-        if (query.TryGetValue("CatagoryOptions", out var catagoryOptions))
+        if (query.TryGetValue("CategoryOptions", out var CategoryOptions))
         {
-            CatagoryOptions = catagoryOptions as List<SearchCatagory>;
-			SearchCatagoriesCollection.ItemsSource = CatagoryOptions;
+            CategoryOptions = CategoryOptions as List<SearchCategory>;
+			SearchCatagoriesCollection.ItemsSource = CategoryOptions;
         }
-		if(query.TryGetValue("CatagoryType", out var catagoryType))
+		if(query.TryGetValue("CategoryType", out var CategoryType))
 		{
-			CatagoryType = catagoryType as String;
-			CatagoryTypeLabel.Text = CatagoryType;
+			CategoryType = CategoryType as String;
+			CategoryTypeLabel.Text = CategoryType;
 		}
     }
 
@@ -49,7 +49,7 @@ public partial class SearchPage : ContentPage, IQueryAttributable
     private async void SearchOption_Tapped(object sender, TappedEventArgs e)
     {
 		Button button = sender as Button;
-		SearchCatagory searchOption = button.BindingContext as SearchCatagory;
+		SearchCategory searchOption = button.BindingContext as SearchCategory;
 		if (searchOption != null)
         {
             if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 

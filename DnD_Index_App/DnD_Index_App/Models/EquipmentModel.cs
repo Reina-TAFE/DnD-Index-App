@@ -17,10 +17,10 @@ namespace DnD_Index_App.Models
         public string? Name { get; set; }
 
         [JsonPropertyName("equipment_category")]
-        public ApiObjectInfo? EquipmentCatagory { get; set; }
+        public ApiObjectInfo? EquipmentCategory { get; set; }
 
         [JsonPropertyName("gear_category")]
-        public ApiObjectInfo? GearCatagory { get; set; }
+        public ApiObjectInfo? GearCategory { get; set; }
 
         [JsonPropertyName("desc")]
         public List<string>? Description { get; set; }
@@ -52,8 +52,8 @@ namespace DnD_Index_App.Models
         {
             Index = index;
             Name = name;
-            EquipmentCatagory = equipmentCategory;
-            GearCatagory = gearCategory;
+            EquipmentCategory = equipmentCategory;
+            GearCategory = gearCategory;
             Description = desc;
             Cost = cost;
             Weight = weight;

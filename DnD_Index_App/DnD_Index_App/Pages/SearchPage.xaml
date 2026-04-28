@@ -89,7 +89,7 @@
             <VerticalStackLayout Grid.Row="2"
                                  Padding="5 15"
                                  MinimumHeightRequest="575">
-                <Label x:Name="CatagoryTypeLabel"
+                <Label x:Name="CategoryTypeLabel"
                        TextColor="{DynamicResource CurrentTextColour}"
                        FontSize="20"
                        FontAttributes="Bold"/>

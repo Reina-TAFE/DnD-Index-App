@@ -25,7 +25,7 @@ namespace DnD_Index_App.Services
         public static HttpClient client = new HttpClient();
         public ApiService() { }
 
-        public async Task<object?> GetApiResponse(SearchCatagory searchItem)
+        public async Task<object?> GetApiResponse(SearchCategory searchItem)
         {
             HttpResponseMessage response = await client.GetAsync(searchItem.Url);
 
@@ -48,11 +48,11 @@ namespace DnD_Index_App.Services
 
         /// <summary>
         /// Makes an api request and deserializes the response into the correct equipment model type based on the equipment category.
-        /// If the equipment catagory is not a weapon, armor, or vehicle, it will be deserialized into a generic equipment model object.
+        /// If the equipment Category is not a weapon, armor, or vehicle, it will be deserialized into a generic equipment model object.
         /// </summary>
         /// <param name="searchOption"></param>
         /// <returns></returns>
-        public static async Task<EquipmentModel>? GetEquipmentAsync(SearchCatagory searchOption)
+        public static async Task<EquipmentModel>? GetEquipmentAsync(SearchCategory searchOption)
         {
             HttpResponseMessage response = await client.GetAsync(searchOption.Url);
             response.EnsureSuccessStatusCode();
@@ -92,7 +92,7 @@ namespace DnD_Index_App.Services
         /// <param name="endpoint"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCatagory endpoint)
+        public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCategory endpoint)
         {
             try{
                 HttpResponseMessage response = await client.GetAsync(endpoint.Url);
@@ -102,7 +102,7 @@ namespace DnD_Index_App.Services
             catch { throw new NotImplementedException(); }
         }
 
-        //public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCatagory endpoint)
+        //public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCategory endpoint)
         //{
         //    try{ 
         //        HttpResponseMessage response = await client.GetAsync(endpoint.Url);

@@ -7,34 +7,34 @@ using System.Linq;
 namespace DnD_Index_App.Models
 {
     /// <summary>
-    /// Stores information about what a search catagory will return, including:
-    ///  - the name of the catagory/result-object the api will return
+    /// Stores information about what a search Category will return, including:
+    ///  - the name of the Category/result-object the api will return
     ///  - the associated url
     ///  - the result type information
     ///  - 
-    ///  - (for catagory endpoints) the type of catagories returned by the endpoint
+    ///  - (for Category endpoints) the type of catagories returned by the endpoint
     ///  - (for Result endpoints) the api index of the endpoint
     /// </summary>
-    public class SearchCatagory : ApiObjectInfo // possibly make subclass of ApiObjectInfo class
+    public class SearchCategory : ApiObjectInfo // possibly make subclass of ApiObjectInfo class
     {
-        public string CatagoryName { get; set; }
-        public string? CatagoryType { get; set; }
+        public string CategoryName { get; set; }
+        public string? CategoryType { get; set; }
         public string? ApiValue { get; set; }
         //public string Url { get { return $"https://www.dnd5eapi.co{Url}"; } set; }
         public ResultType ResultTypeInfo { get; set; }
 
         /// <summary>
-        /// Constructor for SearchCatagory objects.
+        /// Constructor for SearchCategory objects.
         /// </summary>
-        /// <param name="catagoryName">the name of the catagory/result-object</param>
-        /// <param name="catagoryType">the type of catagories returned by the endpoint</param>
+        /// <param name="CategoryName">the name of the Category/result-object</param>
+        /// <param name="CategoryType">the type of catagories returned by the endpoint</param>
         /// <param name="apiValue">the api index of the endpoint</param>
         /// <param name="url">the associated url</param>
-        public SearchCatagory(string catagoryName, string? catagoryType, string? apiValue, string url)
-            : base(apiValue, catagoryName, url) // Pass required parameters to base constructor
+        public SearchCategory(string CategoryName, string? CategoryType, string? apiValue, string url)
+            : base(apiValue, CategoryName, url) // Pass required parameters to base constructor
         {
-            CatagoryName = catagoryName;
-            CatagoryType = catagoryType;
+            CategoryName = CategoryName;
+            CategoryType = CategoryType;
             ApiValue = apiValue;
             Url = $"https://www.dnd5eapi.co{url}";
             ResultTypeInfo = GetResultType(Url);
@@ -60,9 +60,9 @@ namespace DnD_Index_App.Models
                 else if (url.Contains("/equipment/")) { type.ResultClass = "equipment"; }
                 else if (url.Contains("/rules/")) { type.ResultClass = "rule"; }
             }
-            else if (url.Count(s => s == '/') == 5) // 5x '/': Catagory (e.g. 'https://www.dnd5eapi.co/api/2014/spells?level=0' contains 5x '/') 
+            else if (url.Count(s => s == '/') == 5) // 5x '/': Category (e.g. 'https://www.dnd5eapi.co/api/2014/spells?level=0' contains 5x '/') 
             {
-                type.TypeName = "catagory";
+                type.TypeName = "Category";
                 type.ResultClass = "SearchCategory"; // catagories get deserialized into new SearchCategory objects.
             }
             else
@@ -76,7 +76,7 @@ namespace DnD_Index_App.Models
     }
 
     /// <summary>
-    /// Stores what type of response of the api will return for a given SearchCatagory: either a list of catagories or a specific result. 
+    /// Stores what type of response of the api will return for a given SearchCategory: either a list of catagories or a specific result. 
     /// Also stores what type of object class the response data should be deserialized into.
     /// </summary>
     public class ResultType
