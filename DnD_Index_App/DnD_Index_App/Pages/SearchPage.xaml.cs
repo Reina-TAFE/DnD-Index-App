@@ -1,3 +1,4 @@
+using DnD_Index_App.Models.ResponseModels;
 using DnD_Index_App.Models;
 using DnD_Index_App.Pages;
 using DnD_Index_App.Services;
@@ -53,13 +54,15 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         {
             if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 
             {
-                CategoryList newSearchOptions = await ApiService.GetResourcesForEndpointAsync<CategoryList>(searchOption);
+                SpellCategoryResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SpellCategoryResponseModel>(searchOption);
+                CategoryList newSearchOptions = responseObj.ToModel();
             }
             else if(searchOption.ResultTypeInfo.TypeName == "result")
             {
                 if (searchOption.ResultTypeInfo.ResultClass == "spell")
                 {
-                    SpellModel result = await ApiService.GetResourcesForEndpointAsync<SpellModel>(searchOption);
+                    SpellResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SpellResponseModel>(searchOption);
+                    SpellModel spell = responseObj.ToModel();
                 }
                 else if (searchOption.ResultTypeInfo.ResultClass == "class")
                 {
