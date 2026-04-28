@@ -26,7 +26,7 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         if (query.TryGetValue("CategoryOptions", out var CategoryOptions))
         {
             CategoryOptions = CategoryOptions as List<SearchCategory>;
-			SearchCatagoriesCollection.ItemsSource = CategoryOptions;
+			SearchCategoriesCollection.ItemsSource = CategoryOptions;
         }
 		if(query.TryGetValue("CategoryType", out var CategoryType))
 		{

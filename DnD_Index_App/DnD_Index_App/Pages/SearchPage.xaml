@@ -93,7 +93,7 @@
                        TextColor="{DynamicResource CurrentTextColour}"
                        FontSize="20"
                        FontAttributes="Bold"/>
-                <CollectionView x:Name="SearchCatagoriesCollection">
+                <CollectionView x:Name="SearchCategoriesCollection">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>

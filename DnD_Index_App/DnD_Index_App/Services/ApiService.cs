@@ -77,7 +77,9 @@ namespace DnD_Index_App.Services
                     }
                     else
                     {
-                        return await response.Content.ReadFromJsonAsync<EquipmentModel>();
+                        EquipmentResponseModel respopnseObj = await response.Content.ReadFromJsonAsync<EquipmentResponseModel>();
+                        EquipmentModel result = respopnseObj.ToModel();
+                        return result;
                     }
                 }
             }
