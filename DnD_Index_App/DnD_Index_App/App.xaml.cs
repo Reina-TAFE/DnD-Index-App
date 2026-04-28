@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using DnD_Index_App.Models;
 using DnD_Index_App.Services;
+using Microsoft.Maui.Controls;
 
 namespace DnD_Index_App
 {
@@ -26,11 +27,19 @@ namespace DnD_Index_App
             {"SpellSearchPage", new Dictionary<string, object> {
                 {"PageName", "Spells" },
                 {"CatagoryType", "Levels" },
-                {"CatagoryOptions", SpellLevelList },
-            }
+                {"CatagoryOptions", SpellLevelList },}
+            },
+            {"ClassesSearchPage", new Dictionary<string, object> {
+                {"PageName", "Classes" },
+                {"CatagoryType", "Class Types" },
+                {"CatagoryOptions", SpellLevelList},}
+            },
+            {"EquipmentSearchPage", new Dictionary<string, object> {
+                {"PageName", "Equipment" },
+                {"CatagoryType", "Equipment Types" },
+                {"CatagoryOptions", SpellLevelList},}
             }
         };
-
 
 
         public App()
