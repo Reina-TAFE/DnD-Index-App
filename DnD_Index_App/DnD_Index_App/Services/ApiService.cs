@@ -1,5 +1,6 @@
 ﻿using DnD_Index_App.Models;
 using DnD_Index_App.Models.EquipmentModels;
+using DnD_Index_App.Models.ResponseModels;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -34,7 +35,9 @@ namespace DnD_Index_App.Services
         public static async Task<SpellModel> GetSpellAsync(string index)
         {
             HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/spells/{index}");
-            return await response.Content.ReadFromJsonAsync<SpellModel>();
+            SpellResponseModel spellResponseModel = await response.Content.ReadFromJsonAsync<SpellResponseModel>();
+            SpellModel spell = spellResponseModel.ToModel();
+            return spell;
         }
 
         public static async Task<ClassModel> GetClassAsync(string index)
@@ -89,7 +92,7 @@ namespace DnD_Index_App.Services
         /// <param name="endpoint"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCatagory endpoint) where T : ApiObjectInfo
+        public static async Task<T> GetResourcesForEndpointAsync<T>(SearchCatagory endpoint)
         {
             try{
                 HttpResponseMessage response = await client.GetAsync(endpoint.Url);
