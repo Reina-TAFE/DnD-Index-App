@@ -1,15 +1,22 @@
 namespace DnD_Index_App.ViewModels.ResultsPageComponentModels;
 
-public class NewContent1 : ContentView
+public partial class ResultsPageHeaderViewModel : ContentView
 {
-	public NewContent1()
+	public ResultsPageHeaderViewModel()
 	{
-		Content = new VerticalStackLayout
+		Content = new Grid
 		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
+			RowDefinitions = new RowDefinitionCollection
+			{
+				new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+				new RowDefinition { Height = GridLength.Auto },
+				new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }
+			},
+			ColumnDefinitions = new ColumnDefinitionCollection
+			{
+				new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+				new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+			},
+        };
 	}
 }
