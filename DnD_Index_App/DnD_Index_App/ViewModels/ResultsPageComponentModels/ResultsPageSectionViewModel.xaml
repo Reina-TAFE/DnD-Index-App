@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnD_Index_App.ViewModels.ResultsPageComponentModels.ResultsPageSectionViewModel">
+    <CollectionView x:Name="ContentCollectionView">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout>
+                    <Label x:Name="SectionTitle" Text="{Binding Title}" StyleClass="{DynamicResource H3}"/>
+                    <Line HorizontalOptions="Fill" Stroke="#D0A412" StrokeThickness="3"/>
+                    <CollectionView x:Name="ContentBodyCollectionView">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Key}" StyleClass="{DynamicResource SectionBold}"/>
+                                    <Label Text="{Binding Value.Name}" StyleClass="{DynamicResource SectionText}"/>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>

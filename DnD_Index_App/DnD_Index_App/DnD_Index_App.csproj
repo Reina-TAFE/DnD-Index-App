@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
@@ -68,6 +68,12 @@
 	  <Compile Update="Pages\SettingsPage.xaml.cs">
 	    <DependentUpon>SettingsPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="ViewModels\ResultsPageComponentModels\ResultsPageHeaderViewModel.xaml.cs">
+	    <DependentUpon>ResultsPageHeaderViewModel.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ViewModels\ResultsPageComponentModels\ResultsPageSectionViewModel.xaml.cs">
+	    <DependentUpon>ResultsPageSectionViewModel.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,6 +84,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\ElementStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\ResultsPageComponentModels\ResultsPageHeaderViewModel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\ResultsPageComponentModels\ResultsPageSectionViewModel.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
