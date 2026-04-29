@@ -1,7 +1,8 @@
-using DnD_Index_App.Models.ResponseModels;
 using DnD_Index_App.Models;
+using DnD_Index_App.Models.ResponseModels;
 using DnD_Index_App.Pages;
 using DnD_Index_App.Services;
+using System.Collections.Generic;
 
 namespace DnD_Index_App.Pages;
 
@@ -20,17 +21,17 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 	{
 		if(query.TryGetValue("PageName", out var pageName))
 		{
-			PageName = pageName as String;
+			PageName = (string)pageName;
 			PageNameLabel.Text = PageName;
 		}
-        if (query.TryGetValue("CategoryOptions", out var CategoryOptions))
+        if (query.TryGetValue("CategoryOptions", out var categoryOptions))
         {
-            CategoryOptions = CategoryOptions as List<SearchCategory>;
+            CategoryOptions = (List<SearchCategory>) categoryOptions;
 			SearchCategoriesCollection.ItemsSource = CategoryOptions;
         }
-		if(query.TryGetValue("CategoryType", out var CategoryType))
+		if(query.TryGetValue("CategoryType", out var categoryType))
 		{
-			CategoryType = CategoryType as String;
+			CategoryType = (string)categoryType;
 			CategoryTypeLabel.Text = CategoryType;
 		}
     }
@@ -48,8 +49,8 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 
     private async void SearchOption_Tapped(object sender, TappedEventArgs e)
     {
-		Button button = sender as Button;
-		SearchCategory searchOption = button.BindingContext as SearchCategory;
+		Button button = (Button)sender;
+		SearchCategory searchOption = (SearchCategory)button.BindingContext;
 		if (searchOption != null)
         {
             if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 
