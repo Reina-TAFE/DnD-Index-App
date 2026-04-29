@@ -24,20 +24,26 @@ namespace DnD_Index_App
 
         public static Dictionary<String, Dictionary<string, object>> PageQueryOptions = new Dictionary<String, Dictionary<string, object>>
         {
-            {"SpellSearchPage", new Dictionary<string, object> {
-                {"PageName", "Spells" },
-                {"CategoryType", "Levels" },
-                {"CategoryOptions", SpellLevelList },}
+            {"SpellSearchPage", new Dictionary<string, object> 
+                {
+                    {"PageName", "Spells" },
+                    {"CategoryType", "Levels" },
+                    {"CategoryOptions", SpellLevelList },
+                }
             },
-            {"ClassesSearchPage", new Dictionary<string, object> {
-                {"PageName", "Classes" },
-                {"CategoryType", "Class Types" },
-                {"CategoryOptions", SpellLevelList},}
+            {"ClassesSearchPage", new Dictionary<string, object> 
+                {
+                    {"PageName", "Classes" },
+                    {"CategoryType", "Class Types" },
+                    {"CategoryOptions", SpellLevelList},
+                }
             },
-            {"EquipmentSearchPage", new Dictionary<string, object> {
-                {"PageName", "Equipment" },
-                {"CategoryType", "Equipment Types" },
-                {"CategoryOptions", SpellLevelList},}
+            {"EquipmentSearchPage", new Dictionary<string, object> 
+                {
+                    {"PageName", "Equipment" },
+                    {"CategoryType", "Equipment Types" },
+                    {"CategoryOptions", SpellLevelList},
+                }
             }
         };
 
