@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace DnD_Index_App.Models.EquipmentModels
 {
     public class VehicleModel(string? index, string? name, ApiObjectInfo? equipmentCategory,
-            ApiObjectInfo? gearCategory, List<string>? desc, string? url, Cost? cost, int? weight, 
-            string? updatedAt, List<(ApiObjectInfo, int)>? contents, List<ApiObjectInfo> properties, 
+            ApiObjectInfo? gearCategory, List<string>? desc, string? url, Cost? cost, int? weight,
+            string? updatedAt, List<(ApiObjectInfo, int)>? contents, List<ApiObjectInfo>? properties,
             string? vehicleCategory, Speed? speed, string? capacity) : EquipmentModel(index, name,
             equipmentCategory, gearCategory, desc, url, cost, weight, updatedAt, contents, properties)
     {
@@ -30,5 +30,10 @@ namespace DnD_Index_App.Models.EquipmentModels
 
         [JsonPropertyName("unit")]
         public string? Unit { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Quantity}{Unit}";
+        }
     }
 }

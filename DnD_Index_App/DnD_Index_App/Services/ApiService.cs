@@ -27,23 +27,48 @@ namespace DnD_Index_App.Services
 
         public async Task<object?> GetApiResponse(SearchCategory searchItem)
         {
-            HttpResponseMessage response = await client.GetAsync(searchItem.Url);
-
-            return await response.Content.ReadFromJsonAsync<object?>();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(searchItem.Url);
+                return await response.Content.ReadFromJsonAsync<object?>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
-        public static async Task<SpellModel> GetSpellAsync(string index)
+        public static async Task<SpellModel>? GetSpellAsync(string index)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/spells/{index}");
-            SpellResponseModel spellResponseModel = await response.Content.ReadFromJsonAsync<SpellResponseModel>();
-            SpellModel spell = spellResponseModel.ToModel();
-            return spell;
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/spells/{index}");
+                SpellResponseModel spellResponseModel = await response.Content.ReadFromJsonAsync<SpellResponseModel>();
+                SpellModel spell = spellResponseModel.ToModel();
+                return spell;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
-        public static async Task<ClassModel> GetClassAsync(string index)
+        public static async Task<ClassModel>? GetClassAsync(string index)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/classes/{index}");
-            return await response.Content.ReadFromJsonAsync<ClassModel>();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"https://www.dnd5eapi.co/api/2014/classes/{index}");
+                response.EnsureSuccessStatusCode();
+                ClassResponseModel classResponseObj = await response.Content.ReadFromJsonAsync<ClassResponseModel>();
+                return classResponseObj.ToModel();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         /// <summary>
@@ -56,32 +81,35 @@ namespace DnD_Index_App.Services
         {
             HttpResponseMessage response = await client.GetAsync(searchOption.Url);
             response.EnsureSuccessStatusCode();
-            string JsonString = await response.Content.ReadAsStringAsync();
-            JsonDocument json = JsonDocument.Parse(JsonString);
-            JsonElement root = json.RootElement;
-            if (root.TryGetProperty("equipment_category", out JsonElement category)) // try to access 'equipment_category' field of the Json response
-            {
-                if (category.TryGetProperty("name", out JsonElement categoryName)) // try to access 'name' property of the 'equipment_category' json object
+            try 
+            {           
+                UniversalEquipmentResponseModel responseObj = await response.Content.ReadFromJsonAsync<UniversalEquipmentResponseModel>(); 
+            
+
+                if (responseObj.equipment_category != null) // try to access 'equipment_category' field of the Json response
                 {
-                    if (categoryName.ToString() == "Weapon")
+
+                    if (responseObj.equipment_category.Name == "Weapon")// try to access 'name' property of the 'equipment_category' json object
                     {
-                        return await response.Content.ReadFromJsonAsync<WeaponModel>();
+                        return responseObj.ToWeaponModel();
                     }
-                    else if (categoryName.ToString() == "Armor")
+                    else if (responseObj.equipment_category.Name == "Armor")
                     {
-                        return await response.Content.ReadFromJsonAsync<ArmourModel>();
+                        return responseObj.ToArmourModel();
                     }
-                    else if (categoryName.ToString() == "Mounts and Vehicles")
+                    else if (responseObj.equipment_category.Name == "Mounts and Vehicles")
                     {
-                        return await response.Content.ReadFromJsonAsync<VehicleModel>();
+                        return responseObj.ToVehicleModel();
                     }
                     else
                     {
-                        EquipmentResponseModel respopnseObj = await response.Content.ReadFromJsonAsync<EquipmentResponseModel>();
-                        EquipmentModel result = respopnseObj.ToModel();
-                        return result;
+                        return responseObj.ToEquipmentModel();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
             return null;
         }

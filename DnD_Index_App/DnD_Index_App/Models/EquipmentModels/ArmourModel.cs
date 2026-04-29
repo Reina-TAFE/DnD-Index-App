@@ -8,9 +8,9 @@ namespace DnD_Index_App.Models.EquipmentModels
 {
     public class ArmourModel(string? index, string? name, ApiObjectInfo? equipmentCategory,
             ApiObjectInfo? gearCategory, List<string>? desc, string? url, Cost? cost,
-            int? weight, string? updatedAt, List<(ApiObjectInfo, int)>? contents, 
-            List<ApiObjectInfo> properites, string? armourCategory, ArmourClass? armourClass,
-            int? strMinimum, bool? stealthDisadvange) : EquipmentModel(index, name, 
+            int? weight, string? updatedAt, List<(ApiObjectInfo, int)>? contents,
+            List<ApiObjectInfo>? properites, string? armourCategory, ArmourClass? armourClass,
+            int? strMinimum, bool? stealthDisadvange) : EquipmentModel(index, name,
             equipmentCategory, gearCategory, desc, url, cost, weight, updatedAt, contents, properites)
     {
         [JsonPropertyName("armor_category")]
@@ -30,13 +30,13 @@ namespace DnD_Index_App.Models.EquipmentModels
     public class ArmourClass
     {
         [JsonPropertyName("base")]
-        public string? Base { get; set; }
+        public int? Base { get; set; }
 
         [JsonPropertyName("dex_bonus")]
         public bool? DexBonus { get; set; }
 
         [JsonPropertyName("max_bonus")]
-        public int? MaxBonus { get; set; }
+        public int? MaxBonus { get; set; } = null;
 
         public override string ToString()
         {
