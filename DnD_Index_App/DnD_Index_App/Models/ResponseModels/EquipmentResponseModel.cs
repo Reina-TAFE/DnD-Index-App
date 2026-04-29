@@ -7,6 +7,11 @@ using System.Text.Json.Serialization;
 
 namespace DnD_Index_App.Models.ResponseModels
 {
+    /// <summary>
+    /// Shared response model for all EquipmentModel Classes. 
+    /// Any API response from an equipment object endpoint can be deserialised into this class.
+    /// This response model can be returned as any EquipmentModel or EquipmentModel subclass.
+    /// </summary>
     public class UniversalEquipmentResponseModel
     {
         public List<string> desc { get; set; }
@@ -22,7 +27,7 @@ namespace DnD_Index_App.Models.ResponseModels
         public List<(ApiObjectInfo, int)> contents { get; set; } = [];
         public List<ApiObjectInfo>? properties { get; set; } = [];
 
-        // Weapon Properties
+        // Weapon Properties //
         [JsonPropertyName("weapon_category")]
         public string? WeaponCategory { get; set; } = null;
 
@@ -44,7 +49,7 @@ namespace DnD_Index_App.Models.ResponseModels
         [JsonPropertyName("two_handed_damage")]
         public WeaponDamage? TwoHandedDamage { get; set; } = null;
 
-        // Armour Properties
+        // Armour Properties //
         [JsonPropertyName("armor_category")]
         public string? ArmourCategory { get; set; } = null;
 
@@ -57,7 +62,7 @@ namespace DnD_Index_App.Models.ResponseModels
         [JsonPropertyName("stealth_disadvantage")]
         public bool? StealthDisadvange { get; set; } = null;
 
-        // Vehicle Properties
+        // Vehicle Properties //
         [JsonPropertyName("vehicle_category")]
         public string? VehicleCategory { get; set; } = null;
 
@@ -67,6 +72,10 @@ namespace DnD_Index_App.Models.ResponseModels
         [JsonPropertyName("capacity")]
         public string? VehicleCapacity { get; set; } = null;
 
+        /// <summary>
+        /// Returns an EquipmentModel object from the response model's data
+        /// </summary>
+        /// <returns>An EquipmentModel object</returns>
         public EquipmentModel ToEquipmentModel()
         {
             return new EquipmentModel(
@@ -84,6 +93,10 @@ namespace DnD_Index_App.Models.ResponseModels
             );
         }
 
+        /// <summary>
+        /// Returns a WeaponModel object from the response model's data
+        /// </summary>
+        /// <returns>A WeaponModel object</returns>
         public WeaponModel ToWeaponModel()
         {
             return new WeaponModel(
@@ -109,6 +122,10 @@ namespace DnD_Index_App.Models.ResponseModels
             );
         }
 
+        /// <summary>
+        /// Returns an ArmourModel object from the response model's data
+        /// </summary>
+        /// <returns>An ArmourModel object</returns>
         public ArmourModel ToArmourModel()
         {
             return new ArmourModel(
@@ -130,6 +147,10 @@ namespace DnD_Index_App.Models.ResponseModels
             );
         }
 
+        /// <summary>
+        /// Returns a VehicleModel object from the response model's data
+        /// </summary>
+        /// <returns>A VehicleModel object</returns>
         public VehicleModel ToVehicleModel()
         {
             return new VehicleModel(
