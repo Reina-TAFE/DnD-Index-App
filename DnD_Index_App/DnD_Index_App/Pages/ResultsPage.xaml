@@ -1,51 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:DnD_Index_App.ViewModels"
              x:Class="DnD_Index_App.Pages.ResultsPage"
-             Title="ResultsPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <FlexLayout Grid.Row="0"
-            Direction="Row"
-            JustifyContent="SpaceBetween"
-            HeightRequest="210"
-            VerticalOptions="Fill"
-            Margin="5">
-            <Image 
-                FlexLayout.Basis="40"
-                FlexLayout.AlignSelf="Center"
-                Margin="0 0 40 5"
-                x:Name="BackBtn"
-                Source="arrow_left.png"
-                VerticalOptions="Start"
-                HorizontalOptions="Start"
-                BackgroundColor="#582929">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="BackBtnTapped"
-                        NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image 
-                FlexLayout.Basis="40"
-                FlexLayout.AlignSelf="Center"
-                Margin="0 0 40 -5"
-                x:Name="SettingsBtn"
-                Source="settings_icon.png"
-                VerticalOptions="Start"
-                HorizontalOptions="Start"
-                BackgroundColor="#582929">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="SettingsBtnTapped"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-        </FlexLayout>
-    </Grid>
+             Title="ResultsPage"
+             x:DataType="vm:ResultsPageViewModel">
+    <ContentView x:Name="ResultsPageWrapper">
+
+    </ContentView>
 </ContentPage>
