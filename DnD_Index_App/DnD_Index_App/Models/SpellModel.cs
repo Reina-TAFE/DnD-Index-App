@@ -4,29 +4,30 @@ using System.Text;
 using System.Text.Json.Serialization;
 using DnD_Index_App.Models;
 using DnD_Index_App.Models.ResponseModels;
+using DnD_Index_App.Models.UI;
 
 namespace DnD_Index_App.Models
 {
     public class SpellModel : ApiObjectInfo
     {
-        public string? UpdatedAt { get; set; }
-        public List<string>? Description { get; set; }
-        public int? Level { get; set; }
-        public List<string>? HigherLevel { get; set; }
-        public ApiObjectInfo? School { get; set; }
-        public string? CastTime { get; set; }
-        public string? Range { get; set; }
-        public AreaOfEffect? AreaOfAffect { get; set; }
-        public string? Duration { get; set; }
-        public List<string>? Components { get; set; }
-        public string? Material { get; set; }
-        public bool? Ritual { get; set; }
-        public bool? Concentration { get; set; }
+        public string? UpdatedAt { get; set; } = null;
+        public List<string>? Description { get; set; } = null;
+        public int? Level { get; set; } = null;
+        public List<string>? HigherLevel { get; set; } = null;
+        public ApiObjectInfo? School { get; set; } = null;
+        public string? CastTime { get; set; } = null;
+        public string? Range { get; set; } = null;
+        public AreaOfEffect? AreaOfAffect { get; set; } = null;
+        public string? Duration { get; set; } = null;
+        public List<string>? Components { get; set; } = null;
+        public string? Material { get; set; } = null;
+        public bool? Ritual { get; set; } = null;
+        public bool? Concentration { get; set; } = null;
         //public string? AttackType { get; set; }
-        public Damage? Damage { get; set; }
-        public Dc? Dc { get; set; }
-        public List<ApiObjectInfo>? Classes { get; set; }
-        public List<ApiObjectInfo>? SubClasses { get; set; }
+        public Damage? Damage { get; set; } = null;
+        public Dc? Dc { get; set; } = null;
+        public List<ApiObjectInfo>? Classes { get; set; } = null;
+        public List<ApiObjectInfo>? SubClasses { get; set; } = null;
 
 
 
@@ -52,7 +53,63 @@ namespace DnD_Index_App.Models
             Classes = classes;
             SubClasses = subclasses;
         }
+
+        public (ResultsPageHeaderModel, ResultsPageSectionModel) ToResultsPageComponentModels()
+        {
+            ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, $"Level {Level} {School}");
+            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", new List<SectionContent> { GetRequirementsSection() });
+            return (header, body);
+        }
+
+        public List<SectionContent> GetSections() 
+        {
+            SectionContent requirementsSection = this.GetRequirementsSection();
+            List<SectionContent> sections = new List<SectionContent>();
+            sections.Add( requirementsSection );
+
+            return sections;
+        }
+
+        public SectionContent GetRequirementsSection()
+        {
+            SectionContent section = new SectionContent
+            {
+                SectionTitle = "Requirements",
+                ContentType = "SpellRequirements",
+                Content = new List<SectionItem>
+                    {
+                        new SectionItem
+                        {
+                            SectionItemTitle = null,
+                            ItemType = "KeyValueList",
+                            ItemContent = new List<Dictionary<string, string?>>
+                            {
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "Level", (Level != null) ? Level.ToString() : string.Empty },
+                                        { "School", (School != null) ? School.Name : string.Empty },
+                                        { "Cast Time", CastTime ?? string.Empty },
+                                        { "Range", Range ?? string.Empty },
+                                        { "Duration", Duration ?? string.Empty },
+                                        { "Components", (Components != null) ? string.Join(", ", Components) : string.Empty },
+                                        { "Material", Material ?? string.Empty },
+                                        { "Ritual", (Ritual != null) ? Ritual.ToString() : string.Empty },
+                                        { "Concentration", (Concentration != null) ? Concentration.ToString() : string.Empty }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            };
+            return section;
+
+        }
     }
+                    
+                
+            
+
 
     public class AreaOfEffect
     {
