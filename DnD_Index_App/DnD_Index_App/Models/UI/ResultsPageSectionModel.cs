@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DnD_Index_App.Models;
+using DnD_Index_App.Models.UI;
 
 namespace DnD_Index_App.Models.UI
 {
@@ -19,14 +21,14 @@ namespace DnD_Index_App.Models.UI
             set { _sectionTitle = value; }
         }
 
-        private Dictionary<string, object>? _sectionContent;
-        public Dictionary<string, object> SectionContent
+        private List<SectionContent>? _sectionContent;
+        public List<SectionContent>? SectionContent
         {
-            get { return (_sectionContent != null) ? _sectionContent : new Dictionary<string, object>(); }
+            get { return (_sectionContent != null) ? _sectionContent : new List<SectionContent>(); }
             set { _sectionContent = value; }
         }
 
-        public ResultsPageSectionModel(string? sectionTitle, Dictionary<string, object>? sectionContent)
+        public ResultsPageSectionModel(string? sectionTitle, List<SectionContent>? sectionContent)
         {
             SectionTitle = sectionTitle;
             SectionContent = sectionContent;

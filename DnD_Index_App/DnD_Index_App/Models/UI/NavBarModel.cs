@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DnD_Index_App.Models.UI
 {
-    public static class NavBarModel
+    public class NavBarModel
     {
         public static List<ImageButton> NavBarButtons = new List<ImageButton>()
         {
