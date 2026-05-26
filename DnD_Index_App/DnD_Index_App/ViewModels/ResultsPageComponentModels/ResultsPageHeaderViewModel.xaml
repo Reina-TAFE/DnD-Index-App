@@ -10,8 +10,8 @@
             <Image Source="{Binding HeaderIcon}" StyleClass="HeaderIcon"/>
         </FlexLayout>
         <BoxView HeightRequest="3" 
-                 Color="{DynamicResource CurrentPageAccentColour}"
-                 HorizontalOptions="Fill"/>
+             Color="{DynamicResource CurrentPageAccentColour}"
+             HorizontalOptions="Fill"/>
         <Label Text="{Binding HeaderSubtitle}" StyleClass="SubtitleText"/>
     </FlexLayout>
 </ContentView>
