@@ -56,9 +56,20 @@ namespace DnD_Index_App.Models
             {
                type.TypeName = "result";
                 if (url.Contains("/spells/")) { type.ResultClass = "spell"; } // check url for specfic category based on route
-                else if (url.Contains("/classes/")) { type.ResultClass = "class"; }
+                else if (url.Contains("/classes/"))
+                {
+                    if (url.Contains("/levels"))
+                    {
+                        type.ResultClass = "levelTable";
+                    }
+                    else
+                    {
+                        type.ResultClass = "class"; 
+                    }
+                }
                 else if (url.Contains("/equipment/")) { type.ResultClass = "equipment"; }
-                else if (url.Contains("/rules/")) { type.ResultClass = "rule"; }
+                else if (url.Contains("/rule-sections/")) { type.ResultClass = "rule"; }
+                else if (url.Contains("/subclasses/")) { type.ResultClass = "subclass"; }
             }
             else if (url.Count(s => s == '/') == 5) // 5x '/': Category (e.g. 'https://www.dnd5eapi.co/api/2014/spells?level=0' contains 5x '/') 
             {
