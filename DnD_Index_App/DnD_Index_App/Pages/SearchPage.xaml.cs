@@ -1,11 +1,17 @@
+//using AndroidX.Lifecycle;
 using DnD_Index_App.Models;
+using DnD_Index_App.Models.EquipmentModels;
 using DnD_Index_App.Models.ResponseModels;
 using DnD_Index_App.Pages;
 using DnD_Index_App.Services;
+using DnD_Index_App.ViewModels;
 using System.Collections.Generic;
 
 namespace DnD_Index_App.Pages;
 
+[QueryProperty(nameof(PageName), "PageName")]
+[QueryProperty(nameof(CategoryOptions), "CategoryOptions")]
+[QueryProperty(nameof(CategoryType), "CategoryType")]
 public partial class SearchPage : ContentPage, IQueryAttributable
 {
 	public String PageName { get; set; } = default!;
@@ -53,10 +59,20 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 		SearchCategory searchOption = (SearchCategory)button.BindingContext;
 		if (searchOption != null)
         {
-            if(searchOption.ResultTypeInfo.TypeName == "SearchCategory") 
+            if(searchOption.ResultTypeInfo.TypeName == "Category") 
             {
-                SpellCategoryResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SpellCategoryResponseModel>(searchOption);
+                CategoryListResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(searchOption);
                 CategoryList newSearchOptions = responseObj.ToModel();
+                ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {"PageName", "Classes" },
+                        {"CategoryType", "Class Types" },
+                        {"CategoryOptions", newSearchOptions.Categories},
+                    };
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await Shell.Current.GoToAsync("SearchPage", queryOptions);
+                });
             }
             else if(searchOption.ResultTypeInfo.TypeName == "result")
             {
@@ -64,15 +80,107 @@ public partial class SearchPage : ContentPage, IQueryAttributable
                 {
                     SpellResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SpellResponseModel>(searchOption);
                     SpellModel spell = responseObj.ToModel();
+                    ResultsPageViewModel viewModel = spell.ToResultsPageViewModel();
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
                 }
                 else if (searchOption.ResultTypeInfo.ResultClass == "class")
                 {
                     ClassResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<ClassResponseModel>(searchOption);
-                    ClassModel result = responseObj.ToModel();
+                    ClassModel classObject = responseObj.ToModel();
+                    ResultsPageViewModel viewModel = classObject.ToResultsPageViewModel();
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
+                }
+                else if (searchOption.ResultTypeInfo.ResultClass == "levelTable")
+                {
+                    List<ClassLevelsResponseModel> responseObj = await ApiService.GetResourceListForEndpointAsync<List<ClassLevelsResponseModel>>(searchOption);
+                    LevelsTableResponseModel table = new LevelsTableResponseModel { root = responseObj };
+                    ClassLevelsTableModel levelTableObject = table.ToModel();
+                    ResultsPageViewModel viewModel = levelTableObject.ToResultsPageViewModel();
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
                 }
                 else if (searchOption.ResultTypeInfo.ResultClass == "equipment")
                 {
-                    EquipmentModel? result = await ApiService.GetEquipmentAsync(searchOption);
+                    UniversalEquipmentResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<UniversalEquipmentResponseModel>(searchOption);
+                    ResultsPageViewModel? viewModel = null;
+                    if(responseObj.equipment_category.Name == "Weapon")
+                    {
+                        WeaponModel weapon = responseObj.ToWeaponModel();
+                        viewModel = weapon.ToResultsPageViewModel();
+                    }
+                    else if (responseObj.equipment_category.Name == "Armor")
+                    {
+                        ArmourModel armour = responseObj.ToArmourModel();
+                        viewModel = armour.ToResultsPageViewModel();
+                    }
+                    else if (responseObj.equipment_category.Name == "Mounts and Vehicles")
+                    {
+                        VehicleModel vehicle = responseObj.ToVehicleModel();
+                        viewModel = vehicle.ToResultsPageViewModel();
+                    }
+                    else
+                    {
+                        EquipmentModel item = responseObj.ToEquipmentModel();
+                        viewModel = item.ToResultsPageViewModel();
+                    }
+
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
+                }
+                else if (searchOption.ResultTypeInfo.ResultClass == "rule")
+                {
+                    RuleResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<RuleResponseModel>(searchOption);
+                    RuleModel subClassObject = responseObj.ToModel();
+                    ResultsPageViewModel viewModel = subClassObject.ToResultsPageViewModel();
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
+                }
+                else if (searchOption.ResultTypeInfo.ResultClass == "subclass")
+                {
+                    SubClassResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<SubClassResponseModel>(searchOption);
+                    SubClassModel subClassObject = responseObj.ToModel();
+                    ResultsPageViewModel viewModel = subClassObject.ToResultsPageViewModel();
+                    ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
+                    {
+                        {  "ViewModel", viewModel   }
+                    };
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await Shell.Current.GoToAsync("ResultsPage", queryOptions);
+                    });
                 }
             }
 
