@@ -18,5 +18,8 @@
     <ShellContent
     Title="Search"
     Route="SearchPage"/>
+    <ShellContent
+    Title="Results"
+    Route="ResultsPage"/>
 
 </Shell>

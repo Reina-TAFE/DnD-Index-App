@@ -13,6 +13,7 @@ namespace DnD_Index_App
             Routing.RegisterRoute("MainPage", typeof(Pages.MainPage));
             Routing.RegisterRoute("SettingsPage", typeof(Pages.SettingsPage));
             Routing.RegisterRoute("SearchPage", typeof(Pages.SearchPage));
+            Routing.RegisterRoute("Results", typeof(Pages.ResultsPage));
         }
     }
 }
