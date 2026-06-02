@@ -2,6 +2,7 @@ using DnD_Index_App.ViewModels;
 
 namespace DnD_Index_App.Pages;
 
+[QueryProperty(nameof(ViewModel), "ViewModel")]
 public partial class ResultsPage : ContentPage
 {
     private ResultsPageViewModel viewModel;
