@@ -15,7 +15,7 @@ namespace DnD_Index_App.ViewModels
         public ContentView PageContent = new ContentView();
         public ResultsPageHeaderViewModel? Header { get; set; }
         public ResultsPageSectionViewModel? Body { get; set; }
-        public List<ImageButton> NavBar = NavBarModel.NavBarButtons;
+        public List<ImageButton> NavBar = NavBarModel.GetNavBarButtons();
 
         public ResultsPageViewModel(ResultsPageHeaderViewModel? header, ResultsPageSectionViewModel? body)
         {
