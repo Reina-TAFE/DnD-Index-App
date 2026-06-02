@@ -23,10 +23,26 @@ namespace DnD_Index_App.Pages
             await Shell.Current.GoToAsync("SettingsPage");
         }
 
-        private async void SpellsBtn_Tapped(object sender, TappedEventArgs e)
+        private async void SearchBtn_Tapped(object sender, TappedEventArgs e)
         {
-
-            IDictionary<string, object> queryOptions = App.PageQueryOptions["SpellSearchPage"];
+            Button searchPageOption = (Button)sender;
+            IDictionary<string, object> queryOptions = new Dictionary<string, object>();
+            if (searchPageOption.StyleId == "SpellsBtn")
+            {
+                queryOptions = await App.PageQueryOptions("SpellSearchPage");
+            }
+            else if(searchPageOption.StyleId == "ClassesBtn")
+            {
+                queryOptions = await App.PageQueryOptions("ClassesSearchPage");
+            }
+            else if (searchPageOption.StyleId == "EquipmentBtn")
+            {
+                queryOptions = await App.PageQueryOptions("EquipmentSearchPage");
+            }
+            else if (searchPageOption.StyleId == "RulesBtn")
+            {
+                queryOptions = await App.PageQueryOptions("RulesSearchPage");
+            }
             await Shell.Current.GoToAsync("SearchPage", queryOptions);
         }
     }
