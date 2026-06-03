@@ -10,39 +10,70 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!-- Stack Orientation Style -->
-            <Style TargetType="StackLayout" x:Key="StackStyle">
+            <Style TargetType="FlexLayout" x:Key="StackStyle">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Portrait">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Orientation" Value="Vertical" />
-                                    <Setter Property="Grid.Row" Value="2" />
-                                    <Setter Property="Grid.RowSpan" Value="4" />
-                                    <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
-                                    <Setter Property="Spacing" Value="35" />
-                                    <Setter Property="HorizontalOptions" Value="Fill" />
-                                    <Setter Property="VerticalOptions" Value="Fill" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="Orientation" Value="Horizontal" />
+                                    <Setter Property="Direction" Value="Column" />
                                     <Setter Property="Grid.Row" Value="1" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="JustifyContent" Value="SpaceEvenly" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Direction" Value="Row" />
+                                    <Setter Property="Grid.Row" Value="2" />
                                     <Setter Property="Grid.RowSpan" Value="1" />
                                     <Setter Property="Grid.Column" Value="0" />
                                     <Setter Property="Grid.ColumnSpan" Value="4" />
-                                    <Setter Property="Spacing" Value="15" />
+                                    <Setter Property="JustifyContent" Value="SpaceEvenly" />
+                                    <!--<Setter Property="HorizontalOptions" Value="Fill" />-->
+                                    <Setter Property="VerticalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Border" x:Key="BorderStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="2" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="2" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="1" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -55,22 +86,22 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Portrait">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="RowDefinitions" Value="1.5*,0.5*,*,*,*,*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="RowDefinitions" Value="1.5*,0.5*,3*,0.5*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
                                     <Setter Property="RowDefinitions" Value="*,*" />
-                                    <Setter Property="ColumnDefinitions" Value="*,*,*,*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -82,17 +113,20 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Portrait">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="IsVisible" Value="True" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="IsVisible" Value="True" />
+                                    <Setter Property="Grid.Row" Value="3" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="IsVisible" Value="False" />
@@ -102,31 +136,30 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-            <Style TargetType="Image" x:Key="LogoStyle">
+            <Style TargetType="Border" x:Key="LogoStyle">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Portrait">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Grid.Row" Value="0" />
-                                    <Setter Property="Grid.RowSpan" Value="1" />
-                                    <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
-                                    <Setter Property="Grid.RowSpan" Value="1" />
+
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="4" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="0" />
+
+                                    <Setter Property="Grid.Column" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Center"/>
                                 </VisualState.Setters>
                             </VisualState>
@@ -136,48 +169,63 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Border StrokeThickness="0"
-            StrokeShape="RoundRectangle 15">
+    <Border 
+        StrokeThickness="0"
+            StrokeShape="RoundRectangle 15"
+            HorizontalOptions="Fill" VerticalOptions="Fill">
         <ScrollView
-            BackgroundColor="{DynamicResource CurrentBackgroundColour}">
-            <Grid Style="{StaticResource GridStyle}">
+            BackgroundColor="{DynamicResource CurrentBackgroundColour}" HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Grid Style="{StaticResource GridStyle}" HorizontalOptions="Fill" VerticalOptions="Fill">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="0.5*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Image 
-                    Grid.Row="0"
-                    Margin="25 10 0"
-                    x:Name="SettingsBtn"
-                    Source="settings_icon.png"
-                    VerticalOptions="Start"
-                    HorizontalOptions="Start"
-                    BackgroundColor="{DynamicResource CurrentBackgroundColour}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="SettingsBtnTapped"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image
-                    Grid.Row="0"
-                    Source="logo_placeholder.png"
-                    HeightRequest="126"
-                    WidthRequest="126"
-                    Aspect="AspectFit"
-                    HorizontalOptions="Center"
-                    SemanticProperties.Description="Placeholder image for app icon" 
-                    Margin="55 0 20"/>
-                <StackLayout Orientation="Vertical" Grid.Row="2" Grid.RowSpan="4" HorizontalOptions="Fill" Spacing="15" Style="{StaticResource StackStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill">
+                    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            Grid.Column="0"
+                            Margin="25 10 0"
+                            x:Name="SettingsBtn"
+                            Source="settings_icon.png"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Start"
+                            BackgroundColor="{DynamicResource CurrentBackgroundColour}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="SettingsBtnTapped"
+                                    NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image
+                            Grid.Column="1"
+                            Source="logo_placeholder.png"
+                            HeightRequest="126"
+                            WidthRequest="126"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            SemanticProperties.Description="Placeholder image for app icon" 
+                            Margin="55 0 20"/>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BorderStyle}">
+                <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
                     <Button
                         
                     x:Name="SpellsBtn"
-                    Margin="0 32"
+
                     Text="Spells"
                     FontSize="32"
                     BorderWidth="2"
@@ -198,7 +246,7 @@
                     <Button
                         
                     x:Name="ClassesBtn"
-                    Margin="0 32"                
+            
                     Text="Classes" 
                     FontSize="32"
                     BorderWidth="2"
@@ -219,7 +267,7 @@
                     <Button
                         
                     x:Name="EquipmentBtn"
-                    Margin="0 32"                
+              
                     Text="Equipment"
                     FontSize="32"
                     BorderWidth="2"
@@ -240,7 +288,7 @@
                     <Button
                                         
                     x:Name="RulesBtn"
-                    Margin="0 32"                
+             
                     Text="Rules" 
                     FontSize="32"    
                     BorderWidth="2"
@@ -257,13 +305,15 @@
                             NumberOfTapsRequired="1"/>
                         </Button.GestureRecognizers>
                     </Button>
-                </StackLayout>
+                </FlexLayout>
+                </Border>
                 <Grid
-                    Grid.Row="6"
+                    Grid.Row="3"
                     BackgroundColor="#000000"
                     HeightRequest="91"
                     VerticalOptions="End"
                     Style="{StaticResource NavGridStyle}"
+                    HorizontalOptions="Fill"
                     >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
