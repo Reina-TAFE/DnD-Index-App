@@ -4,7 +4,6 @@
              x:Class="DnD_Index_App.Pages.MainPage"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              Shell.NavBarIsVisible="False"
-
              Title="Home Page"
              BackgroundColor="{DynamicResource CurrentBackgroundColour}">
     <ContentPage.Resources>
@@ -23,9 +22,11 @@
                                     <Setter Property="Direction" Value="Column" />
                                     <Setter Property="Grid.Row" Value="1" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="JustifyContent" Value="SpaceEvenly" />
+                                    <Setter Property="JustifyContent" Value="SpaceBetween" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
+                                    <Setter Property="AlignItems" Value="Stretch" />
+                                    <Setter Property="Padding" Value="35, 0" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Portrait">
@@ -47,7 +48,7 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-            <Style TargetType="Border" x:Key="BorderStyle">
+            <Style TargetType="Border" x:Key="BodyStyle">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup>
@@ -59,7 +60,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="2" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                                    <Setter Property="Grid.ColumnSpan" Value="1" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
@@ -71,9 +72,157 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="1" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                                    <Setter Property="Grid.ColumnSpan" Value="1" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Border" x:Key="HeaderStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="0" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="0" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Button" x:Key="SpellButtonStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="Spells" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="cleric_symbol.png" />
+                                    <Setter Property="Text" Value="" />
+                                    <Setter Property="HeightRequest" Value="256" />
+                                    <Setter Property="WidthRequest" Value="256" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Button" x:Key="ClassButtonStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="Classes" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="paladin.png" />
+                                    <Setter Property="HeightRequest" Value="256" />
+                                    <Setter Property="WidthRequest" Value="256" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Button" x:Key="EquipmentButtonStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="Equipment" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="fighter_symbol.png" />
+                                    <Setter Property="Text" Value="" />
+                                    <Setter Property="HeightRequest" Value="256" />
+                                    <Setter Property="WidthRequest" Value="256" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Button" x:Key="RuleButtonStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Text" Value="Rules" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="scroll.png" />
+                                    <Setter Property="Text" Value="" />
+                                    <Setter Property="HeightRequest" Value="256" />
+                                    <Setter Property="WidthRequest" Value="256" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -92,6 +241,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="RowDefinitions" Value="1.5*,0.5*,3*,0.5*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
                                     <Setter Property="ColumnDefinitions" Value="*" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -121,6 +271,7 @@
                                     <Setter Property="IsVisible" Value="True" />
                                     <Setter Property="Grid.Row" Value="3" />
                                     <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="2" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -185,7 +336,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill">
+                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" Style="{StaticResource HeaderStyle}">
                     <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -197,7 +348,7 @@
                         </Grid.ColumnDefinitions>
                         <Image 
                             Grid.Column="0"
-                            Margin="25 10 0"
+                            Margin="15 10 0"
                             x:Name="SettingsBtn"
                             Source="settings_icon.png"
                             VerticalOptions="Start"
@@ -217,15 +368,16 @@
                             Aspect="AspectFit"
                             HorizontalOptions="Center"
                             SemanticProperties.Description="Placeholder image for app icon" 
-                            Margin="55 0 20"/>
+                            Margin="45 0 35"/>
                     </Grid>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BorderStyle}">
+                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BodyStyle}">
                 <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
                     <Button
                         
                     x:Name="SpellsBtn"
-
+                    Style="{StaticResource SpellButtonStyle}"
+                    Margin="0, 10, 0, 5"
                     Text="Spells"
                     FontSize="32"
                     BorderWidth="2"
@@ -246,7 +398,8 @@
                     <Button
                         
                     x:Name="ClassesBtn"
-            
+                    Style="{StaticResource ClassButtonStyle}"
+                    Margin="0, 0, 0, 5"
                     Text="Classes" 
                     FontSize="32"
                     BorderWidth="2"
@@ -267,7 +420,8 @@
                     <Button
                         
                     x:Name="EquipmentBtn"
-              
+                    Style="{StaticResource EquipmentButtonStyle}"
+                    Margin="0, 0, 0, 5"
                     Text="Equipment"
                     FontSize="32"
                     BorderWidth="2"
@@ -288,7 +442,8 @@
                     <Button
                                         
                     x:Name="RulesBtn"
-             
+                    Style="{StaticResource RuleButtonStyle}"
+                    Margin="0, 0, 0, 10"
                     Text="Rules" 
                     FontSize="32"    
                     BorderWidth="2"
