@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
 using DnD_Index_App.Pages;
+using DnD_Index_App.Services;
 using System.Collections.ObjectModel;
 
 namespace DnD_Index_App.Pages
 {
     public partial class MainPage : ContentPage
     {
-
+        public int? FontSize = PreferenceManager.GetFontSize();
         public MainPage()
         {
             InitializeComponent();

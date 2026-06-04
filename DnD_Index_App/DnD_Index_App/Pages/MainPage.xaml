@@ -13,10 +13,9 @@
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup>
-                            <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
+                            <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Direction" Value="Column" />
@@ -29,9 +28,9 @@
                                     <Setter Property="Padding" Value="35, 0" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Portrait">
+                            <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
+                                    <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Direction" Value="Row" />
@@ -42,6 +41,7 @@
                                     <Setter Property="JustifyContent" Value="SpaceEvenly" />
                                     <!--<Setter Property="HorizontalOptions" Value="Fill" />-->
                                     <Setter Property="VerticalOptions" Value="Fill" />
+                                    <Setter Property="AlignItems" Value="Center" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -53,9 +53,9 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
+                            <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="2" />
@@ -65,9 +65,9 @@
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Portrait">
+                            <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
+                                    <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="1" />
@@ -86,9 +86,9 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
+                            <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
@@ -98,9 +98,9 @@
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Portrait">
+                            <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
+                                    <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
@@ -119,24 +119,26 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Text" Value="Spells" />
-                                    <Setter Property="HeightRequest" Value="90" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Text" Value="Spells" />
+                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
                                     <Setter Property="ImageSource" Value="cleric_symbol.png" />
                                     <Setter Property="Text" Value="" />
-                                    <Setter Property="HeightRequest" Value="256" />
-                                    <Setter Property="WidthRequest" Value="256" />
+                                    <Setter Property="HeightRequest" Value="192" />
+                                    <Setter Property="WidthRequest" Value="192" />
+                                    <Setter Property="Margin" Value="0,0,0,5" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -148,23 +150,24 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Text" Value="Classes" />
-                                    <Setter Property="HeightRequest" Value="90" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Text" Value="Classes" />
+                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
                                     <Setter Property="ImageSource" Value="paladin.png" />
-                                    <Setter Property="HeightRequest" Value="256" />
-                                    <Setter Property="WidthRequest" Value="256" />
+                                    <Setter Property="HeightRequest" Value="192" />
+                                    <Setter Property="WidthRequest" Value="192" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -176,24 +179,25 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Text" Value="Equipment" />
-                                    <Setter Property="HeightRequest" Value="90" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Text" Value="Equipment" />
+                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
                                     <Setter Property="ImageSource" Value="fighter_symbol.png" />
                                     <Setter Property="Text" Value="" />
-                                    <Setter Property="HeightRequest" Value="256" />
-                                    <Setter Property="WidthRequest" Value="256" />
+                                    <Setter Property="HeightRequest" Value="192" />
+                                    <Setter Property="WidthRequest" Value="192" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -205,24 +209,26 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="Text" Value="Rules" />
-                                    <Setter Property="HeightRequest" Value="90" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Text" Value="Rules" />
+                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="HeightRequest" Value="90" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
                                     <Setter Property="ImageSource" Value="scroll.png" />
                                     <Setter Property="Text" Value="" />
-                                    <Setter Property="HeightRequest" Value="256" />
-                                    <Setter Property="WidthRequest" Value="256" />
+                                    <Setter Property="HeightRequest" Value="192" />
+                                    <Setter Property="WidthRequest" Value="192" />
+                                    <Setter Property="Margin" Value="0,0,0,5" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -235,22 +241,23 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
-                                <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Property="RowDefinitions" Value="1.5*,0.5*,3*,0.5*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
-                                </VisualState.Setters>
-                            </VisualState>
                             <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="RowDefinitions" Value="*,*" />
+                                    <Setter Property="RowDefinitions" Value="1.5*,0.5*,3*,auto" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="RowDefinitions" Value="auto,*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
                                     <Setter Property="ColumnDefinitions" Value="*" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -263,9 +270,9 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
+                            <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="IsVisible" Value="True" />
@@ -275,9 +282,9 @@
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Portrait">
+                            <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
+                                    <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="IsVisible" Value="False" />
@@ -292,9 +299,9 @@
                     <VisualStateGroupList>
                         <VisualStateGroup>
                             <!-- Portrait Stack Orientation Style -->
-                            <VisualState x:Name="Landscape">
+                            <VisualState x:Name="Portrait">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Landscape" />
+                                    <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
@@ -303,9 +310,9 @@
 
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Portrait">
+                            <VisualState x:Name="Landscape">
                                 <VisualState.StateTriggers>
-                                    <OrientationStateTrigger Orientation="Portrait" />
+                                    <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
@@ -331,7 +338,7 @@
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="0.5*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -348,7 +355,7 @@
                         </Grid.ColumnDefinitions>
                         <Image 
                             Grid.Column="0"
-                            Margin="15 10 0"
+                            Margin="15, 10, 15, 0"
                             x:Name="SettingsBtn"
                             Source="settings_icon.png"
                             VerticalOptions="Start"
@@ -372,7 +379,8 @@
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BodyStyle}">
-                <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
+                <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" 
+                            AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
                     <Button
                         
                     x:Name="SpellsBtn"

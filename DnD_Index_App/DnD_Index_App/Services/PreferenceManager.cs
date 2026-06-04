@@ -18,6 +18,20 @@ namespace DnD_Index_App.Services
             "Dark Mode"
         };
 
+        public static List<int> ValidFontSizes = new List<int>() // List of valid font sizes
+        {
+            10,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            42
+        };
+
         /// <summary>
         /// Sets the name of the current theme in the app's preferences.
         /// </summary>
@@ -68,6 +82,15 @@ namespace DnD_Index_App.Services
             }
         }
 
+        public static int GetFontSize()
+        {
+            return Preferences.Get("BodyFontSize", 32);
+        }
+
+        public static void SetFontSize(int fontSize)
+        {
+            Preferences.Set("BodyFontSize", fontSize);
+        }
 
     }
 }

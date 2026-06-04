@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              x:Class="DnD_Index_App.Pages.SettingsPage"
-             x:DataType="pages:SettingsPage"
+            x:DataType="pages:SettingsPage"
              Shell.NavBarIsVisible="False"
              IsVisible="True"
              MaximumWidthRequest="403"
@@ -77,7 +77,7 @@
                         <Label Grid.Column="0"
                                Grid.Row="0"
                                Text="Game Version"
-                               FontSize="20"
+                               FontSize="{Binding BodyFontSize}"
                                TextColor="{DynamicResource CurrentTextColour}"
                                WidthRequest="152"
                                VerticalOptions="Center"
@@ -88,7 +88,7 @@
                         <Picker Grid.Column="1"
                                 Grid.Row="0"
                                 x:Name="GameVersionPicker"
-                                FontSize="16"
+                                FontSize="{Binding BodyFontSize}"
                                 HorizontalOptions="Center"
                                 SelectedIndex="0"
                                 TextColor="{DynamicResource CurrentTextColour}"
@@ -133,12 +133,12 @@
                         </Grid.RowDefinitions>
                             <Label Grid.Column="0"
                                    Grid.Row="0"
-                                Text="Dark Mode"
-                               FontSize="20"
-                               TextColor="{DynamicResource CurrentTextColour}"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"
-                               Padding="0 0 0 14"/>
+                                   Text="Dark Mode"
+                                   FontSize="{Binding BodyFontSize}"
+                                   TextColor="{DynamicResource CurrentTextColour}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   Padding="0 0 0 14"/>
 
                             <Switch Grid.Column="1"
                                     Grid.Row="0"
@@ -157,7 +157,7 @@
                             <Label Grid.Column="0"
                                    Grid.Row="1"
                                    Text="Themes"
-                                   FontSize="20"
+                                   FontSize="{Binding BodyFontSize}"
                                    TextColor="{DynamicResource CurrentTextColour}"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Start"
@@ -167,7 +167,7 @@
                             <Picker Grid.Column="1"
                                     Grid.Row="1"
                                     x:Name="AppThemePicker"
-                                    FontSize="16"
+                                    FontSize="{Binding BodyFontSize}"
                                     HorizontalOptions="Center"
                                     SelectedIndex="0"
                                     TextColor="{DynamicResource CurrentTextColour}"
@@ -213,8 +213,8 @@
 
                         <Label Grid.Column="0"
                                 Grid.Row="0"
-                            Text="Font Size (Headings)"
-                                FontSize="20"
+                                Text="Font Size (Headings)"
+                                FontSize="{Binding BodyFontSize}"
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
@@ -223,7 +223,7 @@
                         <Picker Grid.Column="1"
                                 Grid.Row="0"
                             x:Name="HeadingSizePicker"
-                                FontSize="16">
+                            FontSize="{Binding BodyFontSize}">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>20pt</x:String>
@@ -238,39 +238,34 @@
 
                         <Label Grid.Column="0"
                                 Grid.Row="1"
-                            Text="Font Size (Body)"
+                                Text="Font Size (Body)"
                                 FontSize="20"
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
                                 Padding="8 8 8 7"/>
 
-                        <Picker Grid.Column="1"
-                                    Grid.Row="1"
-                                x:Name="BodyTextSizePicker"
-                                    FontSize="16">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>14pt</x:String>
-                                    <x:String>16pt</x:String>
-                                    <x:String>20pt</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
+                        <Picker 
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            x:Name="BodyTextSizePicker"
+                            FontSize="{Binding BodyFontSize}"
+                            SelectedIndexChanged="OnSelectedIndexChanged">
                         </Picker>
 
                         <Label Grid.Column="0"
                                 Grid.Row="2"
                             Text="Colourblind Mode"
                                     TextColor="{DynamicResource CurrentTextColour}"
-                                    FontSize="20"
+                                    FontSize="{Binding BodyFontSize}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
                                     Padding="8 8 8 7"/>
 
                         <Picker Grid.Column="1"
-                                    Grid.Row="2"
+                                Grid.Row="2"
                                 x:Name="ColourblindModePicker"
-                                        FontSize="16">
+                                FontSize="{Binding BodyFontSize}">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>off</x:String>
@@ -306,16 +301,16 @@
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0"
                                Grid.Row="0"
-                            Text="Language"
-                                   FontSize="20"
-                                   TextColor="{DynamicResource CurrentTextColour}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Start"
-                                   Padding="0 0 0 14"/>
+                                Text="Language"
+                                FontSize="{Binding BodyFontSize}"
+                                TextColor="{DynamicResource CurrentTextColour}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                Padding="0 0 0 14"/>
                         <Picker Grid.Column="1"
                                 Grid.Row="0"
                                 x:Name="LanguagePicker"
-                                FontSize="16">
+                                FontSize="{Binding BodyFontSize}">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>English</x:String>
@@ -351,15 +346,15 @@
                                    Grid.Row="0"
                                    Text="App Version"
                                    TextColor="{DynamicResource CurrentTextColour}"
-                                   FontSize="20"
+                                   FontSize="{Binding BodyFontSize}"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Start"
                                    Padding="0 0 0 14"/>
                             <Label Grid.Column="1"
                                    Grid.Row="0"
-                                    Text="v0.0.0.1"
+                                   Text="v0.0.0.1"
                                    TextColor="{DynamicResource CurrentTextColour}"
-                                   FontSize="20"
+                                   FontSize="{Binding BodyFontSize}"
                                    VerticalOptions="Center"
                                    HorizontalOptions="End"
                                    HorizontalTextAlignment="End"

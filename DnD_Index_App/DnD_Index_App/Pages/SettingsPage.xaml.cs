@@ -12,12 +12,28 @@ public partial class SettingsPage : ContentPage
     //public string TextColour { get { return Preferences.Get("TextColour", "#FFFFFF"); } set; } = Preferences.Get("TextColour", "#FFFFFF");
     //public string TitleColour { get { return Preferences.Get("TitleColour", "#FFFFFF"); } set; } = Preferences.Get("TitleColour", "#FFFFFF");
     //public string NavColour { get { return Preferences.Get("NavColour", "#FFFFFF"); } set; } = Preferences.Get("NavColour", "#FFFFFF");
-
+    private int _bodyFontSize;
+    public int BodyFontSize
+    {
+        get 
+        {
+            return _bodyFontSize;
+        } 
+        set
+        {
+            if(PreferenceManager.ValidFontSizes.Contains(value))
+            {
+                _bodyFontSize = value;
+            }
+        }
+    
+    }
 
 	public SettingsPage()
 	{
 		InitializeComponent();
         PreferenceManager.UpdateResourceColours();
+        BodyTextSizePicker.ItemsSource = PreferenceManager.ValidFontSizes;
         LoadCurrentSettings();
     }
 
@@ -42,5 +58,13 @@ public partial class SettingsPage : ContentPage
     public void LoadCurrentSettings()
     {
         DarkModeSwitch.IsToggled = (PreferenceManager.GetCurrentTheme() == "Dark Mode") ? true : false;
+        BodyTextSizePicker.SelectedItem = PreferenceManager.GetFontSize();
+    }
+    private void OnSelectedIndexChanged(object sender, EventArgs e)
+    {
+        int selectedFontSize = (int)BodyTextSizePicker.SelectedItem;
+        PreferenceManager.SetFontSize(selectedFontSize);
+        BodyFontSize = selectedFontSize;
+        BodyTextSizePicker.FontSize = selectedFontSize;
     }
 }

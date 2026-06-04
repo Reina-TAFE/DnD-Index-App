@@ -14,5 +14,5 @@
 	<Color x:Key="CurrentH1Colour">#FFECB9</Color>
 	<Color x:Key="CurrentH2Colour">#EBEBEB</Color>
 	<Color x:Key="CurrentH3Colour">#EBEBEB</Color>
-	<Color x:Key="CurrentPageAccentColour">#EBEBEB</Color>
+    <Color x:Key="CurrentPageAccentColour">#EBEBEB</Color>
 </ResourceDictionary>
