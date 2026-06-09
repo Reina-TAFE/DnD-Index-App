@@ -29,7 +29,11 @@ namespace DnD_Index_App.Services
             32,
             36,
             40,
-            42
+            42,
+            48,
+            56,
+            64,
+            72
         };
 
         /// <summary>
@@ -82,15 +86,24 @@ namespace DnD_Index_App.Services
             }
         }
 
-        public static int GetFontSize()
+        public static int GetBodyFontSize()
         {
             return Preferences.Get("BodyFontSize", 32);
         }
 
-        public static void SetFontSize(int fontSize)
+        public static int GetHeadingFontSize()
+        {
+            return Preferences.Get("HeadingFontSize", 40);
+        }
+
+        public static void SetBodyFontSize(int fontSize)
         {
             Preferences.Set("BodyFontSize", fontSize);
         }
 
+        public static void SetHeadingFontSize(int fontSize)
+        {
+            Preferences.Set("HeadingFontSize", fontSize);
+        }
     }
 }

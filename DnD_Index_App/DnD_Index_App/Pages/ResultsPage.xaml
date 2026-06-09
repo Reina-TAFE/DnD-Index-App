@@ -5,7 +5,8 @@
              xmlns:vm="clr-namespace:DnD_Index_App.ViewModels"
              x:Class="DnD_Index_App.Pages.ResultsPage"
              x:DataType="local:ResultsPage"
-             Title="ResultsPage">
+             Title="ResultsPage"
+             BackgroundColor="{DynamicResource CurrentBackgroundColour}">
     <ContentView x:Name="ResultsPageWrapper" Content="{Binding ViewModel.PageContent.Content}">
 
     </ContentView>

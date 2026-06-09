@@ -7,7 +7,7 @@ namespace DnD_Index_App.Pages
 {
     public partial class MainPage : ContentPage
     {
-        public int? FontSize = PreferenceManager.GetFontSize();
+        public int? BodyFontSize = PreferenceManager.GetBodyFontSize();
         public MainPage()
         {
             InitializeComponent();

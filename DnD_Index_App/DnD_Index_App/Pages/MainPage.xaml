@@ -185,7 +185,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Equipment" />
-                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="FontSize" Value="{Binding BodyFontSize}" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -215,7 +215,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Rules" />
-                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="FontSize" Value="{Binding BodyFontSize}" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>

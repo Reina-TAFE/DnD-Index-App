@@ -189,7 +189,7 @@
             <!--Accessibility Settings Section-->
             <VerticalStackLayout Grid.Row="4">
                 <Label Text="Accessibility"
-                       FontSize="24"
+                       FontSize="{Binding HeadingFontSize}"
                        TextColor="White"
                        FontAttributes="Bold"
                        Padding="0 0 0 24"
@@ -223,14 +223,8 @@
                         <Picker Grid.Column="1"
                                 Grid.Row="0"
                             x:Name="HeadingSizePicker"
-                            FontSize="{Binding BodyFontSize}">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>20pt</x:String>
-                                    <x:String>24pt</x:String>
-                                    <x:String>32pt</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
+                            FontSize="{Binding BodyFontSize}"
+                            SelectedIndexChanged="HeadingFontSizeOnSelectedIndexChanged">
                         </Picker>
                         
 
@@ -250,7 +244,7 @@
                             Grid.Row="1"
                             x:Name="BodyTextSizePicker"
                             FontSize="{Binding BodyFontSize}"
-                            SelectedIndexChanged="OnSelectedIndexChanged">
+                            SelectedIndexChanged="BodyFontSizeOnSelectedIndexChanged">
                         </Picker>
 
                         <Label Grid.Column="0"

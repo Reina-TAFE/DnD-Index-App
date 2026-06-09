@@ -35,9 +35,64 @@ public partial class ResultsPageSectionViewModel : ContentView
         Content = sections;
     }
 
+    public string GetCssString()
+    {
+        string css = @"
+        *{
+            width: 100%;
+            font-family: 'Lucida Sans', Verdana, sans-serif;
+            font-size: " + PreferenceManager.GetBodyFontSize().ToString() + @";
+            color: " + (Application.Current.Resources["CurrentTextColour"] as Color)?.ToHex() + @";
+        }
+        body {
+            width: 100%;
+            background-color: " + (Application.Current.Resources["CurrentSectionColour"] as Color)?.ToHex() + @";
+        }
+        p {
+            font-size: " + PreferenceManager.GetBodyFontSize().ToString() + @";
+            color: " + (Application.Current.Resources["CurrentTextColour"] as Color)?.ToHex() + @";
+        }
+        h1{
+            font-size: " + PreferenceManager.GetHeadingFontSize().ToString() + @";
+            color: " + (Application.Current.Resources["CurrentH1Colour"] as Color)?.ToHex() + @";
+            text-decoration: underline;
+            text-decoration-color: " + (Application.Current.Resources["CurrentPageAccentColour"] as Color)?.ToHex() + @";
+        }
+        h2{
+            font-size: " + PreferenceManager.GetHeadingFontSize().ToString() + @";
+            color: " + (Application.Current.Resources["CurrentH2Colour"] as Color)?.ToHex() + @";
+            text-decoration: underline;
+            text-decoration-color: " + (Application.Current.Resources["CurrentPageAccentColour"] as Color)?.ToHex() + @";
+        }
+        h3{
+            font-size: " + PreferenceManager.GetHeadingFontSize().ToString() + @";
+            color: " + (Application.Current.Resources["CurrentH3Colour"] as Color)?.ToHex() + @";
+            text-decoration: underline;
+            text-decoration-color: " + (Application.Current.Resources["CurrentPageAccentColour"] as Color)?.ToHex() + @";
+        }";
+        return css;
+    }
+
+    public string GetStyledHTML(string bodyHtml)
+    {
+        string css = GetCssString();
+        string html = @"
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <style>" + css + @"</style>
+</head>
+<body>
+    " + bodyHtml + @"
+</body>
+</html>";
+        return html;
+    }
+
     public VerticalStackLayout FormatSectionContent(SectionContent sectionContent)
     {
-        {
+        { 
             VerticalStackLayout contentLayout = new VerticalStackLayout();
             contentLayout.Spacing = 5;
             //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
@@ -243,14 +298,17 @@ public partial class ResultsPageSectionViewModel : ContentView
 
                                         string rawMarkdownText = kvp.Value;
                                         string htmlMarkDownText = Markdown.ToHtml(rawMarkdownText);
+                                        string styledHtmlText = GetStyledHTML(htmlMarkDownText);
                                         WebView markdownView = new WebView
                                         {
                                             Source = new HtmlWebViewSource()
                                             {
-                                                Html = htmlMarkDownText
+                                                Html = styledHtmlText
                                             },
-                                            WidthRequest = 300,
-                                            HeightRequest = 700,
+                                            HorizontalOptions = LayoutOptions.Fill,
+                                            VerticalOptions = LayoutOptions.Fill,
+                                            WidthRequest = 600,
+                                            HeightRequest = 800,
                                         };
                                         contentLayout.Add(markdownView);
                                     }

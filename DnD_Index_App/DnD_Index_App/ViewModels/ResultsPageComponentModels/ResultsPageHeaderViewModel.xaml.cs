@@ -1,4 +1,5 @@
 using DnD_Index_App.Models.UI;
+using DnD_Index_App.Services;
 
 namespace DnD_Index_App.ViewModels.ResultsPageComponentModels;
 
@@ -30,19 +31,22 @@ public partial class ResultsPageHeaderViewModel : ContentView
         Label TitleLabel = new Label
         {
             Text = HeaderTitle,
-            FontSize = 24,
+            FontSize = PreferenceManager.GetHeadingFontSize(),
             FontAttributes = FontAttributes.Bold,
             HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center
+            VerticalOptions = LayoutOptions.Center,
+            TextColor = Application.Current.Resources["CurrentTitleColour"] as Color
         };
         Label SubtitleLabel = new Label
         {
             Text = HeaderSubtitle,
             FontSize = 18,
             HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center
+            VerticalOptions = LayoutOptions.Center,
+            TextColor = Application.Current.Resources["CurrentTextColour"] as Color
         };
-        BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
+        BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = Application.Current.Resources["CurrentPageAccentColour"] as Color,
+            HorizontalOptions = LayoutOptions.Fill };
         HeaderGrid.Add(TitleLabel, 0, 0);
         HeaderGrid.Add(HeaderIcon, 1, 0);
         HeaderGrid.AddWithSpan(seperator, 1, 0, 1, 2);
