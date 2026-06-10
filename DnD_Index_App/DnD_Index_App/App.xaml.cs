@@ -11,6 +11,9 @@ namespace DnD_Index_App
     {
         private static List<SearchCategory> _spellLevelList = default!;
 
+        public static double ScreenWidth { get; set; }
+        public static double ScreenHeight { get; set; }
+
 
         public static List<SearchCategory> GetSpellLevelList()
         {
@@ -84,13 +87,32 @@ namespace DnD_Index_App
             };
             return pageOptions[page];
         }
-           
 
+        public static void DetectDisplaySize()
+        {
+            // Retrieve metrics of the primary screen
+            var mainDisplay = DeviceDisplay.Current.MainDisplayInfo;
+
+            // Convert raw physical pixels to platform-independent units
+            ScreenWidth = mainDisplay.Width / mainDisplay.Density;
+            ScreenHeight = mainDisplay.Height / mainDisplay.Density;
+        }
+
+        public static int GetScreenWidth()
+        {
+            return (int)ScreenWidth;
+        }
+
+        public static int GetScreenHeight()
+        {
+            return (int)ScreenHeight;
+        }
 
         public App()
         {
             InitializeComponent();
             PreferenceManager.UpdateResourceColours();
+            DetectDisplaySize();
 
         }
 
