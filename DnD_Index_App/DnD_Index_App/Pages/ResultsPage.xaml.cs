@@ -37,4 +37,9 @@ public partial class ResultsPage : ContentPage
         vm.PageContent.Content.Parent = null;
         ResultsPageWrapper.Content = vm.PageContent.Content;
     }
+
+    private async void BackBtn_Tapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
+    }
 }

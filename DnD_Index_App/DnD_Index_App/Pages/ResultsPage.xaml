@@ -7,7 +7,24 @@
              x:DataType="local:ResultsPage"
              Title="ResultsPage"
              BackgroundColor="{DynamicResource CurrentBackgroundColour}">
+    <VerticalStackLayout>
+    <Image 
+    FlexLayout.Basis="40"
+    FlexLayout.AlignSelf="Center"
+    Margin="10 0 5 5"
+    x:Name="BackBtn"
+    Source="arrow_left.png"
+    VerticalOptions="Start"
+    HorizontalOptions="Start"
+    BackgroundColor="{DynamicResource CurrentBackgroundColour}">
+        <Image.GestureRecognizers>
+            <TapGestureRecognizer
+                    Tapped="BackBtn_Tapped"
+                    NumberOfTapsRequired="1"/>
+        </Image.GestureRecognizers>
+    </Image>
     <ContentView x:Name="ResultsPageWrapper" Content="{Binding ViewModel.PageContent.Content}">
 
     </ContentView>
+    </VerticalStackLayout>
 </ContentPage>
