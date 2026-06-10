@@ -42,7 +42,7 @@ public partial class ResultsPageSectionViewModel : ContentView
             width: 100%;
             font-family: 'Lucida Sans', Verdana, sans-serif;
             font-size: " + PreferenceManager.GetBodyFontSize().ToString() + @";
-            color: " + (Application.Current.Resources["CurrentTextColour"] as Color)?.ToHex() + @";
+            color: " + (PreferenceManager.GetTextColour())?.ToHex() + @";
         }
         body {
             width: 100%;
@@ -50,7 +50,7 @@ public partial class ResultsPageSectionViewModel : ContentView
         }
         p {
             font-size: " + PreferenceManager.GetBodyFontSize().ToString() + @";
-            color: " + (Application.Current.Resources["CurrentTextColour"] as Color)?.ToHex() + @";
+            color: " + (PreferenceManager.GetTextColour())?.ToHex() + @";
         }
         h1{
             font-size: " + PreferenceManager.GetHeadingFontSize().ToString() + @";
@@ -80,7 +80,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
     <style>" + css + @"</style>
 </head>
 <body>
@@ -101,10 +101,11 @@ public partial class ResultsPageSectionViewModel : ContentView
                 if (item.SectionItemTitle != null)
                 {
 
-                    Label itemTitle = new Label() { Text = item.SectionItemTitle, FontAttributes = FontAttributes.Bold, VerticalTextAlignment = TextAlignment.End };
+                    Label itemTitle = new Label() { Text = item.SectionItemTitle, FontAttributes = FontAttributes.Bold, VerticalTextAlignment = TextAlignment.End, 
+                        FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                     //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
                     contentLayout.Add(itemTitle);
-                    contentLayout.Add(new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });
+                    contentLayout.Add(new BoxView() { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                 }
                 if (item.ItemType == "KeyValueList")
                 {
@@ -114,7 +115,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                         {
                             if (kvp.Value != string.Empty && kvp.Value != null)
                             {
-                                Label contentLabel = new Label { Text = $"{kvp.Key}: {kvp.Value}" };
+                                Label contentLabel = new Label { Text = $"{kvp.Key}: {kvp.Value}", FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                                 contentLayout.Add(contentLabel);
                             }
                         }
@@ -132,13 +133,13 @@ public partial class ResultsPageSectionViewModel : ContentView
                                 {
                                     if (kvp.Key == "text")
                                     {
-                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}:" };
+                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}:", FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                                         contentLayout.Add(contentLabel);
                                     }
                                     else
                                     {
-                                        Label contentLabelKey = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:", FontAttributes = FontAttributes.Bold };
-                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}" };
+                                        Label contentLabelKey = new Label { Text = $"{(kvp.Key != null ? kvp.Key : string.Empty)}:", FontAttributes = FontAttributes.Bold, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
+                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}", FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                                         contentLayout.Add(contentLabelKey);
                                         contentLayout.Add(contentLabel);
                                     }
@@ -146,7 +147,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                             }
                         }
                         //BoxView separator2 = ;
-                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });
+                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                     }
                 }
                 else if (item.ItemType == "CategoryList")
@@ -164,7 +165,8 @@ public partial class ResultsPageSectionViewModel : ContentView
                             HeightRequest = 65,
                             Padding = 5,
                             Margin = 5,
-
+                            TextColor = PreferenceManager.GetTextColour(),
+                            FontSize = PreferenceManager.GetBodyFontSize(),
                         };
                         TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer
                         {
@@ -192,92 +194,39 @@ public partial class ResultsPageSectionViewModel : ContentView
                 else if (item.ItemType == "LevelTable")
                 {
                     VerticalStackLayout levelTableGrid = new VerticalStackLayout();
-                    //{
-                    //	RowDefinitions = new RowDefinitionCollection
-                    //	{
-                    //                       new RowDefinition { Height = GridLength.Auto },
-                    //                       new RowDefinition { Height = GridLength.Auto },
-                    //                       new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //		new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    //	},
-                    //	ColumnDefinitions = new ColumnDefinitionCollection
-                    //	{
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //		new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    //	},
-                    //};
                     List<string>? TableHeaders = item?.ItemObjects[0] as List<string>;
                     HorizontalStackLayout HeaderRow = new HorizontalStackLayout();
                     foreach (string cell in TableHeaders)
                     {
-                        HeaderRow.Add(new Label { Text = cell });
+                        HeaderRow.Add(new Label { Text = cell, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
                     }
                     levelTableGrid.Add(HeaderRow);
                     List<string>? RowHeaders = item?.ItemObjects[1] as List<string>;
                     HorizontalStackLayout colTitleRow = new HorizontalStackLayout();
                     foreach (string cell in RowHeaders)
                     {
-                        colTitleRow.Add(new Label { Text = cell });
+                        colTitleRow.Add(new Label { Text = cell, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
                     }
                     levelTableGrid.Add(colTitleRow);
                     List<ClassLevelsModel>? levels = item?.ItemObjects[2] as List<ClassLevelsModel>;
-                    //Label ClassNameLabel = new Label { Text = TableHeaders[0] };
-                    //Label SpellSlotsLabel = new Label { Text = TableHeaders[1] };
-                    //levelTableGrid.Add(ClassNameLabel, 0, 0);
-                    //levelTableGrid.Add(ClassNameLabel, 13, 0);
-                    //int i = 0;
-                    //foreach (string header in RowHeaders) 
-                    //{ 
-                    //	levelTableGrid.Add(new Label { Text = header }, i, 1);
-                    //}
                     foreach (ClassLevelsModel level in levels)
                     {
                         HorizontalStackLayout row = new HorizontalStackLayout();
 
-                        row.Add(new Label { Text = level.Level.ToString() });
-                        row.Add(new Label { Text = level.AbilityScoreBonuses.ToString() });
-                        row.Add(new Label { Text = level.ProfBonus.ToString() });
-                        row.Add(new Label { Text = string.Join(", ", level.Features.Select(f => f != null ? f.Name : "")) });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.cantrips_known.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_1.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_2.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_3.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_4.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_5.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_6.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_7.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_8.ToString() : string.Empty });
-                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_9.ToString() : string.Empty });
+                        row.Add(new Label { Text = level.Level.ToString(), FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.AbilityScoreBonuses.ToString(), FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.ProfBonus.ToString(), FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = string.Join(", ", level.Features.Select(f => f != null ? f.Name : "")), FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.cantrips_known.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_1.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_2.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_3.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_4.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_5.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_6.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_7.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_8.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
+                        row.Add(new Label { Text = level.SpellSlotInfo != null ? level.SpellSlotInfo.spell_slots_level_9.ToString() : string.Empty, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
                         levelTableGrid.Add(row);
                     }
                     contentLayout.Add(levelTableGrid);
@@ -323,7 +272,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                             }
                         }
                         //BoxView separator2 = ;
-                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });
+                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                     }
                 }
 

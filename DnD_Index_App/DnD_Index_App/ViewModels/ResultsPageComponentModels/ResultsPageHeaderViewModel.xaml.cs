@@ -45,7 +45,7 @@ public partial class ResultsPageHeaderViewModel : ContentView
             VerticalOptions = LayoutOptions.Center,
             TextColor = Application.Current.Resources["CurrentTextColour"] as Color
         };
-        BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = Application.Current.Resources["CurrentPageAccentColour"] as Color,
+        BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(),
             HorizontalOptions = LayoutOptions.Fill };
         HeaderGrid.Add(TitleLabel, 0, 0);
         HeaderGrid.Add(HeaderIcon, 1, 0);
