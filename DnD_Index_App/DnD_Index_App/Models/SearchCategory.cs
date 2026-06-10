@@ -52,7 +52,7 @@ namespace DnD_Index_App.Models
             ResultType type = new ResultType();
 
             // determine of the of response based on number of slashes in the url.
-            if (url.Count(s => s == '/') == 6) // 6x '/': Result (e.g. 'https://www.dnd5eapi.co/api/2014/spells/acid-arrow' contains 6x '/') 
+            if (url.Count(s => s == '/') == 6 && url.Contains("/equipment-categories/") == false) // 6x '/': Result (e.g. 'https://www.dnd5eapi.co/api/2014/spells/acid-arrow' contains 6x '/') 
             {
                type.TypeName = "result";
                 if (url.Contains("/spells/")) { type.ResultClass = "spell"; } // check url for specfic category based on route
@@ -75,6 +75,11 @@ namespace DnD_Index_App.Models
             {
                 type.TypeName = "Category";
                 type.ResultClass = "SearchCategory"; // catagories get deserialized into new SearchCategory objects.
+            }
+            else if (url.Contains("/equipment-categories/") == true)
+            {
+                type.TypeName = "Category";
+                type.ResultClass = "EquipmentCategory";
             }
             else
             {
