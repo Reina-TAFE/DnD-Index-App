@@ -105,5 +105,15 @@ namespace DnD_Index_App.Services
         {
             Preferences.Set("HeadingFontSize", fontSize);
         }
+
+        public static Color? GetTextColour()
+        {
+            return Application.Current?.Resources["CurrentTextColour"] as Color;
+        }
+
+        public static Color? GetAccentColour()
+        {
+            return Application.Current?.Resources["CurrentPageAccentColour"] as Color;
+        }
     }
 }
