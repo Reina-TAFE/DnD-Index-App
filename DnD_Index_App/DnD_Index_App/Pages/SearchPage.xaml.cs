@@ -18,6 +18,8 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 	public List<SearchCategory> CategoryOptions { get; set; } = default!;
 	public String CategoryType { get; set; } = default!;
     public static ApiService Api = new ApiService();
+    public int HeadingFontSize = PreferenceManager.GetHeadingFontSize();
+    public int BodyFontSize = PreferenceManager.GetBodyFontSize();
     public SearchPage()
 	{
 		InitializeComponent();
@@ -29,16 +31,23 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 		{
 			PageName = (string)pageName;
 			PageNameLabel.Text = PageName;
+            PageNameLabel.FontSize = HeadingFontSize;
 		}
         if (query.TryGetValue("CategoryOptions", out var categoryOptions))
         {
             CategoryOptions = (List<SearchCategory>) categoryOptions;
 			SearchCategoriesCollection.ItemsSource = CategoryOptions;
+            //foreach (var element in SearchCategoriesCollection.GetVisualTreeDescendants())
+            //{
+            //    Button button = (Button)element;
+            //    button.FontSize = BodyFontSize;
+            //}
         }
 		if(query.TryGetValue("CategoryType", out var categoryType))
 		{
 			CategoryType = (string)categoryType;
 			CategoryTypeLabel.Text = CategoryType;
+            CategoryTypeLabel.FontSize = BodyFontSize;
 		}
     }
 
@@ -61,8 +70,17 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         {
             if(searchOption.ResultTypeInfo.TypeName == "Category") 
             {
-                CategoryListResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(searchOption);
-                CategoryList newSearchOptions = responseObj.ToModel();
+                CategoryList newSearchOptions = new CategoryList(null, null);
+                if (searchOption.ResultTypeInfo.ResultClass == "EquipmentCategory")
+                {
+                    EquipmentCategoryResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<EquipmentCategoryResponseModel>(searchOption);
+                    newSearchOptions = responseObj.ToModel();
+                }
+                else
+                {
+                    CategoryListResponseModel responseObj = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(searchOption);
+                    newSearchOptions = responseObj.ToModel();
+                }
                 ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
                     {
                         {"PageName", "Classes" },

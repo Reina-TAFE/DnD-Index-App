@@ -52,7 +52,7 @@
                         SemanticProperties.Description="Placeholder image for app icon" 
                         Margin="0 0 0 0"/>
                     <Label x:Name="PageNameLabel"
-                           WidthRequest="126"
+                           MinimumWidthRequest="126"
                            FontSize="32"
                            FontAttributes="Bold"
                            TextColor="White"
@@ -100,7 +100,8 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Button Text="{Binding Name}"
-                                    FontSize="32"
+                                    FontSize="22"
+                                    FontAutoScalingEnabled="True"
                                     BackgroundColor="{DynamicResource CurrentButtonColour}"
                                     TextColor="{DynamicResource CurrentButtonTextColour}"
                                     HorizontalOptions="Fill"
