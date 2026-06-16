@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
              x:Class="DnD_Index_App.Pages.SearchPage"
+             Shell.NavBarIsVisible="False"
              Title="Search"
              MaximumWidthRequest="403"
-             MaximumHeightRequest="914">
+             MaximumHeightRequest="914"
+             BackgroundColor="{DynamicResource CurrentBackgroundColour}">
 
     <Grid
         RowDefinitions="*, Auto">

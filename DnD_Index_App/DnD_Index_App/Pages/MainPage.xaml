@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DnD_Index_App.Pages.MainPage"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
+             
+             x:DataType="pages:MainPage"
              Shell.NavBarIsVisible="False"
              Title="Home Page"
              BackgroundColor="{DynamicResource CurrentBackgroundColour}">
@@ -19,8 +21,6 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Direction" Value="Column" />
-                                    <Setter Property="Grid.Row" Value="1" />
-                                    <Setter Property="Grid.Column" Value="0" />
                                     <Setter Property="JustifyContent" Value="SpaceBetween" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
@@ -34,12 +34,8 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Direction" Value="Row" />
-                                    <Setter Property="Grid.Row" Value="2" />
-                                    <Setter Property="Grid.RowSpan" Value="1" />
-                                    <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="4" />
                                     <Setter Property="JustifyContent" Value="SpaceEvenly" />
-                                    <!--<Setter Property="HorizontalOptions" Value="Fill" />-->
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                     <Setter Property="AlignItems" Value="Center" />
                                 </VisualState.Setters>
@@ -60,8 +56,9 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="2" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
+                                    <Setter Property="WidthRequest" Value="411" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -72,7 +69,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="1" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="Grid.ColumnSpan" Value="4" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
@@ -93,8 +90,9 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
+                                    <Setter Property="WidthRequest" Value="411" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -105,7 +103,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="Grid.ColumnSpan" Value="4" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
@@ -125,7 +123,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Spells" />
-                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="FontSize" Value="28" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -156,7 +154,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Classes" />
-                                    <Setter Property="FontSize" Value="{Binding FontSize}" />
+                                    <Setter Property="FontSize" Value="28" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -185,7 +183,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Equipment" />
-                                    <Setter Property="FontSize" Value="{Binding BodyFontSize}" />
+                                    <Setter Property="FontSize" Value="28" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -215,7 +213,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Rules" />
-                                    <Setter Property="FontSize" Value="{Binding BodyFontSize}" />
+                                    <Setter Property="FontSize" Value="28" />
                                     <Setter Property="HeightRequest" Value="90" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -246,9 +244,8 @@
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="RowDefinitions" Value="1.5*,0.5*,3*,auto" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                    <Setter Property="RowDefinitions" Value="auto,0.5*,3*,auto" />
+                                    <Setter Property="ColumnDefinitions" Value="auto" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -257,8 +254,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="RowDefinitions" Value="auto,*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
-                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                    <Setter Property="ColumnDefinitions" Value="*,*,*,*" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -278,8 +274,9 @@
                                     <Setter Property="IsVisible" Value="True" />
                                     <Setter Property="Grid.Row" Value="3" />
                                     <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="2" />
+                                    <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
+                                    <Setter Property="WidthRequest" Value="411" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -305,7 +302,7 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="Grid.Row" Value="0" />
-
+                                    
                                     <Setter Property="Grid.Column" Value="0" />
 
                                 </VisualState.Setters>
@@ -333,16 +330,7 @@
             HorizontalOptions="Fill" VerticalOptions="Fill">
         <ScrollView
             BackgroundColor="{DynamicResource CurrentBackgroundColour}" HorizontalOptions="Fill" VerticalOptions="Fill">
-            <Grid Style="{StaticResource GridStyle}" HorizontalOptions="Fill" VerticalOptions="Fill">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*" />
-                    <RowDefinition Height="0.5*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid Style="{StaticResource GridStyle}" HorizontalOptions="Fill" VerticalOptions="Fill" >
                 <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" Style="{StaticResource HeaderStyle}">
                     <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
                         <Grid.RowDefinitions>
@@ -375,7 +363,7 @@
                             Aspect="AspectFit"
                             HorizontalOptions="Center"
                             SemanticProperties.Description="Placeholder image for app icon" 
-                            Margin="45 0 35"/>
+                            Margin="5,35,0,10"/>
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BodyStyle}">
@@ -387,13 +375,13 @@
                     Style="{StaticResource SpellButtonStyle}"
                     Margin="0, 10, 0, 5"
                     Text="Spells"
-                    FontSize="32"
+                    FontSize="{Binding BodyFontSize}"
                     BorderWidth="2"
                     TextColor="{DynamicResource CurrentButtonTextColour}"                
                     BorderColor="#000000"
                     BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
+
                     HorizontalOptions="Fill"
                     HeightRequest="90">
                         <Button.GestureRecognizers>
@@ -415,7 +403,7 @@
                     BorderColor="#000000"
                     BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
+
                     HorizontalOptions="Fill"
                     HeightRequest="90" >
                         <Button.GestureRecognizers>
@@ -437,7 +425,7 @@
                     BorderColor="#000000"
                     BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
+
                     HorizontalOptions="Fill"
                     HeightRequest="90" >
                         <Button.GestureRecognizers>
@@ -459,7 +447,7 @@
                     BorderColor="#000000"
                     BackgroundColor="{DynamicResource CurrentButtonColour}"
                     SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
+
                     HorizontalOptions="Fill"
                     HeightRequest="90" >
                         <Button.GestureRecognizers>
@@ -506,7 +494,7 @@
                         Padding="10"
                         Opacity="65"                    
                         SemanticProperties.Hint="Counts the number of times you click"
-                        Clicked="OnCounterClicked"
+
                         HorizontalOptions="Fill"
                         VerticalOptions="End"                    
                         HeightRequest="90"
@@ -528,7 +516,7 @@
                         Padding="10"
                         Opacity="65"                    
                         SemanticProperties.Hint="Counts the number of times you click"
-                        Clicked="OnCounterClicked"
+
                         HorizontalOptions="Fill"
                         VerticalOptions="End"
                         HeightRequest="90" 
@@ -551,7 +539,7 @@
                         Padding="10"
                         Opacity="65"
                         SemanticProperties.Hint="Counts the number of times you click"
-                        Clicked="OnCounterClicked"
+
                         HorizontalOptions="Fill"
                         HeightRequest="90"
                         WidthRequest="100"/>
@@ -570,10 +558,10 @@
                         x:Name="NaveRulesBtn"
                         Source="scroll.png"
                         BackgroundColor="{DynamicResource CurrentNavColour}"
-                        Padding="15"
+                        Padding="10"
                         Opacity="65"                    
                         SemanticProperties.Hint="Counts the number of times you click"
-                        Clicked="OnCounterClicked"
+
                         HorizontalOptions="Fill"
                         HeightRequest="90"
                         WidthRequest="100"

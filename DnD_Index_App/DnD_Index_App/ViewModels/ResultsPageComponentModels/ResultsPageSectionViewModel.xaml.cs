@@ -95,6 +95,9 @@ public partial class ResultsPageSectionViewModel : ContentView
         { 
             VerticalStackLayout contentLayout = new VerticalStackLayout();
             contentLayout.Spacing = 5;
+            contentLayout.BackgroundColor = PreferenceManager.GetCurrentSectionColour();
+            contentLayout.Margin = 5;
+            contentLayout.Padding = 5;
             //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
             foreach (SectionItem item in sectionContent.Content)
             {
@@ -105,7 +108,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                         FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                     //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
                     contentLayout.Add(itemTitle);
-                    contentLayout.Add(new BoxView() { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
+                    contentLayout.Add(new BoxView() { HeightRequest = 3, Color = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                 }
                 if (item.ItemType == "KeyValueList")
                 {
@@ -133,7 +136,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                                 {
                                     if (kvp.Key == "text")
                                     {
-                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}:", FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
+                                        Label contentLabel = new Label { Text = $"{(kvp.Value != null ? kvp.Value : string.Empty)}", FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
                                         contentLayout.Add(contentLabel);
                                     }
                                     else
@@ -147,7 +150,7 @@ public partial class ResultsPageSectionViewModel : ContentView
                             }
                         }
                         //BoxView separator2 = ;
-                        contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
+                        contentLayout.Add(new BoxView { HeightRequest = 3, Color = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                     }
                 }
                 else if (item.ItemType == "CategoryList")
@@ -194,21 +197,21 @@ public partial class ResultsPageSectionViewModel : ContentView
                 else if (item.ItemType == "LevelTable")
                 {
                     VerticalStackLayout levelTableGrid = new VerticalStackLayout();
-                    List<string>? TableHeaders = item?.ItemObjects[0] as List<string>;
+                    List<string>? TableHeaders = item?.ItemObjects?[0] as List<string>;
                     HorizontalStackLayout HeaderRow = new HorizontalStackLayout();
                     foreach (string cell in TableHeaders)
                     {
                         HeaderRow.Add(new Label { Text = cell, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
                     }
                     levelTableGrid.Add(HeaderRow);
-                    List<string>? RowHeaders = item?.ItemObjects[1] as List<string>;
+                    List<string>? RowHeaders = item?.ItemObjects?[1] as List<string>;
                     HorizontalStackLayout colTitleRow = new HorizontalStackLayout();
                     foreach (string cell in RowHeaders)
                     {
                         colTitleRow.Add(new Label { Text = cell, FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() });
                     }
                     levelTableGrid.Add(colTitleRow);
-                    List<ClassLevelsModel>? levels = item?.ItemObjects[2] as List<ClassLevelsModel>;
+                    List<ClassLevelsModel>? levels = item?.ItemObjects?[2] as List<ClassLevelsModel>;
                     foreach (ClassLevelsModel level in levels)
                     {
                         HorizontalStackLayout row = new HorizontalStackLayout();

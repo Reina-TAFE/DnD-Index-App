@@ -12,6 +12,14 @@ public partial class SettingsPage : ContentPage
     //public string TextColour { get { return Preferences.Get("TextColour", "#FFFFFF"); } set; } = Preferences.Get("TextColour", "#FFFFFF");
     //public string TitleColour { get { return Preferences.Get("TitleColour", "#FFFFFF"); } set; } = Preferences.Get("TitleColour", "#FFFFFF");
     //public string NavColour { get { return Preferences.Get("NavColour", "#FFFFFF"); } set; } = Preferences.Get("NavColour", "#FFFFFF");
+    public List<string> Languages = new List<string>
+    {
+        "English",
+    };
+    public List<string> GameVersions = new List<string>
+    {
+        "5th Edition (2014)",
+    };
     private int _bodyFontSize;
 
     public int BodyFontSize
@@ -50,6 +58,9 @@ public partial class SettingsPage : ContentPage
 		InitializeComponent();
         PreferenceManager.UpdateResourceColours();
         BodyTextSizePicker.ItemsSource = PreferenceManager.ValidFontSizes;
+        HeadingSizePicker.ItemsSource = PreferenceManager.ValidFontSizes;
+        LanguagePicker.ItemsSource = Languages;
+        GameVersionPicker.ItemsSource = GameVersions;
         LoadCurrentSettings();
     }
 
@@ -75,6 +86,10 @@ public partial class SettingsPage : ContentPage
     {
         DarkModeSwitch.IsToggled = (PreferenceManager.GetCurrentTheme() == "Dark Mode") ? true : false;
         BodyTextSizePicker.SelectedItem = PreferenceManager.GetBodyFontSize();
+        HeadingSizePicker.SelectedItem = PreferenceManager.GetHeadingFontSize();
+        GameVersionPicker.SelectedIndex = 0;
+        LanguagePicker.SelectedIndex = 0;
+        GameVersionPicker.SelectedIndex = 0;
     }
     private void BodyFontSizeOnSelectedIndexChanged(object sender, EventArgs e)
     {

@@ -224,6 +224,8 @@
                                 Grid.Row="0"
                             x:Name="HeadingSizePicker"
                             FontSize="{Binding BodyFontSize}"
+                            TextColor="{DynamicResource CurrentTextColour}"
+                            VerticalTextAlignment="Center"
                             SelectedIndexChanged="HeadingFontSizeOnSelectedIndexChanged">
                         </Picker>
                         
@@ -233,7 +235,7 @@
                         <Label Grid.Column="0"
                                 Grid.Row="1"
                                 Text="Font Size (Body)"
-                                FontSize="20"
+                                FontSize="{Binding BodyFontSize}"
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
@@ -244,6 +246,8 @@
                             Grid.Row="1"
                             x:Name="BodyTextSizePicker"
                             FontSize="{Binding BodyFontSize}"
+                            VerticalTextAlignment="Center"
+                            TextColor="{DynamicResource CurrentTextColour}"
                             SelectedIndexChanged="BodyFontSizeOnSelectedIndexChanged">
                         </Picker>
 
@@ -259,6 +263,7 @@
                         <Picker Grid.Column="1"
                                 Grid.Row="2"
                                 x:Name="ColourblindModePicker"
+                                VerticalTextAlignment="Center"
                                 FontSize="{Binding BodyFontSize}">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">

@@ -27,6 +27,7 @@ public partial class ResultsPageHeaderViewModel : ContentView
                 new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
                 new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
             },
+            Padding = 5,
         };
         Label TitleLabel = new Label
         {
@@ -35,7 +36,7 @@ public partial class ResultsPageHeaderViewModel : ContentView
             FontAttributes = FontAttributes.Bold,
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
-            TextColor = Application.Current.Resources["CurrentTitleColour"] as Color
+            TextColor = PreferenceManager.GetCurrentTitleColour()
         };
         Label SubtitleLabel = new Label
         {
@@ -43,13 +44,16 @@ public partial class ResultsPageHeaderViewModel : ContentView
             FontSize = 18,
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
-            TextColor = Application.Current.Resources["CurrentTextColour"] as Color
+            TextColor = PreferenceManager.GetTextColour()
         };
-        BoxView seperator = new BoxView() { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(),
-            HorizontalOptions = LayoutOptions.Fill };
         HeaderGrid.Add(TitleLabel, 0, 0);
         HeaderGrid.Add(HeaderIcon, 1, 0);
-        HeaderGrid.AddWithSpan(seperator, 1, 0, 1, 2);
+        HeaderGrid.AddWithSpan(new BoxView()
+        {
+            HeightRequest = 3,
+            Color = PreferenceManager.GetAccentColour(),
+            HorizontalOptions = LayoutOptions.Fill
+        }, 1, 0, 1, 2);
         HeaderGrid.Add(SubtitleLabel, 0, 2);
         Content = HeaderGrid;
     }

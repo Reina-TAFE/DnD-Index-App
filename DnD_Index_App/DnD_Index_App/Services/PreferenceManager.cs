@@ -66,24 +66,36 @@ namespace DnD_Index_App.Services
             string currentTheme = Preferences.Get("CurrentTheme", "Light Mode");
             if (currentTheme == "Light Mode") // update current element colours to light mode colours
             {
-                Application.Current.Resources["CurrentBackgroundColour"] = Application.Current.Resources["LightBackground"];
-                Application.Current.Resources["CurrentSectionColour"] = Application.Current.Resources["LightSection"];
-                Application.Current.Resources["CurrentButtonColour"] = Application.Current.Resources["LightButton"];
-                Application.Current.Resources["CurrentButtonTextColour"] = Application.Current.Resources["LightButtonText"];
-                Application.Current.Resources["CurrentTextColour"] = Application.Current.Resources["LightText"];
-                Application.Current.Resources["CurrentTitleColour"] = Application.Current.Resources["LightTitle"];
-                Application.Current.Resources["CurrentNavColour"] = Application.Current.Resources["LightNav"];
+                Application.Current?.Resources["CurrentBackgroundColour"] = Application.Current.Resources["LightBackground"];
+                Application.Current?.Resources["CurrentSectionColour"] = Application.Current.Resources["LightSection"];
+                Application.Current?.Resources["CurrentButtonColour"] = Application.Current.Resources["LightButton"];
+                Application.Current?.Resources["CurrentButtonTextColour"] = Application.Current.Resources["LightButtonText"];
+                Application.Current?.Resources["CurrentTextColour"]  = Application.Current.Resources["LightText"];
+                Application.Current?.Resources["CurrentTitleColour"] = Application.Current.Resources["LightTitle"];
+                Application.Current?.Resources["CurrentNavColour"] = Application.Current.Resources["LightNav"];
+                //Shell.SetBackgroundColor(Shell.Current, Application.Current?.Resources["LightBackground"] as Color);
             }
             else if (currentTheme == "Dark Mode") // update current element colours to dark mode colours
             {
-                Application.Current.Resources["CurrentBackgroundColour"] = Application.Current.Resources["DarkBackground"];
-                Application.Current.Resources["CurrentSectionColour"] = Application.Current.Resources["DarkSection"];
-                Application.Current.Resources["CurrentButtonColour"] = Application.Current.Resources["DarkButton"];
-                Application.Current.Resources["CurrentButtonTextColour"] = Application.Current.Resources["DarkButtonText"];
-                Application.Current.Resources["CurrentTextColour"] = Application.Current.Resources["DarkText"];
-                Application.Current.Resources["CurrentTitleColour"] = Application.Current.Resources["DarkTitle"];
-                Application.Current.Resources["CurrentNavColour"] = Application.Current.Resources["DarkNav"];
+                Application.Current?.Resources["CurrentBackgroundColour"] = Application.Current.Resources["DarkBackground"];
+                Application.Current?.Resources["CurrentSectionColour"] = Application.Current.Resources["DarkSection"];
+                Application.Current?.Resources["CurrentButtonColour"] = Application.Current.Resources["DarkButton"];
+                Application.Current?.Resources["CurrentButtonTextColour"] = Application.Current.Resources["DarkButtonText"];
+                Application.Current?.Resources["CurrentTextColour"] = Application.Current.Resources["DarkText"];
+                Application.Current?.Resources["CurrentTitleColour"] = Application.Current.Resources["DarkTitle"];
+                Application.Current?.Resources["CurrentNavColour"] = Application.Current.Resources["DarkNav"];
+                //Shell.SetBackgroundColor(Shell.Current, Application.Current?.Resources["DarkBackground"] as Color);
             }
+        }
+
+        public static Color? GetCurrentSectionColour()
+        {
+            return Application.Current?.Resources["CurrentSectionColour"] as Color;
+        }
+
+        public static Color? GetCurrentTitleColour()
+        {
+            return Application.Current?.Resources["CurrentTitleColour"] as Color;
         }
 
         public static int GetBodyFontSize()
@@ -109,6 +121,11 @@ namespace DnD_Index_App.Services
         public static Color? GetTextColour()
         {
             return Application.Current?.Resources["CurrentTextColour"] as Color;
+        }
+
+        public static Color? GetCurrentBackgroundColour()
+        {
+            return Application.Current?.Resources["CurrentBackgroundColour"] as Color;
         }
 
         public static Color? GetAccentColour()

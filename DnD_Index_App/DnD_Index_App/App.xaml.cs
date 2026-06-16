@@ -113,7 +113,6 @@ namespace DnD_Index_App
             InitializeComponent();
             PreferenceManager.UpdateResourceColours();
             DetectDisplaySize();
-
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
