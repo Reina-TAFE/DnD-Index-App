@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DnD_Index_App.Pages.MainPage"
              xmlns:pages="clr-namespace:DnD_Index_App.Pages"
-             
+            
              x:DataType="pages:MainPage"
              Shell.NavBarIsVisible="False"
              Title="Home Page"
@@ -20,6 +20,9 @@
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="1" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="Direction" Value="Column" />
                                     <Setter Property="JustifyContent" Value="SpaceBetween" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
@@ -33,6 +36,9 @@
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="1" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="4" />
                                     <Setter Property="Direction" Value="Row" />
                                     <Setter Property="JustifyContent" Value="SpaceEvenly" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
@@ -54,11 +60,8 @@
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="Grid.Row" Value="2" />
-                                    <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="0" />
+
                                     <Setter Property="HorizontalOptions" Value="Fill" />
-                                    <Setter Property="WidthRequest" Value="411" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -67,9 +70,7 @@
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="Grid.Row" Value="1" />
-                                    <Setter Property="Grid.Column" Value="0" />
-                                    <Setter Property="Grid.ColumnSpan" Value="4" />
+
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
@@ -92,7 +93,6 @@
                                     <Setter Property="Grid.Column" Value="0" />
                                     <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
-                                    <Setter Property="WidthRequest" Value="411" />
                                     <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -124,7 +124,10 @@
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Spells" />
                                     <Setter Property="FontSize" Value="28" />
+                                    <Setter Property="MaximumHeightRequest" Value="90" />
                                     <Setter Property="HeightRequest" Value="90" />
+                                    <Setter Property="MinimumHeightRequest" Value="80" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -155,7 +158,10 @@
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Classes" />
                                     <Setter Property="FontSize" Value="28" />
+                                    <Setter Property="MaximumHeightRequest" Value="90" />
                                     <Setter Property="HeightRequest" Value="90" />
+                                    <Setter Property="MinimumHeightRequest" Value="80" />
+                                    <Setter Property="VerticalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -163,6 +169,7 @@
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Text" Value="" />
                                     <Setter Property="ImageSource" Value="paladin.png" />
                                     <Setter Property="HeightRequest" Value="192" />
                                     <Setter Property="WidthRequest" Value="192" />
@@ -184,7 +191,9 @@
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Equipment" />
                                     <Setter Property="FontSize" Value="28" />
+                                    <Setter Property="MaximumHeightRequest" Value="90" />
                                     <Setter Property="HeightRequest" Value="90" />
+                                    <Setter Property="MinimumHeightRequest" Value="80" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -214,7 +223,9 @@
                                 <VisualState.Setters>
                                     <Setter Property="Text" Value="Rules" />
                                     <Setter Property="FontSize" Value="28" />
+                                    <Setter Property="MaximumHeightRequest" Value="90" />
                                     <Setter Property="HeightRequest" Value="90" />
+                                    <Setter Property="MinimumHeightRequest" Value="80" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -244,8 +255,9 @@
                                     <OrientationStateTrigger Orientation="Portrait" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="RowDefinitions" Value="auto,0.5*,3*,auto" />
-                                    <Setter Property="ColumnDefinitions" Value="auto" />
+                                    <Setter Property="RowDefinitions" Value="auto,3*" />
+                                    <Setter Property="ColumnDefinitions" Value="*" />
+                                    <Setter Property="HorizontalOptions" Value="Fill" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -276,7 +288,7 @@
                                     <Setter Property="Grid.Column" Value="0" />
                                     <Setter Property="Grid.ColumnSpan" Value="0" />
                                     <Setter Property="HorizontalOptions" Value="Fill" />
-                                    <Setter Property="WidthRequest" Value="411" />
+                                    <Setter Property="MaximumWidthRequest" Value="411" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -305,6 +317,7 @@
                                     
                                     <Setter Property="Grid.Column" Value="0" />
 
+
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Landscape">
@@ -322,255 +335,292 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style TargetType="Image" x:Key="LogoImageStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <!-- Portrait Stack Orientation Style -->
+                            <VisualState x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="WidthRequest" Value="256" />
+                                    <Setter Property="HeightRequest" Value="256" />
+                                    <Setter Property="HorizontalOptions" Value="Center" />
+                                    <Setter Property="Grid.Row" Value="0" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                                    
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="WidthRequest" Value="128" />
+                                    <Setter Property="HeightRequest" Value="128" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Border 
-        StrokeThickness="0"
-            StrokeShape="RoundRectangle 15"
-            HorizontalOptions="Fill" VerticalOptions="Fill">
-        <ScrollView
-            BackgroundColor="{DynamicResource CurrentBackgroundColour}" HorizontalOptions="Fill" VerticalOptions="Fill">
-            <Grid Style="{StaticResource GridStyle}" HorizontalOptions="Fill" VerticalOptions="Fill" >
-                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" Style="{StaticResource HeaderStyle}">
-                    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image 
-                            Grid.Column="0"
-                            Margin="15, 10, 15, 0"
-                            x:Name="SettingsBtn"
-                            Source="settings_icon.png"
-                            VerticalOptions="Start"
-                            HorizontalOptions="Start"
-                            BackgroundColor="{DynamicResource CurrentBackgroundColour}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Tapped="SettingsBtnTapped"
-                                    NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <Image
-                            Grid.Column="1"
-                            Source="app_logo_small.png"
-                            HeightRequest="128"
-                            WidthRequest="128"
-                            Aspect="AspectFit"
-                            HorizontalOptions="Center"
-                            SemanticProperties.Description="App logo" 
-                            Margin="5,35,0,10"/>
-                    </Grid>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" VerticalOptions="Fill" Style="{StaticResource BodyStyle}">
-                <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" 
-                            AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
-                    <Button
+    <Grid RowDefinitions="*,auto"  HorizontalOptions="Fill" VerticalOptions="Fill">
+        <Border 
+            Grid.Row="0"
+            StrokeThickness="0"
+                StrokeShape="RoundRectangle 15"
+                HorizontalOptions="Fill" VerticalOptions="Fill">
+            <ScrollView
+                BackgroundColor="{DynamicResource CurrentBackgroundColour}" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Grid Style="{StaticResource GridStyle}" HorizontalOptions="Fill" VerticalOptions="Fill" >
+                    <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" HorizontalOptions="Fill" Style="{StaticResource HeaderStyle}">
+                        <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image 
+                                Grid.Column="0"
+                                Margin="15, 10, 0, 0"
+                                x:Name="SettingsBtn"
+                                Source="settings_icon.png"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                BackgroundColor="{DynamicResource CurrentBackgroundColour}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="SettingsBtnTapped"
+                                        NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image
+                                Grid.Column="1"
+                                Source="app_logo_small.png"
+                                HeightRequest="256"
+                                WidthRequest="257"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Center"
+                                SemanticProperties.Description="App logo" 
+                                Margin="0,35,0,0"
+                                Style="{StaticResource LogoImageStyle}"/>
+                        </Grid>
+                    </Border>
+
+                        <FlexLayout Direction="Column"  HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                AlignItems="Center" JustifyContent="SpaceEvenly" Style="{StaticResource StackStyle}">
+                            <Button
                         
-                    x:Name="SpellsBtn"
-                    Style="{StaticResource SpellButtonStyle}"
-                    Margin="0, 10, 0, 5"
-                    Text="Spells"
-                    FontSize="{Binding BodyFontSize}"
-                    BorderWidth="2"
-                    TextColor="{DynamicResource CurrentButtonTextColour}"                
-                    BorderColor="#000000"
-                    BackgroundColor="{DynamicResource CurrentButtonColour}"
-                    SemanticProperties.Hint="Counts the number of times you click"
+                        x:Name="SpellsBtn"
+                        Style="{StaticResource SpellButtonStyle}"
+                        Margin="0, 10, 0, 5"
+                        Text="Spells"
+                        FontSize="32"
+                        BorderWidth="2"
+                        TextColor="{DynamicResource CurrentButtonTextColour}"                
+                        BorderColor="#000000"
+                        BackgroundColor="{DynamicResource CurrentButtonColour}"
+                        SemanticProperties.Hint="Counts the number of times you click"
 
-                    HorizontalOptions="Fill"
-                    HeightRequest="90">
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer
-                            Tapped="SearchBtn_Tapped"
-                            NumberOfTapsRequired="1"/>
-                        </Button.GestureRecognizers>
-                    </Button>
+                        HorizontalOptions="Fill"
+                        MaximumHeightRequest="90">
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                Tapped="SearchBtn_Tapped"
+                                NumberOfTapsRequired="1"/>
+                                </Button.GestureRecognizers>
+                            </Button>
 
-                    <Button
+                            <Button
                         
-                    x:Name="ClassesBtn"
-                    Style="{StaticResource ClassButtonStyle}"
-                    Margin="0, 0, 0, 5"
-                    Text="Classes" 
-                    FontSize="32"
-                    BorderWidth="2"
-                    TextColor="{DynamicResource CurrentButtonTextColour}"                
-                    BorderColor="#000000"
-                    BackgroundColor="{DynamicResource CurrentButtonColour}"
-                    SemanticProperties.Hint="Counts the number of times you click"
+                        x:Name="ClassesBtn"
+                        Style="{StaticResource ClassButtonStyle}"
+                        Margin="0, 0, 0, 5"
+                        Text="Classes" 
+                        FontSize="32"
+                        BorderWidth="2"
+                        TextColor="{DynamicResource CurrentButtonTextColour}"                
+                        BorderColor="#000000"
+                        BackgroundColor="{DynamicResource CurrentButtonColour}"
+                        SemanticProperties.Hint="Counts the number of times you click"
 
-                    HorizontalOptions="Fill"
-                    HeightRequest="90" >
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer
-                            Tapped="SearchBtn_Tapped"
-                            NumberOfTapsRequired="1"/>
-                        </Button.GestureRecognizers>
-                    </Button>
+                        HorizontalOptions="Fill"
+                        MaximumHeightRequest="90" >
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                Tapped="SearchBtn_Tapped"
+                                NumberOfTapsRequired="1"/>
+                                </Button.GestureRecognizers>
+                            </Button>
 
-                    <Button
+                            <Button
                         
-                    x:Name="EquipmentBtn"
-                    Style="{StaticResource EquipmentButtonStyle}"
-                    Margin="0, 0, 0, 5"
-                    Text="Equipment"
-                    FontSize="32"
-                    BorderWidth="2"
-                    TextColor="{DynamicResource CurrentButtonTextColour}"                
-                    BorderColor="#000000"
-                    BackgroundColor="{DynamicResource CurrentButtonColour}"
-                    SemanticProperties.Hint="Counts the number of times you click"
+                        x:Name="EquipmentBtn"
+                        Style="{StaticResource EquipmentButtonStyle}"
+                        Margin="0, 0, 0, 5"
+                        Text="Equipment"
+                        FontSize="32"
+                        BorderWidth="2"
+                        TextColor="{DynamicResource CurrentButtonTextColour}"                
+                        BorderColor="#000000"
+                        BackgroundColor="{DynamicResource CurrentButtonColour}"
+                        SemanticProperties.Hint="Counts the number of times you click"
 
-                    HorizontalOptions="Fill"
-                    HeightRequest="90" >
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer
-                            Tapped="SearchBtn_Tapped"
-                            NumberOfTapsRequired="1"/>
-                        </Button.GestureRecognizers>
-                    </Button>
+                        HorizontalOptions="Fill"
+                        MaximumHeightRequest="90" >
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                Tapped="SearchBtn_Tapped"
+                                NumberOfTapsRequired="1"/>
+                                </Button.GestureRecognizers>
+                            </Button>
 
-                    <Button
+                            <Button
                                         
-                    x:Name="RulesBtn"
-                    Style="{StaticResource RuleButtonStyle}"
-                    Margin="0, 0, 0, 10"
-                    Text="Rules" 
-                    FontSize="32"    
-                    BorderWidth="2"
-                    TextColor="{DynamicResource CurrentButtonTextColour}"                
-                    BorderColor="#000000"
-                    BackgroundColor="{DynamicResource CurrentButtonColour}"
-                    SemanticProperties.Hint="Counts the number of times you click"
-
-                    HorizontalOptions="Fill"
-                    HeightRequest="90" >
-                        <Button.GestureRecognizers>
-                            <TapGestureRecognizer
-                            Tapped="SearchBtn_Tapped"
-                            NumberOfTapsRequired="1"/>
-                        </Button.GestureRecognizers>
-                    </Button>
-                </FlexLayout>
-                </Border>
-                <Grid
-                    Grid.Row="3"
-                    BackgroundColor="#000000"
-                    HeightRequest="91"
-                    VerticalOptions="End"
-                    Style="{StaticResource NavGridStyle}"
-                    HorizontalOptions="Fill"
-                    >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!--<Border
-                        Grid.Column="0"
-                        VerticalOptions="End"                    
-                        HeightRequest="90"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 0,0,0,1"
-                        Stroke="#000000"
-                        BackgroundColor="#000000"
-                        Padding="0 0 1 0"> -->
-                    <ImageButton
-                    
-                        x:Name="NavSpellsBtn"
-                        Source="cleric_symbol.png"
-                        BackgroundColor="{DynamicResource CurrentNavColour}"
-                    
-                        Padding="10"
-                        Opacity="65"                    
+                        x:Name="RulesBtn"
+                        Style="{StaticResource RuleButtonStyle}"
+                        Margin="0, 0, 0, 10"
+                        Text="Rules" 
+                        FontSize="32"    
+                        BorderWidth="2"
+                        TextColor="{DynamicResource CurrentButtonTextColour}"                
+                        BorderColor="#000000"
+                        BackgroundColor="{DynamicResource CurrentButtonColour}"
                         SemanticProperties.Hint="Counts the number of times you click"
 
                         HorizontalOptions="Fill"
-                        VerticalOptions="End"                    
-                        HeightRequest="90"
-                        WidthRequest="100"/>
-                    <!--</Border> -->
-                    <!--<Border
-                        Grid.Column="1"
-                        VerticalOptions="End"                    
-                        HeightRequest="90"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 0,0,0,1"
-                        Stroke="#000000"
-                        BackgroundColor="#000000"> -->
-                    <ImageButton
-                        Grid.Column="1"
-                        x:Name="NavClassesBtn"
-                        Source="paladin.png"
-                        BackgroundColor="{DynamicResource CurrentNavColour}"                   
-                        Padding="10"
-                        Opacity="65"                    
-                        SemanticProperties.Hint="Counts the number of times you click"
+                        MaximumHeightRequest="90" >
+                                <Button.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                Tapped="SearchBtn_Tapped"
+                                NumberOfTapsRequired="1"/>
+                                </Button.GestureRecognizers>
+                            </Button>
+                        </FlexLayout>
 
-                        HorizontalOptions="Fill"
-                        VerticalOptions="End"
-                        HeightRequest="90" 
-                        WidthRequest="100"/>
-                    <!--</Border>-->
-                    <!--<Border
                     
-                        VerticalOptions="End"                    
-                        HeightRequest="90"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 0,0,0,1"
-                        Stroke="#000000"
-                        BackgroundColor="#000000"> -->
-
-                    <ImageButton
-                        Grid.Column="2"
-                        x:Name="NavEquipmentBtn"
-                        Source="fighter_symbol.png"
-                        BackgroundColor="{DynamicResource CurrentNavColour}"
-                        Padding="10"
-                        Opacity="65"
-                        SemanticProperties.Hint="Counts the number of times you click"
-
-                        HorizontalOptions="Fill"
-                        HeightRequest="90"
-                        WidthRequest="100"/>
-                    <!--</Border>-->
-
-                    <!--<Border
-                    
-                        VerticalOptions="End"                    
-                        HeightRequest="90"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 0,0,0,1"
-                        Stroke="#000000"
-                        BackgroundColor="#000000">-->
-                    <ImageButton
-                        Grid.Column="3"
-                        x:Name="NaveRulesBtn"
-                        Source="scroll.png"
-                        BackgroundColor="{DynamicResource CurrentNavColour}"
-                        Padding="10"
-                        Opacity="65"                    
-                        SemanticProperties.Hint="Counts the number of times you click"
-
-                        HorizontalOptions="Fill"
-                        HeightRequest="90"
-                        WidthRequest="100"
-                        />
-                    <!--</Border>-->
                 </Grid>
-            </Grid>
 
-        </ScrollView>
-    </Border>
+            </ScrollView>
+        </Border>
+        <Grid
+            Grid.Row="1"
+            BackgroundColor="#000000"
+            HeightRequest="91"
+            VerticalOptions="End"
+            Style="{StaticResource NavGridStyle}"
+            HorizontalOptions="Fill"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<Border
+        Grid.Column="0"
+        VerticalOptions="End"                    
+        HeightRequest="90"
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 0,0,0,1"
+        Stroke="#000000"
+        BackgroundColor="#000000"
+        Padding="0 0 1 0"> -->
+            <ImageButton
+
+        x:Name="NavSpellsBtn"
+        Source="cleric_symbol.png"
+        BackgroundColor="{DynamicResource CurrentNavColour}"
+
+        Padding="10"
+        Opacity="65"                    
+        SemanticProperties.Hint="Counts the number of times you click"
+
+        HorizontalOptions="Fill"
+        VerticalOptions="End"                    
+        HeightRequest="90"
+        WidthRequest="100"/>
+            <!--</Border> -->
+            <!--<Border
+        Grid.Column="1"
+        VerticalOptions="End"                    
+        HeightRequest="90"
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 0,0,0,1"
+        Stroke="#000000"
+        BackgroundColor="#000000"> -->
+            <ImageButton
+        Grid.Column="1"
+        x:Name="NavClassesBtn"
+        Source="paladin.png"
+        BackgroundColor="{DynamicResource CurrentNavColour}"                   
+        Padding="10"
+        Opacity="65"                    
+        SemanticProperties.Hint="Counts the number of times you click"
+
+        HorizontalOptions="Fill"
+        VerticalOptions="End"
+        HeightRequest="90" 
+        WidthRequest="100"/>
+            <!--</Border>-->
+            <!--<Border
+
+        VerticalOptions="End"                    
+        HeightRequest="90"
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 0,0,0,1"
+        Stroke="#000000"
+        BackgroundColor="#000000"> -->
+
+            <ImageButton
+        Grid.Column="2"
+        x:Name="NavEquipmentBtn"
+        Source="fighter_symbol.png"
+        BackgroundColor="{DynamicResource CurrentNavColour}"
+        Padding="10"
+        Opacity="65"
+        SemanticProperties.Hint="Counts the number of times you click"
+
+        HorizontalOptions="Fill"
+        HeightRequest="90"
+        WidthRequest="100"/>
+            <!--</Border>-->
+
+            <!--<Border
+
+        VerticalOptions="End"                    
+        HeightRequest="90"
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 0,0,0,1"
+        Stroke="#000000"
+        BackgroundColor="#000000">-->
+            <ImageButton
+        Grid.Column="3"
+        x:Name="NaveRulesBtn"
+        Source="scroll.png"
+        BackgroundColor="{DynamicResource CurrentNavColour}"
+        Padding="10"
+        Opacity="65"                    
+        SemanticProperties.Hint="Counts the number of times you click"
+
+        HorizontalOptions="Fill"
+        HeightRequest="90"
+        WidthRequest="100"
+        />
+            <!--</Border>-->
+        </Grid>
+    </Grid>
 </ContentPage>
 
