@@ -357,9 +357,9 @@
                         </Image>
                         <Image
                             Grid.Column="1"
-                            Source="app_logo.png"
-                            HeightRequest="126"
-                            WidthRequest="126"
+                            Source="app_logo_small.png"
+                            HeightRequest="128"
+                            WidthRequest="128"
                             Aspect="AspectFit"
                             HorizontalOptions="Center"
                             SemanticProperties.Description="App logo" 
