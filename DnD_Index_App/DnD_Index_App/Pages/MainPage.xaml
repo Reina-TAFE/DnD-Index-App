@@ -357,12 +357,12 @@
                         </Image>
                         <Image
                             Grid.Column="1"
-                            Source="logo_placeholder.png"
+                            Source="app_logo.png"
                             HeightRequest="126"
                             WidthRequest="126"
                             Aspect="AspectFit"
                             HorizontalOptions="Center"
-                            SemanticProperties.Description="Placeholder image for app icon" 
+                            SemanticProperties.Description="App logo" 
                             Margin="5,35,0,10"/>
                     </Grid>
                 </Border>
