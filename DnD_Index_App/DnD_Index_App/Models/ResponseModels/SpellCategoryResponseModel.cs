@@ -9,7 +9,7 @@ namespace DnD_Index_App.Models.ResponseModels
     public class SpellCategoryResponseModel
     {
         public int count {  get; set; }
-        public List<Result> results { get; set; }
+        public List<CategoryResult> results { get; set; }
 
         public CategoryList ToModel()
         {
@@ -18,11 +18,11 @@ namespace DnD_Index_App.Models.ResponseModels
         }
     }
 
-    public class Result
-    {
-        public string index { get; set; }
-        public string name { get; set; }
-        public int level { get; set; }
-        public string url { get; set; }
-    }
+    //public class Result
+    //{
+    //    public string index { get; set; }
+    //    public string name { get; set; }
+    //    public int level { get; set; }
+    //    public string url { get; set; }
+    //}
 }

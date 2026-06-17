@@ -13,22 +13,22 @@ namespace DnD_Index_App.Models.UI
                     new ImageButton()
                     {
                         Source = "/Assets/Icons/spellbook.png",
-                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("SpellSearchPage"))) } },
+                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => await Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("SpellSearchPage"))) } },
                     },
                     new ImageButton()
                     {
                         Source = "/Assets/Icons/paladin.png",
-                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("ClassesSearchPage"))) } },
+                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => await Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("ClassesSearchPage"))) } },
                     },
                     new ImageButton()
                     {
                         Source = "/Assets/Icons/fighter_symbol.png",
-                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("EquipmentSearchPage"))) } },
+                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => await Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("EquipmentSearchPage"))) } },
                     },
                     new ImageButton()
                     {
                         Source = "/Assets/Icons/scroll.png",
-                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("RulesSearchPage"))) } },
+                        GestureRecognizers = { new TapGestureRecognizer() { Command = new Command(async () => await Shell.Current.GoToAsync("SearchPage", await App.PageQueryOptions("RulesSearchPage"))) } },
                     }
                 };
         } 

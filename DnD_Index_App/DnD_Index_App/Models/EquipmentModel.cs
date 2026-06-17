@@ -13,11 +13,6 @@ namespace DnD_Index_App.Models
 {
     public class EquipmentModel : ApiObjectInfo
     {
-        [JsonPropertyName("index")]
-        public string? Index { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
 
         [JsonPropertyName("equipment_category")]
         public ApiObjectInfo? EquipmentCategory { get; set; }
@@ -33,9 +28,6 @@ namespace DnD_Index_App.Models
 
         [JsonPropertyName("weight")]
         public int? Weight { get; set; }
-
-        [JsonPropertyName("url")]
-        public string? Url { get; set; }
 
         [JsonPropertyName("updated_at")]
         public string? UpdatedAt { get; set; }
@@ -53,14 +45,11 @@ namespace DnD_Index_App.Models
             List<ApiObjectInfo>? properties)
             : base(index, name, url)
         {
-            Index = index;
-            Name = name;
             EquipmentCategory = equipmentCategory;
             GearCategory = gearCategory;
             Description = desc;
             Cost = cost;
             Weight = weight;
-            Url = url;
             UpdatedAt = updatedAt;
             Contents = contents;
             Properties = properties;
