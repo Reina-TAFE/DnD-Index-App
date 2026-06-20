@@ -43,6 +43,7 @@ public partial class ResultsPageSectionViewModel : ContentView
             font-family: 'Lucida Sans', Verdana, sans-serif;
             font-size: " + PreferenceManager.GetBodyFontSize().ToString() + @";
             color: " + (PreferenceManager.GetTextColour())?.ToHex() + @";
+            background-color: " + (Application.Current.Resources["CurrentSectionColour"] as Color)?.ToHex() + @";
         }
         body {
             width: 100%;
@@ -80,7 +81,7 @@ public partial class ResultsPageSectionViewModel : ContentView
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
     <style>" + css + @"</style>
 </head>
 <body>
@@ -96,8 +97,9 @@ public partial class ResultsPageSectionViewModel : ContentView
             VerticalStackLayout contentLayout = new VerticalStackLayout();
             contentLayout.Spacing = 5;
             contentLayout.BackgroundColor = PreferenceManager.GetCurrentSectionColour();
-            contentLayout.Margin = 5;
+            contentLayout.Margin = new Thickness(0, 5);
             contentLayout.Padding = 5;
+            contentLayout.HorizontalOptions = LayoutOptions.Fill;
             //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
             foreach (SectionItem item in sectionContent.Content)
             {
@@ -259,8 +261,8 @@ public partial class ResultsPageSectionViewModel : ContentView
                                             },
                                             HorizontalOptions = LayoutOptions.Fill,
                                             VerticalOptions = LayoutOptions.Fill,
-                                            WidthRequest = 600,
-                                            HeightRequest = 800,
+                                            //WidthRequest = 600,
+                                            //HeightRequest = 800,
                                         };
                                         contentLayout.Add(markdownView);
                                     }
