@@ -359,6 +359,9 @@
                                     <OrientationStateTrigger Orientation="Landscape" />
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                                    <Setter Property="HorizontalOptions" Value="Center" />
                                     <Setter Property="WidthRequest" Value="128" />
                                     <Setter Property="HeightRequest" Value="128" />
                                 </VisualState.Setters>
@@ -403,12 +406,13 @@
                                 </Image.GestureRecognizers>
                             </Image>
                             <Image
-                                Grid.Column="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                HorizontalOptions="Center"
                                 Source="app_logo_small.png"
                                 HeightRequest="256"
                                 WidthRequest="257"
                                 Aspect="AspectFit"
-                                HorizontalOptions="Center"
                                 SemanticProperties.Description="App logo" 
                                 Margin="0,35,0,0"
                                 Style="{StaticResource LogoImageStyle}"/>
