@@ -74,7 +74,7 @@ namespace DnD_Index_App.Models
             {
                 type.TypeName = "Category";
                 type.ResultClass = "SearchCategory"; // catagories get deserialized into new SearchCategory objects.
-                if (url.Contains("/spells/")) { type.PageType = "SpellsSearchPage"; }
+                if (url.Contains("/spells/") || url.Contains("/spells?level=")) { type.PageType = "SpellsSearchPage"; }
                 else if (url.Contains("/equipment-categories/")) { type.PageType = "EquipmentSearchPage"; }
                 else if (url.Contains("/rule-sections/")) { type.PageType = "RulesSearchPage"; }
                 else if (url.Contains("/subclasses/")) { type.PageType = "ClassesSearchPage"; }
