@@ -529,15 +529,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--<Border
-        Grid.Column="0"
-        VerticalOptions="End"                    
-        HeightRequest="90"
-        StrokeThickness="1"
-        StrokeShape="RoundRectangle 0,0,0,1"
-        Stroke="#000000"
-        BackgroundColor="#000000"
-        Padding="0 0 1 0"> -->
             <ImageButton
 
         x:Name="NavSpellsBtn"
@@ -551,75 +542,74 @@
         HorizontalOptions="Fill"
         VerticalOptions="End"                    
         HeightRequest="90"
-        WidthRequest="100"/>
-            <!--</Border> -->
-            <!--<Border
-        Grid.Column="1"
-        VerticalOptions="End"                    
-        HeightRequest="90"
-        StrokeThickness="1"
-        StrokeShape="RoundRectangle 0,0,0,1"
-        Stroke="#000000"
-        BackgroundColor="#000000"> -->
-            <ImageButton
-        Grid.Column="1"
-        x:Name="NavClassesBtn"
-        Source="paladin.png"
-        BackgroundColor="{DynamicResource CurrentNavColour}"                   
-        Padding="10"
-        Opacity="65"                    
-        SemanticProperties.Hint="Counts the number of times you click"
-
-        HorizontalOptions="Fill"
-        VerticalOptions="End"
-        HeightRequest="90" 
-        WidthRequest="100"/>
-            <!--</Border>-->
-            <!--<Border
-
-        VerticalOptions="End"                    
-        HeightRequest="90"
-        StrokeThickness="1"
-        StrokeShape="RoundRectangle 0,0,0,1"
-        Stroke="#000000"
-        BackgroundColor="#000000"> -->
-
-            <ImageButton
-        Grid.Column="2"
-        x:Name="NavEquipmentBtn"
-        Source="fighter_symbol.png"
-        BackgroundColor="{DynamicResource CurrentNavColour}"
-        Padding="10"
-        Opacity="65"
-        SemanticProperties.Hint="Counts the number of times you click"
-
-        HorizontalOptions="Fill"
-        HeightRequest="90"
-        WidthRequest="100"/>
-            <!--</Border>-->
-
-            <!--<Border
-
-        VerticalOptions="End"                    
-        HeightRequest="90"
-        StrokeThickness="1"
-        StrokeShape="RoundRectangle 0,0,0,1"
-        Stroke="#000000"
-        BackgroundColor="#000000">-->
-            <ImageButton
-        Grid.Column="3"
-        x:Name="NaveRulesBtn"
-        Source="scroll.png"
-        BackgroundColor="{DynamicResource CurrentNavColour}"
-        Padding="10"
-        Opacity="65"                    
-        SemanticProperties.Hint="Counts the number of times you click"
-
-        HorizontalOptions="Fill"
-        HeightRequest="90"
         WidthRequest="100"
-        />
-            <!--</Border>-->
+            >
+                <ImageButton.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="NavSearchBtn_Tapped"
+                            NumberOfTapsRequired="1"/>
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+
+            <ImageButton
+            Grid.Column="1"
+            x:Name="NavClassesBtn"
+            Source="paladin.png"
+            BackgroundColor="{DynamicResource CurrentNavColour}"                   
+            Padding="10"
+            Opacity="65"                    
+            SemanticProperties.Hint="Counts the number of times you click"
+
+            HorizontalOptions="Fill"
+            VerticalOptions="End"
+            HeightRequest="90" 
+            WidthRequest="100"
+            >
+                <ImageButton.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="NavSearchBtn_Tapped"
+                            NumberOfTapsRequired="1"/>
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+
+            <ImageButton
+            Grid.Column="2"
+            x:Name="NavEquipmentBtn"
+            Source="fighter_symbol.png"
+            BackgroundColor="{DynamicResource CurrentNavColour}"
+            Padding="10"
+            Opacity="65"
+            SemanticProperties.Hint="Counts the number of times you click"
+
+            HorizontalOptions="Fill"
+            HeightRequest="90"
+            WidthRequest="100"
+            >
+                <ImageButton.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="NavSearchBtn_Tapped"
+                            NumberOfTapsRequired="1"/>
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+
+            <ImageButton
+            Grid.Column="3"
+            x:Name="NavRulesBtn"
+            Source="scroll.png"
+            BackgroundColor="{DynamicResource CurrentNavColour}"
+            Padding="10"
+            Opacity="65"                    
+            SemanticProperties.Hint="Counts the number of times you click"
+            HorizontalOptions="Fill"
+            HeightRequest="90"
+            WidthRequest="100"
+            >
+                <ImageButton.GestureRecognizers>
+                    <TapGestureRecognizer
+                                    Tapped="NavSearchBtn_Tapped"
+                                    NumberOfTapsRequired="1"/>
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
         </Grid>
     </Grid>
 </ContentPage>
