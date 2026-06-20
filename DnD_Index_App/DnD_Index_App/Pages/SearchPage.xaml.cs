@@ -10,11 +10,13 @@ using System.Collections.Generic;
 namespace DnD_Index_App.Pages;
 
 [QueryProperty(nameof(PageName), "PageName")]
+[QueryProperty(nameof(PageType), "PageType")]
 [QueryProperty(nameof(CategoryOptions), "CategoryOptions")]
 [QueryProperty(nameof(CategoryType), "CategoryType")]
 public partial class SearchPage : ContentPage, IQueryAttributable
 {
 	public String PageName { get; set; } = default!;
+	public String PageType { get; set; } = default!;
 	public List<SearchCategory> CategoryOptions { get; set; } = default!;
 	public String CategoryType { get; set; } = default!;
     public static ApiService Api = new ApiService();
@@ -32,7 +34,27 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 			PageName = (string)pageName;
 			PageNameLabel.Text = PageName;
             PageNameLabel.FontSize = HeadingFontSize;
-		}
+        }
+        if(query.TryGetValue("PageType", out var pageType))
+        {
+            PageType = (string)pageType;
+            if (PageType == "SpellsSearchPage")
+            {
+                PageIcon.Source = ImageSource.FromFile("cleric_symbol.png");
+            }
+            else if (PageType == "ClassesSearchPage")
+            {
+                PageIcon.Source = ImageSource.FromFile("paladin.png");
+            }
+            else if (PageType == "EquipmentSearchPage")
+            {
+                PageIcon.Source = ImageSource.FromFile("fighter_symbol.png");
+            }
+            else if (PageType == "RulesSearchPage")
+            {
+                PageIcon.Source = ImageSource.FromFile("scroll.png");
+            }
+        }
         if (query.TryGetValue("CategoryOptions", out var categoryOptions))
         {
             CategoryOptions = (List<SearchCategory>) categoryOptions;
@@ -62,6 +84,29 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         await Shell.Current.GoToAsync("//MainPage");
     }
 
+    private async void NavSearchBtn_Tapped(object sender, TappedEventArgs e)
+    {
+        ImageButton searchPageOption = (ImageButton)sender;
+        IDictionary<string, object> queryOptions = new Dictionary<string, object>();
+        if (searchPageOption.StyleId == "NavSpellsBtn")
+        {
+            queryOptions = await App.PageQueryOptions("SpellSearchPage");
+        }
+        else if (searchPageOption.StyleId == "NavClassesBtn")
+        {
+            queryOptions = await App.PageQueryOptions("ClassesSearchPage");
+        }
+        else if (searchPageOption.StyleId == "NavEquipmentBtn")
+        {
+            queryOptions = await App.PageQueryOptions("EquipmentSearchPage");
+        }
+        else if (searchPageOption.StyleId == "NavRulesBtn")
+        {
+            queryOptions = await App.PageQueryOptions("RulesSearchPage");
+        }
+        await Shell.Current.GoToAsync("SearchPage", queryOptions);
+    }
+
     private async void SearchOption_Tapped(object sender, TappedEventArgs e)
     {
 		Button button = (Button)sender;
@@ -83,8 +128,9 @@ public partial class SearchPage : ContentPage, IQueryAttributable
                 }
                 ShellNavigationQueryParameters queryOptions = new ShellNavigationQueryParameters
                     {
-                        {"PageName", "Classes" },
-                        {"CategoryType", "Class Types" },
+                        {"PageName", $"{searchOption.CategoryName.ToString()}" },
+                        {"PageType", $"{searchOption.ResultTypeInfo.PageType}" },
+                        {"CategoryType", searchOption.CategoryType != null ? searchOption.CategoryType.ToString() : "Options:" },
                         {"CategoryOptions", newSearchOptions.Categories},
                     };
                 MainThread.BeginInvokeOnMainThread(async () =>
