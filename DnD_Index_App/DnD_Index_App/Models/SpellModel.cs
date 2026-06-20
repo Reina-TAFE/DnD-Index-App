@@ -1,38 +1,41 @@
-﻿using System;
+﻿using DnD_Index_App.Models;
+using DnD_Index_App.Models.ResponseModels;
+using DnD_Index_App.Models.UI;
+using DnD_Index_App.ViewModels;
+using DnD_Index_App.ViewModels.ResultsPageComponentModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
-using DnD_Index_App.Models;
-using DnD_Index_App.Models.ResponseModels;
 
 namespace DnD_Index_App.Models
 {
     public class SpellModel : ApiObjectInfo
     {
-        public string? UpdatedAt { get; set; }
-        public List<string>? Description { get; set; }
-        public int? Level { get; set; }
-        public List<string>? HigherLevel { get; set; }
-        public ApiObjectInfo? School { get; set; }
-        public string? CastTime { get; set; }
-        public string? Range { get; set; }
-        public AreaOfEffect? AreaOfAffect { get; set; }
-        public string? Duration { get; set; }
-        public List<string>? Components { get; set; }
-        public string? Material { get; set; }
-        public bool? Ritual { get; set; }
-        public bool? Concentration { get; set; }
+        public string? UpdatedAt { get; set; } = null;
+        public List<string>? Description { get; set; } = null;
+        public int? Level { get; set; } = null;
+        public List<string>? HigherLevel { get; set; } = null;
+        public ApiObjectInfo? School { get; set; } = null;
+        public string? CastTime { get; set; } = null;
+        public string? Range { get; set; } = null;
+        public AreaOfEffect? AreaOfAffect { get; set; } = null;
+        public string? Duration { get; set; } = null;
+        public List<string>? Components { get; set; } = null;
+        public string? Materials { get; set; } = null;
+        public bool? Ritual { get; set; } = null;
+        public bool? Concentration { get; set; } = null;
         //public string? AttackType { get; set; }
-        public Damage? Damage { get; set; }
-        public Dc? Dc { get; set; }
-        public List<ApiObjectInfo>? Classes { get; set; }
-        public List<ApiObjectInfo>? SubClasses { get; set; }
+        public Damage? Damage { get; set; } = null;
+        public Dc? Dc { get; set; } = null;
+        public List<ApiObjectInfo>? Classes { get; set; } = null;
+        public List<ApiObjectInfo>? SubClasses { get; set; } = null;
 
 
 
         public SpellModel(string index, string name, string url, List<string> desc, int level, List<string> highLevel,
             ApiObjectInfo school, string castTime, string range, AreaOfEffect AoE, string duration, List<string> components,
-            string material, bool ritual, bool concentration, Damage damage, Dc dc, List<ApiObjectInfo> classes, List<ApiObjectInfo> subclasses)
+            string materials, bool ritual, bool concentration, Damage damage, Dc dc, List<ApiObjectInfo> classes, List<ApiObjectInfo> subclasses)
             : base(index, name, url)
         {
             Description = desc;
@@ -44,7 +47,7 @@ namespace DnD_Index_App.Models
             AreaOfAffect = AoE;
             Duration = duration;
             Components = components;
-            Material = material;
+            Materials = materials;
             Ritual = ritual;
             Concentration = concentration;
             Damage = damage;
@@ -52,7 +55,134 @@ namespace DnD_Index_App.Models
             Classes = classes;
             SubClasses = subclasses;
         }
+
+        public ResultsPageViewModel ToResultsPageViewModel()
+        {
+            ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, $"Level {Level} {School}");
+            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", GetSections());
+            return new ResultsPageViewModel(new ResultsPageHeaderViewModel(header), new ResultsPageSectionViewModel(body));
+        }
+
+        public (ResultsPageHeaderModel, ResultsPageSectionModel) ToResultsPageComponentModels()
+        {
+            ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, $"Level {Level} {School}");
+            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", GetSections());
+            return (header, body);
+        }
+
+        /// <summary>
+        /// Returns list of page sections. Each section contains a list of sub-sections (SectionItems), which contain each content group to be rendered on the page.
+        /// </summary>
+        /// <returns></returns>
+        public List<SectionContent> GetSections()
+        {
+            SectionContent requirementsSection = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
+            //SectionContent requirementsSection2 = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
+            SectionContent usageSection = this.GetUsageSection(); // Usage Section includes the following sub-sections: Description, Materials, Higher Level (if applicable)
+            List<SectionContent> sections = new List<SectionContent>();
+            sections.Add(requirementsSection);
+            //sections.Add( requirementsSection2 );
+            sections.Add(usageSection);
+
+            return sections;
+        }
+
+        /// <summary>
+        /// Formats SpellModel properties to a page section (SectionContent) representing the requirements section of the spell.
+        /// </summary>
+        /// <returns>A SectionContent object representing the requirements section of the spell.</returns>
+        public SectionContent GetRequirementsSection()
+        {
+            SectionContent section = new SectionContent
+            {
+                SectionTitle = "Requirements",
+                ContentType = "SpellRequirements",
+                Content = new List<SectionItem>
+                    {
+                        new SectionItem
+                        {
+                            SectionItemTitle = null,
+                            ItemType = "KeyValueList",
+                            ItemContent = new List<Dictionary<string, string?>>
+                            {
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "Level", (Level != null) ? Level.ToString() : string.Empty },
+                                        { "School", (School != null) ? School.Name : string.Empty },
+                                        { "Cast Time", CastTime ?? string.Empty },
+                                        { "Range", Range ?? string.Empty },
+                                        { "Duration", Duration ?? string.Empty },
+                                        { "Components", (Components != null) ? string.Join(", ", Components) : string.Empty },
+                                        { "Materials", Materials ?? string.Empty },
+                                        { "Ritual", (Ritual != null) ? Ritual.ToString() : string.Empty },
+                                        { "Concentration", (Concentration != null) ? Concentration.ToString() : string.Empty }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            };
+            return section;
+
+        }
+
+        /// <summary>
+        /// Formats SpellModel properties to a page section (SectionContent) representing the usage section of the spell.
+        /// </summary>
+        /// <returns>A SectionContent object representing the usage section of the spell.</returns>
+        public SectionContent GetUsageSection()
+        {
+            SectionContent section = new SectionContent
+            {
+                SectionTitle = "Usage",
+                ContentType = "SpellUsage",
+                Content = new List<SectionItem>
+                    {
+                        new SectionItem
+                        {
+                            SectionItemTitle = "Materials",
+                            ItemType = "text",
+                            ItemContent = new List<Dictionary<string, string?>>
+                            {
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "text", (Materials != null) ? Materials.ToString() : string.Empty }
+                                    }
+                                }
+                            }
+                        },
+                        new SectionItem
+                        {
+                            SectionItemTitle = "Description",
+                            ItemType = "text",
+                            ItemContent = new List<Dictionary<string, string?>>
+                            {
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "text", (Description?[0] != null) ? Description?[0]?.ToString() :string.Empty }
+                                    }
+                                },
+                                {
+                                    new Dictionary<string, string?>
+                                    {
+                                        { "At Higher Levels:", (HigherLevel != null && HigherLevel.Count > 0) ? $"{string.Join("\n", HigherLevel)}" : string.Empty }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            };
+            return section;
+
+        }
     }
+
+
+
+
 
     public class AreaOfEffect
     {

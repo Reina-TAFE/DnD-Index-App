@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DnD_Index_App.Models;
+using DnD_Index_App.Models.EquipmentModels;
+using DnD_Index_App.Models.UI;
+using DnD_Index_App.ViewModels;
+using DnD_Index_App.ViewModels.ResultsPageComponentModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using DnD_Index_App.Models;
-using DnD_Index_App.Models.EquipmentModels;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -10,11 +13,6 @@ namespace DnD_Index_App.Models
 {
     public class EquipmentModel : ApiObjectInfo
     {
-        [JsonPropertyName("index")]
-        public string? Index { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
 
         [JsonPropertyName("equipment_category")]
         public ApiObjectInfo? EquipmentCategory { get; set; }
@@ -30,9 +28,6 @@ namespace DnD_Index_App.Models
 
         [JsonPropertyName("weight")]
         public int? Weight { get; set; }
-
-        [JsonPropertyName("url")]
-        public string? Url { get; set; }
 
         [JsonPropertyName("updated_at")]
         public string? UpdatedAt { get; set; }
@@ -50,51 +45,60 @@ namespace DnD_Index_App.Models
             List<ApiObjectInfo>? properties)
             : base(index, name, url)
         {
-            Index = index;
-            Name = name;
             EquipmentCategory = equipmentCategory;
             GearCategory = gearCategory;
             Description = desc;
             Cost = cost;
             Weight = weight;
-            Url = url;
             UpdatedAt = updatedAt;
             Contents = contents;
             Properties = properties;
         }
+
+        public ResultsPageViewModel ToResultsPageViewModel()
+        {
+            ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, $"{EquipmentCategory?.Name}");
+            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", GetSections()); // GetInfoSection() 
+            return new ResultsPageViewModel(new ResultsPageHeaderViewModel(header), new ResultsPageSectionViewModel(body));
+        }
+
+        public List<SectionContent> GetSections()
+        {
+            List<SectionContent> sections = new List<SectionContent>();
+            SectionContent propertiesSection = GetPropertiesSection();
+            //SectionContent infoSection = GetInfoSection();
+            sections.Add(propertiesSection);
+            return sections;
+        }
+
+        public SectionContent GetPropertiesSection()
+        {
+            SectionContent section = new SectionContent
+            {
+                SectionTitle = "Properties",
+                ContentType = "standard",
+                Content = new List<SectionItem>
+                {
+                    new SectionItem
+                    {
+                        SectionItemTitle = "Item Attributes",
+                        ItemType = "KeyValueList",
+                        ItemContent = new List<Dictionary<string, string?>>
+                        {
+                            new Dictionary<string, string?>
+                            {
+                                { "Equipment Category", EquipmentCategory?.Name },
+                                { "Weight", Weight?.ToString() },
+                                { "Cost", Cost?.ToString() },
+                            }
+                        }
+                    },
+                }
+            };
+            return section;
+        }
     }
 
-    //    public static Type GetEquipmentModelFromResponse(HttpResponseMessage response)
-    //    {
-    //        string jsonString = response.Content.ReadAsStringAsync().Result;
-    //        var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonString);
-    //        if (dictionary != null && dictionary.TryGetValue("equipment_category", out object? categoryObj))
-    //        {
-    //            var categoryDict = categoryObj as JsonElement?;
-    //            if (categoryDict.HasValue && categoryDict.Value.TryGetProperty("index", out JsonElement indexElement))
-    //            {
-    //                string categoryIndex = indexElement.GetString() ?? "";
-    //                if (categoryIndex == "weapon")
-    //                {
-    //                    return typeof(WeaponModel);
-    //                }
-    //                else if (categoryIndex == "armor")
-    //                {
-    //                    return typeof(ArmourModel);
-    //                }
-    //                else if (categoryIndex == "mounts-and-vehicles")
-    //                {
-    //                    return typeof(VehicleModel);
-    //                }
-    //                else 
-    //                {
-    //                    return typeof(EquipmentModel);
-    //                }
-    //            }
-    //        }
-    //        return typeof(EquipmentModel);
-    //    }
-    //}
 
     public class Cost
     {
@@ -109,6 +113,4 @@ namespace DnD_Index_App.Models
             return $"{Quantity} {Unit}";
         }
     }
-
-
 }

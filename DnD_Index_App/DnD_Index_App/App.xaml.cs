@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using DnD_Index_App.Models;
+﻿using DnD_Index_App.Models;
+using DnD_Index_App.Models.ResponseModels;
 using DnD_Index_App.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls;
+using System.Collections.Generic;
 
 namespace DnD_Index_App
 {
@@ -9,44 +11,112 @@ namespace DnD_Index_App
     {
         private static List<SearchCategory> _spellLevelList = default!;
 
+        public static double ScreenWidth { get; set; }
+        public static double ScreenHeight { get; set; }
 
-        public static List<SearchCategory> SpellLevelList
+
+        public static List<SearchCategory> GetSpellLevelList()
         {
-            get
-            {
-                var levelList = from number in Enumerable.Range(1, 9) select new SearchCategory($"Level {number}", $"Spells", $"level={number}", $"/api/2014/spells?level={number}");
-                List<SearchCategory> SpellLevels = levelList.ToList();
-                SpellLevels.Insert(0, new SearchCategory("Cantrips", "Spells", "level=0", $"/api/2014/spells?level=0"));
-                _spellLevelList = SpellLevels;
-                return SpellLevels;
-            }
+            
+            var levelList = from number in Enumerable.Range(1, 9) select new SearchCategory($"Level {number}", $"Spells", $"level={number}", $"/api/2014/spells?level={number}");
+            List<SearchCategory> SpellLevels = levelList.ToList();
+            SpellLevels.Insert(0, new SearchCategory("Cantrips", "Spells", "level=0", $"/api/2014/spells?level=0"));
+            _spellLevelList = SpellLevels;
+            return SpellLevels;
+            
         }
 
-        public static Dictionary<String, Dictionary<string, object>> PageQueryOptions = new Dictionary<String, Dictionary<string, object>>
+        public static async Task<List<SearchCategory>> GetEquipmentCategoryList()
         {
-            {"SpellSearchPage", new Dictionary<string, object> {
-                {"PageName", "Spells" },
-                {"CategoryType", "Levels" },
-                {"CategoryOptions", SpellLevelList },}
-            },
-            {"ClassesSearchPage", new Dictionary<string, object> {
-                {"PageName", "Classes" },
-                {"CategoryType", "Class Types" },
-                {"CategoryOptions", SpellLevelList},}
-            },
-            {"EquipmentSearchPage", new Dictionary<string, object> {
-                {"PageName", "Equipment" },
-                {"CategoryType", "Equipment Types" },
-                {"CategoryOptions", SpellLevelList},}
-            }
-        };
+            SearchCategory equipmentCategoriesSearch = new SearchCategory("Equipment Categories", "Categories", "equipment-categories", "/api/2014/equipment-categories");
+            CategoryListResponseModel response = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(equipmentCategoriesSearch);
+            CategoryList equipmentCategories = response.ToModel();
+            return equipmentCategories.Categories;
 
+        }
+
+        public static async Task<List<SearchCategory>> GetClassList()
+        {
+            SearchCategory classesSearch = new SearchCategory("Classes", "Classes", "classes", "/api/2014/classes");
+            CategoryListResponseModel response = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(classesSearch);
+            CategoryList classes = response.ToModel();
+            return classes.Categories;
+
+        }
+
+        public static async Task<List<SearchCategory>> GetRuleSectionList()
+        {
+            SearchCategory rulesSearch = new SearchCategory("Rule Sections", "Sections", "rule-sections", "/api/2014/rule-sections");
+            CategoryListResponseModel response = await ApiService.GetResourcesForEndpointAsync<CategoryListResponseModel>(rulesSearch);
+            CategoryList rules = response.ToModel();
+            return rules.Categories;
+        }
+
+        public static async Task<Dictionary<string, object>> PageQueryOptions(string page)
+        {
+            Dictionary < String, Dictionary<string, object> > pageOptions = new Dictionary<String, Dictionary<string, object>>
+            {
+                {"SpellSearchPage", new Dictionary<string, object>
+                    {
+                        {"PageName", "Spells" },
+                        {"PageType", "SpellsSearchPage" },
+                        {"CategoryType", "Levels" },
+                        {"CategoryOptions", GetSpellLevelList() },
+                    }
+                },
+                {"ClassesSearchPage", new Dictionary<string, object>
+                    {
+                        {"PageName", "Classes" },
+                        {"PageType", "ClassesSearchPage" },
+                        {"CategoryType", "Class Types" },
+                        {"CategoryOptions", await GetClassList() },
+                    }
+                },
+                {"EquipmentSearchPage", new Dictionary<string, object>
+                    {
+                        {"PageName", "Equipment" },
+                        {"PageType", "EquipmentSearchPage" },
+                        {"CategoryType", "Equipment Types" },
+                        {"CategoryOptions", await GetEquipmentCategoryList()},
+                    }
+                },
+                {"RulesSearchPage", new Dictionary<string, object>
+                    {
+                        {"PageName", "Rules" },
+                        {"PageType", "RulesSearchPage" },
+                        {"CategoryType", "Rule Sections" },
+                        {"CategoryOptions", await GetRuleSectionList()},
+                    }
+                }
+            };
+            return pageOptions[page];
+        }
+
+        public static void DetectDisplaySize()
+        {
+            // Retrieve metrics of the primary screen
+            var mainDisplay = DeviceDisplay.Current.MainDisplayInfo;
+
+            // Convert raw physical pixels to platform-independent units
+            ScreenWidth = mainDisplay.Width / mainDisplay.Density;
+            ScreenHeight = mainDisplay.Height / mainDisplay.Density;
+        }
+
+        public static int GetScreenWidth()
+        {
+            return (int)ScreenWidth;
+        }
+
+        public static int GetScreenHeight()
+        {
+            return (int)ScreenHeight;
+        }
 
         public App()
         {
             InitializeComponent();
             PreferenceManager.UpdateResourceColours();
-
+            DetectDisplaySize();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

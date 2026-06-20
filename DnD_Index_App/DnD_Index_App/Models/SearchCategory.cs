@@ -26,15 +26,15 @@ namespace DnD_Index_App.Models
         /// <summary>
         /// Constructor for SearchCategory objects.
         /// </summary>
-        /// <param name="CategoryName">the name of the Category/result-object</param>
-        /// <param name="CategoryType">the type of catagories returned by the endpoint</param>
+        /// <param name="categoryName">the name of the Category/result-object</param>
+        /// <param name="categoryType">the type of catagories returned by the endpoint</param>
         /// <param name="apiValue">the api index of the endpoint</param>
         /// <param name="url">the associated url</param>
-        public SearchCategory(string CategoryName, string? CategoryType, string? apiValue, string url)
-            : base(apiValue, CategoryName, url) // Pass required parameters to base constructor
+        public SearchCategory(string categoryName, string? categoryType, string? apiValue, string url)
+            : base(apiValue, categoryName, url) // Pass required parameters to base constructor
         {
-            CategoryName = CategoryName;
-            CategoryType = CategoryType;
+            CategoryName = categoryName;
+            CategoryType = categoryType;
             ApiValue = apiValue;
             Url = $"https://www.dnd5eapi.co{url}";
             ResultTypeInfo = GetResultType(Url);
@@ -52,18 +52,39 @@ namespace DnD_Index_App.Models
             ResultType type = new ResultType();
 
             // determine of the of response based on number of slashes in the url.
-            if (url.Count(s => s == '/') == 6) // 6x '/': Result (e.g. 'https://www.dnd5eapi.co/api/2014/spells/acid-arrow' contains 6x '/') 
+            if (url.Count(s => s == '/') == 6 && url.Contains("/equipment-categories/") == false) // 6x '/': Result (e.g. 'https://www.dnd5eapi.co/api/2014/spells/acid-arrow' contains 6x '/') 
             {
                type.TypeName = "result";
                 if (url.Contains("/spells/")) { type.ResultClass = "spell"; } // check url for specfic category based on route
-                else if (url.Contains("/classes/")) { type.ResultClass = "class"; }
+                else if (url.Contains("/classes/"))
+                {
+                    if (url.Contains("/levels"))
+                    {
+                        type.ResultClass = "levelTable";
+                    }
+                    else
+                    {
+                        type.ResultClass = "class"; 
+                    }
+                }
                 else if (url.Contains("/equipment/")) { type.ResultClass = "equipment"; }
-                else if (url.Contains("/rules/")) { type.ResultClass = "rule"; }
+                else if (url.Contains("/rule-sections/")) { type.ResultClass = "rule"; }
+                else if (url.Contains("/subclasses/")) { type.ResultClass = "subclass"; }
             }
             else if (url.Count(s => s == '/') == 5) // 5x '/': Category (e.g. 'https://www.dnd5eapi.co/api/2014/spells?level=0' contains 5x '/') 
             {
                 type.TypeName = "Category";
                 type.ResultClass = "SearchCategory"; // catagories get deserialized into new SearchCategory objects.
+                if (url.Contains("/spells/")) { type.PageType = "SpellsSearchPage"; }
+                else if (url.Contains("/equipment-categories/")) { type.PageType = "EquipmentSearchPage"; }
+                else if (url.Contains("/rule-sections/")) { type.PageType = "RulesSearchPage"; }
+                else if (url.Contains("/subclasses/")) { type.PageType = "ClassesSearchPage"; }
+            }
+            else if (url.Contains("/equipment-categories/") == true)
+            {
+                type.TypeName = "Category";
+                type.ResultClass = "EquipmentCategory";
+                type.PageType = "EquipmentSearchPage";
             }
             else
             {
@@ -83,5 +104,6 @@ namespace DnD_Index_App.Models
     {
         public string TypeName { get; set;  } // Type of response
         public string ResultClass { get; set; } // Type of object class the response data should be deserialized into
+        public string? PageType { get; set; } // Type of page the response data should be associated with
     }
 }

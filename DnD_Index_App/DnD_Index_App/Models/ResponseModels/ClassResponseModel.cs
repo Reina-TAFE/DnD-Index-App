@@ -1,8 +1,9 @@
-﻿using System;
+﻿using DnD_Index_App.Models;
+using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.VisualBasic.FileIO;
-using DnD_Index_App.Models;
+using System.Text.Json.Serialization;
 
 namespace DnD_Index_App.Models.ResponseModels
 {
@@ -17,6 +18,8 @@ namespace DnD_Index_App.Models.ResponseModels
         public List<StartingEquipment> starting_equipment { get; set; }
         public List<OptionSet> starting_equipment_options { get; set; }
         public string class_levels { get; set; }
+        [JsonPropertyName("spellcasting")]
+        public SpellCasting? spellCasting { get; set; }
         public MultiClassing multi_classing { get; set; }
         public List<ApiObjectInfo> subclasses { get; set; }
         public string url { get; set; }
@@ -37,7 +40,9 @@ namespace DnD_Index_App.Models.ResponseModels
                 proficiency_choices,
                 proficiencies,
                 saving_throws,
-                subclasses
+                subclasses,
+                spellCasting,
+                class_levels
             );
         }
     }
