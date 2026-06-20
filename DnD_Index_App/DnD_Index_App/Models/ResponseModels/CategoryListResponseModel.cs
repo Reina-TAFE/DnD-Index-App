@@ -14,7 +14,7 @@ namespace DnD_Index_App.Models.ResponseModels
             List<SearchCategory> searchOptions = new List<SearchCategory>();
             foreach (CategoryResult result in results) 
             {
-                searchOptions.Add(new SearchCategory(result.name, $"Level {result.level}", result.index, result.url));
+                searchOptions.Add(new SearchCategory(result.name, (result.level != null ? $"Level {result.level}" : "Items"), result.index, result.url));
             }
             return new CategoryList(count, searchOptions);
         }

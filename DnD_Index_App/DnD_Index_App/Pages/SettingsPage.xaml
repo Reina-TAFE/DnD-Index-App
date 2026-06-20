@@ -375,7 +375,7 @@
                                    Padding="0 0 0 14"/>
                             <Label Grid.Column="1"
                                    Grid.Row="0"
-                                   Text="v0.0.0.1"
+                                   Text="v1.0.0"
                                    x:Name="VersionLabel"   
                                    TextColor="{DynamicResource CurrentTextColour}"
                                    FontSize="{Binding BodyFontSize}"

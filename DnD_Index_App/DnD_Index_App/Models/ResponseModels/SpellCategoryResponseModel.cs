@@ -17,12 +17,4 @@ namespace DnD_Index_App.Models.ResponseModels
             return new CategoryList(count, newCategories);
         }
     }
-
-    //public class Result
-    //{
-    //    public string index { get; set; }
-    //    public string name { get; set; }
-    //    public int level { get; set; }
-    //    public string url { get; set; }
-    //}
 }

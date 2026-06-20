@@ -76,7 +76,7 @@ namespace DnD_Index_App
                     {
                         {"PageName", "Equipment" },
                         {"PageType", "EquipmentSearchPage" },
-                        {"CategoryType", "Equipment Types" },
+                        {"CategoryType", "Equipment Categories" },
                         {"CategoryOptions", await GetEquipmentCategoryList()},
                     }
                 },
