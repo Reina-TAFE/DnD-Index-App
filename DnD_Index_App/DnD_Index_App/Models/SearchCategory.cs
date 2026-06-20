@@ -26,15 +26,15 @@ namespace DnD_Index_App.Models
         /// <summary>
         /// Constructor for SearchCategory objects.
         /// </summary>
-        /// <param name="CategoryName">the name of the Category/result-object</param>
-        /// <param name="CategoryType">the type of catagories returned by the endpoint</param>
+        /// <param name="categoryName">the name of the Category/result-object</param>
+        /// <param name="categoryType">the type of catagories returned by the endpoint</param>
         /// <param name="apiValue">the api index of the endpoint</param>
         /// <param name="url">the associated url</param>
-        public SearchCategory(string CategoryName, string? CategoryType, string? apiValue, string url)
-            : base(apiValue, CategoryName, url) // Pass required parameters to base constructor
+        public SearchCategory(string categoryName, string? categoryType, string? apiValue, string url)
+            : base(apiValue, categoryName, url) // Pass required parameters to base constructor
         {
-            CategoryName = CategoryName;
-            CategoryType = CategoryType;
+            CategoryName = categoryName;
+            CategoryType = categoryType;
             ApiValue = apiValue;
             Url = $"https://www.dnd5eapi.co{url}";
             ResultTypeInfo = GetResultType(Url);
@@ -75,11 +75,16 @@ namespace DnD_Index_App.Models
             {
                 type.TypeName = "Category";
                 type.ResultClass = "SearchCategory"; // catagories get deserialized into new SearchCategory objects.
+                if (url.Contains("/spells/")) { type.PageType = "SpellsSearchPage"; }
+                else if (url.Contains("/equipment-categories/")) { type.PageType = "EquipmentSearchPage"; }
+                else if (url.Contains("/rule-sections/")) { type.PageType = "RulesSearchPage"; }
+                else if (url.Contains("/subclasses/")) { type.PageType = "ClassesSearchPage"; }
             }
             else if (url.Contains("/equipment-categories/") == true)
             {
                 type.TypeName = "Category";
                 type.ResultClass = "EquipmentCategory";
+                type.PageType = "EquipmentSearchPage";
             }
             else
             {
@@ -99,5 +104,6 @@ namespace DnD_Index_App.Models
     {
         public string TypeName { get; set;  } // Type of response
         public string ResultClass { get; set; } // Type of object class the response data should be deserialized into
+        public string? PageType { get; set; } // Type of page the response data should be associated with
     }
 }

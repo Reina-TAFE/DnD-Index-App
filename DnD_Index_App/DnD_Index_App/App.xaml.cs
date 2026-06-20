@@ -59,6 +59,7 @@ namespace DnD_Index_App
                 {"SpellSearchPage", new Dictionary<string, object>
                     {
                         {"PageName", "Spells" },
+                        {"PageType", "SpellsSearchPage" },
                         {"CategoryType", "Levels" },
                         {"CategoryOptions", GetSpellLevelList() },
                     }
@@ -66,6 +67,7 @@ namespace DnD_Index_App
                 {"ClassesSearchPage", new Dictionary<string, object>
                     {
                         {"PageName", "Classes" },
+                        {"PageType", "ClassesSearchPage" },
                         {"CategoryType", "Class Types" },
                         {"CategoryOptions", await GetClassList() },
                     }
@@ -73,6 +75,7 @@ namespace DnD_Index_App
                 {"EquipmentSearchPage", new Dictionary<string, object>
                     {
                         {"PageName", "Equipment" },
+                        {"PageType", "EquipmentSearchPage" },
                         {"CategoryType", "Equipment Types" },
                         {"CategoryOptions", await GetEquipmentCategoryList()},
                     }
@@ -80,6 +83,7 @@ namespace DnD_Index_App
                 {"RulesSearchPage", new Dictionary<string, object>
                     {
                         {"PageName", "Rules" },
+                        {"PageType", "RulesSearchPage" },
                         {"CategoryType", "Rule Sections" },
                         {"CategoryOptions", await GetRuleSectionList()},
                     }
