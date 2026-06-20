@@ -5,13 +5,6 @@ namespace DnD_Index_App.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    //public PreferenceManager AppPreferenceManager { get; set; }
-    //public string BackgroundColour { get { return Preferences.Get("BackgroundColour", "#582929"); } set; } = Preferences.Get("BackgroundColour", "#582929");
-    //public string SectionColour { get { return Preferences.Get("SectionColour", "#FFFFFF"); } set; } = Preferences.Get("SectionColour", "#FFFFFF");
-    //public string ButtonColour { get { return Preferences.Get("ButtonColour", "#FFFFFF"); } set; } = Preferences.Get("ButtonColour", "#FFFFFF");
-    //public string TextColour { get { return Preferences.Get("TextColour", "#FFFFFF"); } set; } = Preferences.Get("TextColour", "#FFFFFF");
-    //public string TitleColour { get { return Preferences.Get("TitleColour", "#FFFFFF"); } set; } = Preferences.Get("TitleColour", "#FFFFFF");
-    //public string NavColour { get { return Preferences.Get("NavColour", "#FFFFFF"); } set; } = Preferences.Get("NavColour", "#FFFFFF");
     public List<string> Languages = new List<string>
     {
         "English",
@@ -20,13 +13,13 @@ public partial class SettingsPage : ContentPage
     {
         "5th Edition (2014)",
     };
-    private int _bodyFontSize;
+    private int _bodyFontSize = 16;
 
     public int BodyFontSize
     {
         get 
         {
-            return _bodyFontSize;
+            return PreferenceManager.ValidFontSizes.Contains(_bodyFontSize) ? _bodyFontSize : PreferenceManager.GetBodyFontSize();
         } 
         set
         {
@@ -37,12 +30,12 @@ public partial class SettingsPage : ContentPage
         }
     
     }
-    private int _headingFontSize;
+    private int _headingFontSize = 24;
     public int HeadingFontSize
     {
         get
         {
-            return _headingFontSize;
+            return PreferenceManager.ValidFontSizes.Contains(_headingFontSize) ? _headingFontSize : PreferenceManager.GetHeadingFontSize();
         }
         set
         {
@@ -96,7 +89,15 @@ public partial class SettingsPage : ContentPage
         int selectedFontSize = (int)BodyTextSizePicker.SelectedItem;
         PreferenceManager.SetBodyFontSize(selectedFontSize);
         BodyFontSize = selectedFontSize;
-        BodyTextSizePicker.FontSize = selectedFontSize;
+        GameVersionLabel.FontSize = BodyFontSize;
+        DarkModeLabel.FontSize = BodyFontSize;
+        ThemesLabel.FontSize = BodyFontSize;
+        HeadingSizeLabel.FontSize = BodyFontSize;
+        BodySizeLabel.FontSize = BodyFontSize;
+        ColourblindLabel.FontSize = BodyFontSize;
+        LanguageLabel.FontSize = BodyFontSize;
+        AppVersionLabel.FontSize = BodyFontSize;
+        VersionLabel.FontSize = BodyFontSize;
     }
 
     private void HeadingFontSizeOnSelectedIndexChanged(object sender, EventArgs e)
@@ -104,6 +105,10 @@ public partial class SettingsPage : ContentPage
         int selectedFontSize = (int)HeadingSizePicker.SelectedItem;
         PreferenceManager.SetHeadingFontSize(selectedFontSize);
         HeadingFontSize = selectedFontSize;
-        HeadingSizePicker.FontSize = selectedFontSize;
+        AppSettingsLabel.FontSize = HeadingFontSize;
+        AppearanceSettingsLabel.FontSize = HeadingFontSize;
+        AccessibilitySettingsLabel.FontSize = HeadingFontSize;
+        LanguageSettingsLabel.FontSize = HeadingFontSize;
+        AboutSettingsLabel.FontSize = HeadingFontSize;
     }
 }

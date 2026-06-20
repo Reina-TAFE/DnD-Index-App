@@ -100,12 +100,12 @@ namespace DnD_Index_App.Services
 
         public static int GetBodyFontSize()
         {
-            return Preferences.Get("BodyFontSize", 32);
+            return Preferences.Get("BodyFontSize", 16);
         }
 
         public static int GetHeadingFontSize()
         {
-            return Preferences.Get("HeadingFontSize", 40);
+            return Preferences.Get("HeadingFontSize", 24);
         }
 
         public static void SetBodyFontSize(int fontSize)

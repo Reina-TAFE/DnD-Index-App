@@ -16,16 +16,14 @@
             BackgroundColor="{DynamicResource CurrentBackgroundColour}"
             Margin="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.01*"/>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="0.25*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="0.75*"/>
+                <RowDefinition Height="0.15*"/>
             </Grid.RowDefinitions>
+
             <HorizontalStackLayout
-                Grid.Row="0">
+            Grid.Row="0">
                 <Image 
                     x:Name="BackBtn" 
                     Source="arrow_left.png"
@@ -36,7 +34,7 @@
                     BackgroundColor="{DynamicResource CurrentBackgroundColor}"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
-                >
+                    >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="BackBtn_Tapped"
@@ -53,30 +51,38 @@
                     HorizontalOptions="Start"
                     VerticalOptions="Center"/>
             </HorizontalStackLayout>
-            
-            <!--App Settings Section-->
-            <VerticalStackLayout Grid.Row="2">
-                <Label Text="App"
-                       TextColor="{DynamicResource CurrentTextColour}"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       Padding="0 0 0 24"
-                       HorizontalOptions="Start"/>
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 5">
-                    <Grid
-                        WidthRequest="337"
-                        BackgroundColor="{DynamicResource CurrentSectionColour}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.7*"/>
-                            <ColumnDefinition Width="0.9*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Column="0"
+            <FlexLayout Grid.Row="2"
+                Direction="Column" 
+                HorizontalOptions="Fill"
+                VerticalOptions="Start"
+                AlignItems="Center"
+                JustifyContent="SpaceAround">
+                <!--App Settings Section-->
+                <VerticalStackLayout >
+                    <Label 
+                        x:Name="AppSettingsLabel"
+                        Text="App"
+                        TextColor="{DynamicResource CurrentTextColour}"
+                        FontSize="{Binding HeadingFontSize}"
+                        FontAttributes="Bold"
+                        Padding="0 0 0 24"
+                        HorizontalOptions="Start"/>
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 5">
+                        <Grid
+                            WidthRequest="337"
+                            BackgroundColor="{DynamicResource CurrentSectionColour}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.9*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0"
                                Grid.Row="0"
                                Text="Game Version"
+                               x:Name="GameVersionLabel"
                                FontSize="{Binding BodyFontSize}"
                                TextColor="{DynamicResource CurrentTextColour}"
                                WidthRequest="152"
@@ -85,7 +91,7 @@
                                Padding="8 8 8 14"
                                VerticalTextAlignment="Center"
                                LineBreakMode="NoWrap"/>
-                        <Picker Grid.Column="1"
+                            <Picker Grid.Column="1"
                                 Grid.Row="0"
                                 x:Name="GameVersionPicker"
                                 FontSize="{Binding BodyFontSize}"
@@ -94,256 +100,274 @@
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 WidthRequest="136"
                                 Margin="0 0 0 50">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>5th Edition (2014)</x:String>
-                                    <x:String>5th Edition (2024)</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
-                    </Grid>
-                </Border>
-            </VerticalStackLayout>
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>5th Edition (2014)</x:String>
+                                        <x:String>5th Edition (2024)</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
 
-            <!--Appearance Settings Section-->
-            <VerticalStackLayout Grid.Row="3">
-                <Label Text="Appearance"
-                   FontSize="24"
-                   TextColor="{DynamicResource CurrentTextColour}"
-                   FontAttributes="Bold"
-                   Padding="0 0 0 24"
-                   HorizontalOptions="Start"/>
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 5">
+                <!--Appearance Settings Section-->
+                <VerticalStackLayout>
+                    <Label
+                        x:Name="AppearanceSettingsLabel"
+                        Text="Appearance"
+                        FontSize="{Binding HeadingFontSize}"
+                        TextColor="{DynamicResource CurrentTextColour}"
+                        FontAttributes="Bold"
+                        Padding="0 0 0 24"
+                        HorizontalOptions="Start"/>
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 5">
 
                         <Grid
-                             x:Name="DarkMode"
-                             WidthRequest="337"
+                            x:Name="DarkMode"
+                            WidthRequest="337"
                             HeightRequest="80"
                             BackgroundColor="{DynamicResource CurrentSectionColour}"
                             HorizontalOptions="Center"
                             Padding="0 5 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.8*"/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
                             <Label Grid.Column="0"
-                                   Grid.Row="0"
-                                   Text="Dark Mode"
-                                   FontSize="{Binding BodyFontSize}"
-                                   TextColor="{DynamicResource CurrentTextColour}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Start"
-                                   Padding="0 0 0 14"/>
+                               Grid.Row="0"
+                               Text="Dark Mode"
+                               x:Name="DarkModeLabel"
+                               FontSize="{Binding BodyFontSize}"
+                               TextColor="{DynamicResource CurrentTextColour}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Padding="0 0 0 14"/>
 
                             <Switch Grid.Column="1"
-                                    Grid.Row="0"
-                                    x:Name="DarkModeSwitch"
-                                    IsToggled="False" 
-                                    OnColor="#F3F3F3" 
-                                    OffColor="{DynamicResource CurrentBackgroundColor}"
-                                    Toggled="DarkModeSwitch_Toggled"
-                                    HeightRequest="30"
-                                    MaximumWidthRequest="50"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center"
-                                    Margin="0 0 5 85"
-                                    />
-                        
+                                Grid.Row="0"
+                                x:Name="DarkModeSwitch"
+                                IsToggled="False" 
+                                OnColor="#F3F3F3" 
+                                OffColor="{DynamicResource CurrentBackgroundColor}"
+                                Toggled="DarkModeSwitch_Toggled"
+                                HeightRequest="30"
+                                MaximumWidthRequest="50"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Margin="0 0 5 85"
+                                />
+
                             <Label Grid.Column="0"
-                                   Grid.Row="1"
-                                   Text="Themes"
-                                   FontSize="{Binding BodyFontSize}"
-                                   TextColor="{DynamicResource CurrentTextColour}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Start"
-                                   VerticalTextAlignment="Center"
-                                   Padding="0 0 0 14"/>
+                               Grid.Row="1"
+                               Text="Themes"
+                               x:Name="ThemesLabel"                                   
+                               FontSize="{Binding BodyFontSize}"
+                               TextColor="{DynamicResource CurrentTextColour}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               VerticalTextAlignment="Center"
+                               Padding="0 0 0 14"/>
 
                             <Picker Grid.Column="1"
-                                    Grid.Row="1"
-                                    x:Name="AppThemePicker"
-                                    FontSize="{Binding BodyFontSize}"
-                                    HorizontalOptions="Center"
-                                    SelectedIndex="0"
-                                    TextColor="{DynamicResource CurrentTextColour}"
-                                    WidthRequest="125"
-                                    Margin="0 0 0 10">
+                                Grid.Row="1"
+                                x:Name="AppThemePicker"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                SelectedIndex="0"
+                                TextColor="{DynamicResource CurrentTextColour}"
+                                WidthRequest="125"
+                                Margin="0 0 0 10">
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
-                                    <x:String>Burnt Umber</x:String>
-                                    <x:String>Dark Stone </x:String>
+                                        <x:String>Burnt Umber</x:String>
+                                        <x:String>Dark Stone</x:String>
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
 
                         </Grid>
 
-                </Border>
-            </VerticalStackLayout>
-            
-            <!--Accessibility Settings Section-->
-            <VerticalStackLayout Grid.Row="4">
-                <Label Text="Accessibility"
-                       FontSize="{Binding HeadingFontSize}"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       Padding="0 0 0 24"
-                       HorizontalOptions="Start"/>
+                    </Border>
+                </VerticalStackLayout>
 
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 5">
+                <!--Accessibility Settings Section-->
+                <VerticalStackLayout >
+                    <Label 
+                        x:Name="AccessibilitySettingsLabel"
+                        Text="Accessibility"
+                        FontSize="{Binding HeadingFontSize}"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="0 0 0 24"
+                        HorizontalOptions="Start"/>
 
-                    <Grid
-                        WidthRequest="337"
-                        BackgroundColor="{DynamicResource CurrentSectionColour}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 5">
 
-                        <Label Grid.Column="0"
-                                Grid.Row="0"
-                                Text="Font Size (Headings)"
-                                FontSize="{Binding BodyFontSize}"
-                                TextColor="{DynamicResource CurrentTextColour}"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Start"
-                                Padding="8 8 8 7"/>
+                        <Grid
+                            WidthRequest="337"
+                            BackgroundColor="{DynamicResource CurrentSectionColour}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
 
-                        <Picker Grid.Column="1"
-                                Grid.Row="0"
-                            x:Name="HeadingSizePicker"
-                            FontSize="{Binding BodyFontSize}"
-                            TextColor="{DynamicResource CurrentTextColour}"
-                            VerticalTextAlignment="Center"
-                            SelectedIndexChanged="HeadingFontSizeOnSelectedIndexChanged">
-                        </Picker>
-                        
+                            <Label 
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Text="Font Size (Headings)"
+                                    x:Name="HeadingSizeLabel"                                
+                                    FontSize="{Binding BodyFontSize}"
+                                    TextColor="{DynamicResource CurrentTextColour}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    Padding="8 8 8 7"/>
+
+                            <Picker Grid.Column="1"
+                                    Grid.Row="0"
+                                    x:Name="HeadingSizePicker"
+                                    FontSize="16"
+                                    TextColor="{DynamicResource CurrentTextColour}"
+                                    VerticalTextAlignment="Center"
+                                    SelectedIndexChanged="HeadingFontSizeOnSelectedIndexChanged">
+                            </Picker>
 
 
 
-                        <Label Grid.Column="0"
+
+                            <Label 
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Text="Font Size (Body)"
+                                    x:Name="BodySizeLabel"                                
+                                    FontSize="{Binding BodyFontSize}"
+                                    TextColor="{DynamicResource CurrentTextColour}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    Padding="8 8 8 7"/>
+
+                            <Picker 
+                                Grid.Column="1"
                                 Grid.Row="1"
-                                Text="Font Size (Body)"
-                                FontSize="{Binding BodyFontSize}"
+                                x:Name="BodyTextSizePicker"
+                                FontSize="16"
+                                VerticalTextAlignment="Center"
                                 TextColor="{DynamicResource CurrentTextColour}"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Start"
-                                Padding="8 8 8 7"/>
+                                SelectedIndexChanged="BodyFontSizeOnSelectedIndexChanged">
+                            </Picker>
 
-                        <Picker 
-                            Grid.Column="1"
-                            Grid.Row="1"
-                            x:Name="BodyTextSizePicker"
-                            FontSize="{Binding BodyFontSize}"
-                            VerticalTextAlignment="Center"
-                            TextColor="{DynamicResource CurrentTextColour}"
-                            SelectedIndexChanged="BodyFontSizeOnSelectedIndexChanged">
-                        </Picker>
-
-                        <Label Grid.Column="0"
-                                Grid.Row="2"
-                            Text="Colourblind Mode"
+                            <Label 
+                                    Grid.Column="0"
+                                    Grid.Row="2"
+                                    Text="Colourblind Mode"
+                                    x:Name="ColourblindLabel"
                                     TextColor="{DynamicResource CurrentTextColour}"
                                     FontSize="{Binding BodyFontSize}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
                                     Padding="8 8 8 7"/>
 
-                        <Picker Grid.Column="1"
-                                Grid.Row="2"
-                                x:Name="ColourblindModePicker"
-                                VerticalTextAlignment="Center"
-                                FontSize="{Binding BodyFontSize}">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>off</x:String>
-                                    <x:String>Red/Green</x:String>
-                                    <x:String>Blue/Yellow</x:String>
-                                    <x:String>Monochrome</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
-                    </Grid>
-                </Border>
-            </VerticalStackLayout>
-            
-            <!--Language Settings Section-->
-            <VerticalStackLayout Grid.Row="5">
-                <Label Text="Language"
-                       TextColor="{DynamicResource CurrentTextColour}"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       Padding="0 0 0 24"
-                       HorizontalOptions="Start"/>
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 5">
-                    <Grid
-                        WidthRequest="337"
-                        BackgroundColor="{DynamicResource CurrentSectionColour}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Column="0"
-                               Grid.Row="0"
-                                Text="Language"
-                                FontSize="{Binding BodyFontSize}"
-                                TextColor="{DynamicResource CurrentTextColour}"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Start"
-                                Padding="0 0 0 14"/>
-                        <Picker Grid.Column="1"
-                                Grid.Row="0"
-                                x:Name="LanguagePicker"
-                                FontSize="{Binding BodyFontSize}">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>English</x:String>
-                                    <x:String>Deutch</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
+                            <Picker Grid.Column="1"
+                                    Grid.Row="2"
+                                    x:Name="ColourblindModePicker"
+                                    VerticalTextAlignment="Center"
+                                    FontSize="16">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>off</x:String>
+                                        <x:String>Red/Green</x:String>
+                                        <x:String>Blue/Yellow</x:String>
+                                        <x:String>Monochrome</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
                         </Grid>
-                </Border>
-            </VerticalStackLayout>
-            
-            <!--About Section-->
-            <VerticalStackLayout Grid.Row="6">
-                <Label Text="About"
-                       TextColor="{DynamicResource CurrentTextColour}"
-                       FontSize="24"
-                       FontAttributes="Bold"
-                       Padding="0 0 0 24"
-                       HorizontalOptions="Start"/>
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 5">
-                    <Grid
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--Language Settings Section-->
+                <VerticalStackLayout >
+                    <Label 
+                        x:Name="LanguageSettingsLabel"
+                        Text="Language"
+                        TextColor="{DynamicResource CurrentTextColour}"
+                        FontSize="{Binding HeadingFontSize}"
+                        FontAttributes="Bold"
+                        Padding="0 0 0 24"
+                        HorizontalOptions="Start"/>
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 5">
+                        <Grid
                             WidthRequest="337"
                             BackgroundColor="{DynamicResource CurrentSectionColour}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.Row="0"
+                                    Text="Language"
+                                    x:Name="LanguageLabel"
+                                    FontSize="{Binding BodyFontSize}"
+                                    TextColor="{DynamicResource CurrentTextColour}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    Padding="0 0 0 14"/>
+                            <Picker Grid.Column="1"
+                                    Grid.Row="0"
+                                    x:Name="LanguagePicker"
+                                    FontSize="{Binding BodyFontSize}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>English</x:String>
+                                        <x:String>Deutch</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--About Section-->
+                <VerticalStackLayout >
+                    <Label 
+                        x:Name="AboutSettingsLabel"
+                        Text="About"
+                        TextColor="{DynamicResource CurrentTextColour}"
+                        FontSize="{Binding HeadingFontSize}"
+                        FontAttributes="Bold"
+                        Padding="0 0 0 24"
+                        HorizontalOptions="Start"/>
+                    <Border StrokeThickness="0"
+                            StrokeShape="RoundRectangle 5">
+                        <Grid
+                            WidthRequest="337"
+                            BackgroundColor="{DynamicResource CurrentSectionColour}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
                             <Label Grid.Column="0"
                                    Grid.Row="0"
                                    Text="App Version"
+                                   x:Name="AppVersionLabel"                                   
                                    TextColor="{DynamicResource CurrentTextColour}"
                                    FontSize="{Binding BodyFontSize}"
                                    VerticalOptions="Center"
@@ -352,16 +376,18 @@
                             <Label Grid.Column="1"
                                    Grid.Row="0"
                                    Text="v0.0.0.1"
+                                   x:Name="VersionLabel"   
                                    TextColor="{DynamicResource CurrentTextColour}"
                                    FontSize="{Binding BodyFontSize}"
                                    VerticalOptions="Center"
                                    HorizontalOptions="End"
                                    HorizontalTextAlignment="End"
                                    Padding="0 10 0 0"/>
-                        
-                    </Grid>
-                </Border>
-            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </FlexLayout>
         </Grid>
     </Border>
 </ContentPage>
