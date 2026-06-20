@@ -23,14 +23,7 @@ public partial class ResultsPage : ContentPage
     {
         InitializeComponent();
         BindingContext = this;
-        //ResultsPageWrapper.Content = ViewModel.PageContent.Content;
     }
-
-    //public void ApplyQueryAttributes(IDictionary<string, object> query)
-    //{
-    //    ResultsPageViewModel viewModel = query["ViewModel"] as ResultsPageViewModel;
-
-    //}
 
     public void LoadViewModel(ResultsPageViewModel vm)
     {

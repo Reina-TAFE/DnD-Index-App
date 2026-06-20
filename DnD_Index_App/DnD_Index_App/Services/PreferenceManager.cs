@@ -73,7 +73,6 @@ namespace DnD_Index_App.Services
                 Application.Current?.Resources["CurrentTextColour"]  = Application.Current.Resources["LightText"];
                 Application.Current?.Resources["CurrentTitleColour"] = Application.Current.Resources["LightTitle"];
                 Application.Current?.Resources["CurrentNavColour"] = Application.Current.Resources["LightNav"];
-                //Shell.SetBackgroundColor(Shell.Current, Application.Current?.Resources["LightBackground"] as Color);
             }
             else if (currentTheme == "Dark Mode") // update current element colours to dark mode colours
             {
@@ -84,7 +83,6 @@ namespace DnD_Index_App.Services
                 Application.Current?.Resources["CurrentTextColour"] = Application.Current.Resources["DarkText"];
                 Application.Current?.Resources["CurrentTitleColour"] = Application.Current.Resources["DarkTitle"];
                 Application.Current?.Resources["CurrentNavColour"] = Application.Current.Resources["DarkNav"];
-                //Shell.SetBackgroundColor(Shell.Current, Application.Current?.Resources["DarkBackground"] as Color);
             }
         }
 

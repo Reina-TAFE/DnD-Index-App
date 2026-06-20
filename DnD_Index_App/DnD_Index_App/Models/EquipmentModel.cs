@@ -58,7 +58,7 @@ namespace DnD_Index_App.Models
         public ResultsPageViewModel ToResultsPageViewModel()
         {
             ResultsPageHeaderModel header = new ResultsPageHeaderModel(Name, $"{EquipmentCategory?.Name}");
-            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", GetSections()); // GetInfoSection() 
+            ResultsPageSectionModel body = new ResultsPageSectionModel("spell", GetSections());
             return new ResultsPageViewModel(new ResultsPageHeaderViewModel(header), new ResultsPageSectionViewModel(body));
         }
 
@@ -66,7 +66,6 @@ namespace DnD_Index_App.Models
         {
             List<SectionContent> sections = new List<SectionContent>();
             SectionContent propertiesSection = GetPropertiesSection();
-            //SectionContent infoSection = GetInfoSection();
             sections.Add(propertiesSection);
             return sections;
         }

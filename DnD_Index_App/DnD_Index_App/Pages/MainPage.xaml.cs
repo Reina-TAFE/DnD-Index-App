@@ -20,7 +20,6 @@ namespace DnD_Index_App.Pages
 
         private async void SettingsBtnTapped(object? sender, EventArgs e)
         {
-            //await Navigation.PushModalAsync(new SettingsPage());
             await Shell.Current.GoToAsync("SettingsPage");
         }
 

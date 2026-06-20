@@ -144,14 +144,5 @@ namespace DnD_Index_App.Services
             catch { throw new NotImplementedException(); }
         }
 
-        //public static async Task<CategoryList>? GetCategoryListForEndpoint(SearchCategory endpoint)
-        //{
-        //    try{ 
-        //        HttpResponseMessage response = await client.GetAsync(endpoint.Url);
-
-        //    }
-        //    catch { throw new NotImplementedException(); }
-        //}
-
     }
 }

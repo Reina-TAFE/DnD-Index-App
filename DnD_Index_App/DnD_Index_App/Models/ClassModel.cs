@@ -187,10 +187,6 @@ namespace DnD_Index_App.Models
                         SectionItemTitle = "SubClasses",
                         ItemType = "CategoryList",
                         ItemObjects = Subclasses?.Select(sc => sc != null ? new SearchCategory(sc.Index, "Subclass", sc.Index, sc.Url) as object : null).ToList()
-                        //ItemObjects = new List<object?>
-                        //{
-                        //    Subclasses?.Select(sc => sc != null ? new SearchCategory(sc.Index, "Subclass", sc.Index, sc.Url): null).ToList()
-                        //}
                     }
                 }
             };

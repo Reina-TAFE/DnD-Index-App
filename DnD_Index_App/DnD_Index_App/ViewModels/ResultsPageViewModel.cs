@@ -22,7 +22,7 @@ namespace DnD_Index_App.ViewModels
             Header = header;
             Body = body;
             Header?.Content.Parent = null;
-            //Body.Content.Parent = null;
+
             Grid PageWrapper = new Grid
             {
                 RowDefinitions = new RowDefinitionCollection
@@ -48,7 +48,7 @@ namespace DnD_Index_App.ViewModels
             };
             PageWrapper.Add(ContentScrollView, 0, 0);
             PageContent.Content = PageWrapper;
-            //PageContent.Content = ContentGrid;
+
 
         }
     }

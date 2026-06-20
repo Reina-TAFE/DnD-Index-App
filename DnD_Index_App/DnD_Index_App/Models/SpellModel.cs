@@ -25,7 +25,6 @@ namespace DnD_Index_App.Models
         public string? Materials { get; set; } = null;
         public bool? Ritual { get; set; } = null;
         public bool? Concentration { get; set; } = null;
-        //public string? AttackType { get; set; }
         public Damage? Damage { get; set; } = null;
         public Dc? Dc { get; set; } = null;
         public List<ApiObjectInfo>? Classes { get; set; } = null;
@@ -77,11 +76,9 @@ namespace DnD_Index_App.Models
         public List<SectionContent> GetSections()
         {
             SectionContent requirementsSection = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
-            //SectionContent requirementsSection2 = this.GetRequirementsSection(); // Requirements Section includes the following sub-sections: Level, School, Cast Time, Range, Duration, Components, Materials, Ritual, Concentration
             SectionContent usageSection = this.GetUsageSection(); // Usage Section includes the following sub-sections: Description, Materials, Higher Level (if applicable)
             List<SectionContent> sections = new List<SectionContent>();
             sections.Add(requirementsSection);
-            //sections.Add( requirementsSection2 );
             sections.Add(usageSection);
 
             return sections;

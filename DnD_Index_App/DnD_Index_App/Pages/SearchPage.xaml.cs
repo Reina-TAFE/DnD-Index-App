@@ -1,4 +1,3 @@
-//using AndroidX.Lifecycle;
 using DnD_Index_App.Models;
 using DnD_Index_App.Models.EquipmentModels;
 using DnD_Index_App.Models.ResponseModels;
@@ -59,11 +58,6 @@ public partial class SearchPage : ContentPage, IQueryAttributable
         {
             CategoryOptions = (List<SearchCategory>) categoryOptions;
 			SearchCategoriesCollection.ItemsSource = CategoryOptions;
-            //foreach (var element in SearchCategoriesCollection.GetVisualTreeDescendants())
-            //{
-            //    Button button = (Button)element;
-            //    button.FontSize = BodyFontSize;
-            //}
         }
 		if(query.TryGetValue("CategoryType", out var categoryType))
 		{
@@ -75,7 +69,6 @@ public partial class SearchPage : ContentPage, IQueryAttributable
 
     private async void SettingsBtn_Tapped(object? sender, EventArgs e)
     {
-        //await Navigation.PushModalAsync(new SettingsPage());
         await Shell.Current.GoToAsync("SettingsPage");
     }
 

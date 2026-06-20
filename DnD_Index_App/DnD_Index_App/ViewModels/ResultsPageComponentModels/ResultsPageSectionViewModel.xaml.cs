@@ -100,7 +100,6 @@ public partial class ResultsPageSectionViewModel : ContentView
             contentLayout.Margin = new Thickness(0, 5);
             contentLayout.Padding = 5;
             contentLayout.HorizontalOptions = LayoutOptions.Fill;
-            //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
             foreach (SectionItem item in sectionContent.Content)
             {
                 if (item.SectionItemTitle != null)
@@ -108,7 +107,6 @@ public partial class ResultsPageSectionViewModel : ContentView
 
                     Label itemTitle = new Label() { Text = item.SectionItemTitle, FontAttributes = FontAttributes.Bold, VerticalTextAlignment = TextAlignment.End, 
                         FontSize = PreferenceManager.GetBodyFontSize(), TextColor = PreferenceManager.GetTextColour() };
-                    //BoxView separator = new BoxView() { HeightRequest = 3, BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill };
                     contentLayout.Add(itemTitle);
                     contentLayout.Add(new BoxView() { HeightRequest = 3, Color = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                 }
@@ -151,7 +149,6 @@ public partial class ResultsPageSectionViewModel : ContentView
                                 }
                             }
                         }
-                        //BoxView separator2 = ;
                         contentLayout.Add(new BoxView { HeightRequest = 3, Color = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                     }
                 }
@@ -261,8 +258,6 @@ public partial class ResultsPageSectionViewModel : ContentView
                                             },
                                             HorizontalOptions = LayoutOptions.Fill,
                                             VerticalOptions = LayoutOptions.Fill,
-                                            //WidthRequest = 600,
-                                            //HeightRequest = 800,
                                         };
                                         contentLayout.Add(markdownView);
                                     }
@@ -276,7 +271,6 @@ public partial class ResultsPageSectionViewModel : ContentView
                                 }
                             }
                         }
-                        //BoxView separator2 = ;
                         contentLayout.Add(new BoxView { HeightRequest = 3, BackgroundColor = PreferenceManager.GetAccentColour(), HorizontalOptions = LayoutOptions.Fill });
                     }
                 }

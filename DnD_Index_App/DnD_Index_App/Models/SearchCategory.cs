@@ -20,7 +20,6 @@ namespace DnD_Index_App.Models
         public string CategoryName { get; set; }
         public string? CategoryType { get; set; }
         public string? ApiValue { get; set; }
-        //public string Url { get { return $"https://www.dnd5eapi.co{Url}"; } set; }
         public ResultType ResultTypeInfo { get; set; }
 
         /// <summary>
