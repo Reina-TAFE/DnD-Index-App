@@ -30,7 +30,7 @@
                     Aspect="AspectFit"
                     HeightRequest="25"
                     WidthRequest="25"
-                    Margin="4 15 0 35"
+                    Margin="4,15,0,35"
                     BackgroundColor="{DynamicResource CurrentBackgroundColor}"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
@@ -47,7 +47,7 @@
                     Text="Settings"
                     VerticalTextAlignment="Center"
                     FontSize="32"
-                    Padding="0 10 0 0"
+                    Padding="0,10,0,0"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"/>
             </HorizontalStackLayout>
@@ -65,7 +65,7 @@
                         TextColor="{DynamicResource CurrentTextColour}"
                         FontSize="{Binding HeadingFontSize}"
                         FontAttributes="Bold"
-                        Padding="0 0 0 24"
+                        Padding="0,0,0,24"
                         HorizontalOptions="Start"/>
                     <Border StrokeThickness="0"
                             StrokeShape="RoundRectangle 5">
@@ -88,7 +88,7 @@
                                WidthRequest="152"
                                VerticalOptions="Center"
                                HorizontalOptions="Start"
-                               Padding="8 8 8 14"
+                               Padding="8,8,8,14"
                                VerticalTextAlignment="Center"
                                LineBreakMode="NoWrap"/>
                             <Picker Grid.Column="1"
@@ -99,7 +99,7 @@
                                 SelectedIndex="0"
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 WidthRequest="136"
-                                Margin="0 0 0 50">
+                                Margin="0,0,0,50">
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>5th Edition (2014)</x:String>
@@ -119,7 +119,7 @@
                         FontSize="{Binding HeadingFontSize}"
                         TextColor="{DynamicResource CurrentTextColour}"
                         FontAttributes="Bold"
-                        Padding="0 0 0 24"
+                        Padding="0,0,0,24"
                         HorizontalOptions="Start"/>
                     <Border StrokeThickness="0"
                             StrokeShape="RoundRectangle 5">
@@ -130,7 +130,7 @@
                             HeightRequest="80"
                             BackgroundColor="{DynamicResource CurrentSectionColour}"
                             HorizontalOptions="Center"
-                            Padding="0 5 0 0">
+                            Padding="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.8*"/>
                                 <ColumnDefinition Width="125"/>
@@ -147,7 +147,7 @@
                                TextColor="{DynamicResource CurrentTextColour}"
                                VerticalOptions="Center"
                                HorizontalOptions="Start"
-                               Padding="0 0 0 14"/>
+                               Padding="0,0,0,14"/>
 
                             <Switch Grid.Column="1"
                                 Grid.Row="0"
@@ -160,7 +160,7 @@
                                 MaximumWidthRequest="50"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"
-                                Margin="0 0 5 85"
+                                Margin="0,0,5,85"
                                 />
 
                             <Label Grid.Column="0"
@@ -172,7 +172,7 @@
                                VerticalOptions="Center"
                                HorizontalOptions="Start"
                                VerticalTextAlignment="Center"
-                               Padding="0 0 0 14"/>
+                               Padding="0,0,0,14"/>
 
                             <Picker Grid.Column="1"
                                 Grid.Row="1"
@@ -182,7 +182,7 @@
                                 SelectedIndex="0"
                                 TextColor="{DynamicResource CurrentTextColour}"
                                 WidthRequest="125"
-                                Margin="0 0 0 10">
+                                Margin="0,0,0,10">
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>Burnt Umber</x:String>
@@ -204,7 +204,7 @@
                         FontSize="{Binding HeadingFontSize}"
                         TextColor="White"
                         FontAttributes="Bold"
-                        Padding="0 0 0 24"
+                        Padding="0,0,0,24"
                         HorizontalOptions="Start"/>
 
                     <Border StrokeThickness="0"
@@ -232,7 +232,7 @@
                                     TextColor="{DynamicResource CurrentTextColour}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
-                                    Padding="8 8 8 7"/>
+                                    Padding="8,8,8,7"/>
 
                             <Picker Grid.Column="1"
                                     Grid.Row="0"
@@ -255,7 +255,7 @@
                                     TextColor="{DynamicResource CurrentTextColour}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
-                                    Padding="8 8 8 7"/>
+                                    Padding="8,8,8,7"/>
 
                             <Picker 
                                 Grid.Column="1"
@@ -276,7 +276,7 @@
                                     FontSize="{Binding BodyFontSize}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
-                                    Padding="8 8 8 7"/>
+                                    Padding="8,8,8,7"/>
 
                             <Picker Grid.Column="1"
                                     Grid.Row="2"
@@ -304,7 +304,7 @@
                         TextColor="{DynamicResource CurrentTextColour}"
                         FontSize="{Binding HeadingFontSize}"
                         FontAttributes="Bold"
-                        Padding="0 0 0 24"
+                        Padding="0,0,0,24"
                         HorizontalOptions="Start"/>
                     <Border StrokeThickness="0"
                             StrokeShape="RoundRectangle 5">
@@ -326,7 +326,7 @@
                                     TextColor="{DynamicResource CurrentTextColour}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
-                                    Padding="0 0 0 14"/>
+                                    Padding="0,0,0,14"/>
                             <Picker Grid.Column="1"
                                     Grid.Row="0"
                                     x:Name="LanguagePicker"
@@ -350,7 +350,7 @@
                         TextColor="{DynamicResource CurrentTextColour}"
                         FontSize="{Binding HeadingFontSize}"
                         FontAttributes="Bold"
-                        Padding="0 0 0 24"
+                        Padding="0,0,0,24"
                         HorizontalOptions="Start"/>
                     <Border StrokeThickness="0"
                             StrokeShape="RoundRectangle 5">
@@ -372,7 +372,7 @@
                                    FontSize="{Binding BodyFontSize}"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Start"
-                                   Padding="0 0 0 14"/>
+                                   Padding="0,0,0,14"/>
                             <Label Grid.Column="1"
                                    Grid.Row="0"
                                    Text="v1.0.0"
@@ -382,7 +382,7 @@
                                    VerticalOptions="Center"
                                    HorizontalOptions="End"
                                    HorizontalTextAlignment="End"
-                                   Padding="0 10 0 0"/>
+                                   Padding="0,0,10,0"/>
 
                         </Grid>
                     </Border>

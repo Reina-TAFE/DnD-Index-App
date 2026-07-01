@@ -58,7 +58,7 @@
                 <Image 
                     FlexLayout.Basis="40"
                     FlexLayout.AlignSelf="Center"
-                    Margin="0 0 40 5"
+                    Margin="0,0,40,5"
                     x:Name="BackBtn"
                     Source="arrow_left.png"
                     VerticalOptions="Start"
@@ -72,7 +72,7 @@
                 </Image>
                 <VerticalStackLayout FlexLayout.Basis="Auto"
                                      FlexLayout.AlignSelf="Center"
-                                     Margin="20 0">
+                                     Margin="20,0">
                     <Image
                         x:Name="PageIcon"
 
@@ -81,7 +81,7 @@
                         Aspect="AspectFit"
                         HorizontalOptions="Center"
                         SemanticProperties.Description="Placeholder image for app icon" 
-                        Margin="0 0 0 0"/>
+                        Margin="0,0,0,0"/>
                     <Label x:Name="PageNameLabel"
                            MinimumWidthRequest="126"
                            FontSize="32"
@@ -92,7 +92,7 @@
                 <Image 
                     FlexLayout.Basis="40"
                     FlexLayout.AlignSelf="Center"
-                    Margin="0 0 40 -5"
+                    Margin="0, 0, 40, -5"
                     x:Name="SettingsBtn"
                     Source="settings_icon.png"
                     VerticalOptions="Start"
@@ -106,7 +106,7 @@
                 </Image>
             </FlexLayout>
             <Border Grid.Row="1"
-                    Margin="0 35"
+                    Margin="0,35"
                     HeightRequest="45"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 25"
@@ -118,7 +118,7 @@
                            />
             </Border>
             <VerticalStackLayout Grid.Row="2"
-                                 Padding="5 15"
+                                 Padding="5,15"
                                  MinimumHeightRequest="575">
                 <Label x:Name="CategoryTypeLabel"
                        TextColor="{DynamicResource CurrentTextColour}"
@@ -137,8 +137,8 @@
                                     TextColor="{DynamicResource CurrentButtonTextColour}"
                                     HorizontalOptions="Fill"
                                     HeightRequest="65"
-                                    Padding="5 0"
-                                    Margin="5 0">
+                                    Padding="5,0"
+                                    Margin="5,0">
                                 <Button.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Tapped="SearchOption_Tapped"
